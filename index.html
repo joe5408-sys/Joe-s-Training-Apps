@@ -344,7 +344,10 @@ let sessions = [];
 let viewDate = todayISO();
 let volChart = null;
 
-function todayISO() { return new Date().toISOString().split('T')[0]; }
+function toLocalISODate(d) {
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+function todayISO() { return toLocalISODate(new Date()); }
 function dayLabel(iso) {
   return new Date(iso + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
 }
@@ -375,7 +378,7 @@ document.getElementById('nextDay').onclick = () => { shiftDate(1); };
 function shiftDate(delta) {
   const d = new Date(viewDate + 'T00:00:00');
   d.setDate(d.getDate() + delta);
-  viewDate = d.toISOString().split('T')[0];
+  viewDate = toLocalISODate(d);
   renderDateBar(); renderTodayList();
 }
 function renderDateBar() {
@@ -474,7 +477,8 @@ function renderAnalytics() {
   document.getElementById('analyticsContent').style.display = 'block';
 
   const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - 30);
-  const last30 = sessions.filter(s => new Date(s.date) >= cutoff);
+  const cutoffStr = toLocalISODate(cutoff);
+  const last30 = sessions.filter(s => s.date >= cutoffStr);
   const sessionDates = [...new Set(last30.map(s => s.date))].sort();
 
   const totalSets30 = last30.reduce((a, e) => a + e.sets, 0);
@@ -487,7 +491,8 @@ function renderAnalytics() {
 
   // Per-muscle weekly volume (last 7 days) vs target
   const weekCutoff = new Date(); weekCutoff.setDate(weekCutoff.getDate() - 7);
-  const last7 = sessions.filter(s => new Date(s.date) >= weekCutoff);
+  const weekCutoffStr = toLocalISODate(weekCutoff);
+  const last7 = sessions.filter(s => s.date >= weekCutoffStr);
   const targetsHtml = MUSCLE_ORDER.map(m => {
     const actual = last7.filter(e => e.category === m).reduce((a, e) => a + e.sets, 0);
     const target = WEEKLY_TARGETS[m] || 10;
@@ -538,7 +543,7 @@ function renderAnalytics() {
     const last = entries[entries.length - 1].weight;
     const diff = Math.round((last - first) * 10) / 10;
     const lastDate = entries[entries.length - 1].date;
-    const daysSince = Math.floor((new Date() - new Date(lastDate)) / 86400000);
+    const daysSince = Math.floor((new Date(todayISO() + 'T00:00:00') - new Date(lastDate + 'T00:00:00')) / 86400000);
     const trend = diff > 0.4 ? 'up' : diff < -0.4 ? 'down' : 'flat';
     return { name, first, last, diff, count: entries.length, trend, daysSince, history: entries };
   }).filter(Boolean).sort((a, b) => b.count - a.count);
