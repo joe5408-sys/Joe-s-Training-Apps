@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'setlog-v4';
+const CACHE_VERSION = 'setlog-v5';
 const APP_SHELL = [
   './',
   './index.html',
@@ -11,8 +11,15 @@ const APP_SHELL = [
 ];
 
 self.addEventListener('install', (event) => {
+  // Use {cache: 'reload'} per-request instead of cache.addAll(), which can
+  // silently reuse a stale HTTP-cached response (e.g. GitHub Pages/CDN
+  // max-age) instead of fetching the just-deployed files from network.
   event.waitUntil(
-    caches.open(CACHE_VERSION).then((cache) => cache.addAll(APP_SHELL)).then(() => self.skipWaiting())
+    caches.open(CACHE_VERSION)
+      .then((cache) => Promise.all(
+        APP_SHELL.map((url) => fetch(url, { cache: 'reload' }).then((res) => cache.put(url, res)))
+      ))
+      .then(() => self.skipWaiting())
   );
 });
 
