@@ -100,8 +100,22 @@
   .entry .name { font-weight: 600; font-size: 14px; }
   .entry .meta { font-family: 'IBM Plex Mono', monospace; font-size: 12px; color: #78716c; margin-top: 2px; }
   .entry .note { color: #a8a29e; }
-  .del-btn { background: none; border: none; color: #d6d3d1; cursor: pointer; padding: 6px; font-size: 16px; }
+  .entry-actions { display: flex; align-items: center; gap: 2px; }
+  .edit-btn, .del-btn { background: none; border: none; color: #d6d3d1; cursor: pointer; padding: 6px; font-size: 16px; }
+  .edit-btn:hover { color: #059669; }
   .del-btn:hover { color: #ef4444; }
+
+  .entry-edit {
+    background: #fff; border: 1px solid #34d399; border-radius: 14px; padding: 12px 16px; margin-bottom: 8px;
+  }
+  .entry-edit .name { font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+  .entry-edit-row { display: grid; grid-template-columns: 1.1fr 0.8fr 1fr; gap: 8px; }
+  .entry-edit-actions { display: flex; gap: 8px; margin-top: 10px; }
+  .entry-edit-actions button {
+    flex: 1; padding: 9px; border-radius: 10px; border: none; font-size: 13px; font-weight: 600; cursor: pointer;
+  }
+  .edit-save-btn { background: #1c1917; color: #fff; }
+  .edit-cancel-btn { background: #f5f5f4; color: #57534e; }
 
   .empty-state {
     text-align: center; padding: 40px 20px; color: #a8a29e; font-size: 13.5px;
@@ -357,6 +371,7 @@ const MUSCLE_COLORS = {
 let sessions = [];
 let viewDate = todayISO();
 let volChart = null;
+let editingId = null;
 
 function toLocalISODate(d) {
   return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
@@ -445,6 +460,7 @@ function flashInvalid() {
 
 function deleteEntry(id) {
   sessions = sessions.filter(s => s.id !== id);
+  if (editingId === id) editingId = null;
   save();
   renderTodayList();
   renderHeaderCount();
@@ -460,15 +476,64 @@ function renderTodayList() {
     list.innerHTML = '<div class="empty-state">Nothing logged for this day yet.</div>';
     return;
   }
-  list.innerHTML = entries.map(e => `
+  list.innerHTML = entries.map(e => e.id === editingId ? `
+    <div class="entry-edit">
+      <div class="name">${escapeHtml(e.exercise)}</div>
+      <div class="entry-edit-row">
+        <div class="weight-wrap">
+          <input type="number" step="0.5" id="editWeight-${e.id}" value="${e.weight}">
+          <select id="editUnit-${e.id}">
+            <option value="kg" ${e.unit === 'kg' ? 'selected' : ''}>kg</option>
+            <option value="plates" ${e.unit === 'plates' ? 'selected' : ''}>plates</option>
+            <option value="lb" ${e.unit === 'lb' ? 'selected' : ''}>lb</option>
+          </select>
+        </div>
+        <input type="number" id="editSets-${e.id}" value="${e.sets}">
+        <input id="editReps-${e.id}" value="${escapeHtml(e.reps)}">
+      </div>
+      <div class="entry-edit-actions">
+        <button class="edit-save-btn" onclick="saveEdit('${e.id}')">✓ Save</button>
+        <button class="edit-cancel-btn" onclick="cancelEdit()">✕ Cancel</button>
+      </div>
+    </div>
+  ` : `
     <div class="entry">
       <div>
         <div class="name">${escapeHtml(e.exercise)}</div>
         <div class="meta">${e.weight}${e.unit} · ${e.sets} × ${escapeHtml(e.reps)}${e.notes ? ' <span class="note">— ' + escapeHtml(e.notes) + '</span>' : ''}</div>
       </div>
-      <button class="del-btn" onclick="deleteEntry('${e.id}')">🗑</button>
+      <div class="entry-actions">
+        <button class="edit-btn" onclick="startEdit('${e.id}')">✎</button>
+        <button class="del-btn" onclick="deleteEntry('${e.id}')">🗑</button>
+      </div>
     </div>
   `).join('');
+}
+
+// ---------- Edit entry ----------
+function startEdit(id) {
+  editingId = id;
+  renderTodayList();
+}
+function cancelEdit() {
+  editingId = null;
+  renderTodayList();
+}
+function saveEdit(id) {
+  const weight = document.getElementById('editWeight-' + id).value;
+  const unit = document.getElementById('editUnit-' + id).value;
+  const sets_ = document.getElementById('editSets-' + id).value;
+  const reps = document.getElementById('editReps-' + id).value.trim();
+  if (!weight || !sets_ || !reps) return;
+  const entry = sessions.find(s => s.id === id);
+  if (!entry) return;
+  entry.weight = Number(weight);
+  entry.unit = unit;
+  entry.sets = Number(sets_);
+  entry.reps = reps;
+  save();
+  editingId = null;
+  renderTodayList();
 }
 
 // ---------- Copy last session ----------

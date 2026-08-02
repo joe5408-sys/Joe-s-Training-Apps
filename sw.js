@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'setlog-v5';
+const CACHE_VERSION = 'setlog-v6';
 const APP_SHELL = [
   './',
   './index.html',
