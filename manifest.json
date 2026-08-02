@@ -1,6 +1,6 @@
 {
-  "name": "SETLOG — Workout Tracker",
-  "short_name": "SETLOG",
+  "name": "Project J Tracker",
+  "short_name": "Project J",
   "description": "Fast offline workout set logging with weekly volume and progression analytics.",
   "start_url": "./index.html",
   "scope": "./",

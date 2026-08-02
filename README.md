@@ -1,4 +1,4 @@
-# SETLOG — Workout Tracker (PWA)
+# Project J Tracker (PWA)
 
 Offline-first workout logging app. All data stays in your browser's
 `localStorage` on your device — nothing is sent anywhere.

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
-<title>SETLOG — Workout Tracker</title>
+<title>Project J Tracker</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏋️</text></svg>">
 
 <link rel="manifest" href="manifest.json">
@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="SETLOG">
+<meta name="apple-mobile-web-app-title" content="Project J">
 <meta name="mobile-web-app-capable" content="yes">
 
 <script src="vendor/chart.umd.min.js"></script>
@@ -147,6 +147,13 @@
   }
   .export-btn:hover { border-color: #a8a29e; }
 
+  .copy-last-btn {
+    width: 100%; margin-bottom: 10px; padding: 11px; border: 1px dashed #d6d3d1; border-radius: 12px;
+    background: #fff; color: #57534e; font-size: 12.5px; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .copy-last-btn:hover { border-color: #34d399; color: #059669; }
+
   .history-item {
     display: block; width: 100%; text-align: left; background: #fff; border: 1px solid #e7e5e4;
     border-radius: 14px; padding: 14px 16px; margin-bottom: 8px; cursor: pointer; transition: border-color .15s;
@@ -172,7 +179,7 @@
 
 <header>
   <div class="header-top">
-    <div class="brand"><span class="dot">●</span> SETLOG</div>
+    <div class="brand"><span class="dot">●</span> PROJECT J</div>
     <div class="allcount" id="allCount">0 sets logged all-time</div>
   </div>
   <div class="tabs">
@@ -227,6 +234,8 @@
       </div>
       <button class="add-btn" id="addBtn">＋ Add to session</button>
     </div>
+
+    <button class="copy-last-btn" id="copyLastBtn" style="display:none"></button>
 
     <div class="section-title">
       <h2>Session log</h2>
@@ -437,6 +446,7 @@ function deleteEntry(id) {
 }
 
 function renderTodayList() {
+  renderCopyLastBtn();
   const entries = sessions.filter(s => s.date === viewDate);
   const total = entries.reduce((a, e) => a + e.sets, 0);
   document.getElementById('todaySets').textContent = total + ' sets';
@@ -454,6 +464,40 @@ function renderTodayList() {
       <button class="del-btn" onclick="deleteEntry('${e.id}')">🗑</button>
     </div>
   `).join('');
+}
+
+// ---------- Copy last session ----------
+function findLastSessionDate(beforeDate) {
+  const dates = [...new Set(sessions.map(s => s.date))].filter(d => d < beforeDate).sort();
+  return dates.length ? dates[dates.length - 1] : null;
+}
+
+function renderCopyLastBtn() {
+  const btn = document.getElementById('copyLastBtn');
+  const lastDate = findLastSessionDate(viewDate);
+  if (!lastDate) { btn.style.display = 'none'; return; }
+  const count = sessions.filter(s => s.date === lastDate).length;
+  btn.style.display = 'flex';
+  btn.textContent = `📋 Copy last session — ${dayLabel(lastDate)} (${count} exercise${count === 1 ? '' : 's'})`;
+  btn.onclick = () => copyLastSession(lastDate);
+}
+
+function copyLastSession(sourceDate) {
+  const source = sessions.filter(s => s.date === sourceDate);
+  if (!source.length) return;
+  const now = Date.now();
+  const copies = source.map((e, i) => ({
+    ...e,
+    id: viewDate + '-' + (now + i),
+    date: viewDate,
+    notes: '',
+    timestamp: new Date().toISOString(),
+  }));
+  sessions.push(...copies);
+  save();
+  refreshExerciseOptions();
+  renderTodayList();
+  renderHeaderCount();
 }
 
 function renderHeaderCount() {
