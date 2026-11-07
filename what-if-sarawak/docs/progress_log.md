@@ -9,5 +9,5 @@
 | Audio | done | 24 lines, original score (fanfare, harpsichord, groove, synth-arp, piano), ~40 SFX events, ducking −8 dB, two-pass loudnorm −14 LUFS. |
 | Proof of concept | done | Scene 1 rendered with audio-ready timeline (1.3 fps render speed measured). Three.js crown verified under SwiftShader/ANGLE. |
 | Full scenes | done | 8 scenes, 31 shots. QA stills found: shot offset bug (fixed), overlapping titles, banner hiding vote count, Rajah face under subtitles, clipped label, receipt over crown — all fixed. |
-| Render & export | see QA_report.md | |
+| Render & export | done | Video stage ~19 min (≈2.4 fps) on 4 CPU cores. First full render passed 34/34 automated checks. Manual review of the final file found 2 more issues: camera pan exposed a dark edge during the laundry sprint (~1 s), and the cover title overlapped the fiction tag. Both fixed; full package re-rendered and re-validated (see output/final/QA_report.md). Loop seam: first vs last frame mean difference ≈1/255. |
 | 4K export | skipped | Would need ~2.5 h at measured speed. Vector scenes could render natively at 2160×3840 with `--scale=2` (not an upscale) if time allows. |

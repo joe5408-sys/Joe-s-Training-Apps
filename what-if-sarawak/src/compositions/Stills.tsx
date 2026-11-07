@@ -26,7 +26,7 @@ export const Cover: React.FC = () => (
     <div style={{position: 'absolute', top: 270, left: 50, right: 50, textAlign: 'center', fontFamily: DISPLAY, fontWeight: 900, fontSize: 112, lineHeight: 1.0, color: '#fff', textShadow: outline(C.ink, 6), transform: 'rotate(-2deg)'}}>
       WHAT IF THE <span style={{color: C.sarawakYellow}}>BROOKES</span> STILL RULED SARAWAK?
     </div>
-    <div style={{position: 'absolute', top: 690, left: 0, right: 0, textAlign: 'center'}}><Tag /></div>
+    <div style={{position: 'absolute', top: 790, left: 0, right: 0, textAlign: 'center'}}><Tag /></div>
   </AbsoluteFill>
 );
 

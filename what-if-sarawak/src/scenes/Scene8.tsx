@@ -59,7 +59,7 @@ const S8B: React.FC = () => {
   const crownFly = run && rf < 30;
   return (
     <AbsoluteFill>
-      <Camera s={run ? 1.0 : lerp(f, 0, 6, 1.25, 1.1, easeOut)} x={run ? -rf * 6 : 0}>
+      <Camera s={run ? 1.12 : lerp(f, 0, 6, 1.25, 1.1, easeOut)} x={run ? Math.max(-rf * 4, -60) : 0}>
         <KuchingVista t={500 + f} tilt={1} pal={SKIES.storm} lights={1} palaceGlow={0} cars={false} />
         <AbsoluteFill style={{background: '#1a1f29', opacity: 0.35}} />
         <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
