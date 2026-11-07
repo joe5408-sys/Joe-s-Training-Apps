@@ -38,13 +38,13 @@ The numbers between key days are invented. Change the `KEY` table in `render_hor
 
 ---
 
-# Part 3: What If the Asteroid Missed? (3D, 62 s)
+# Part 3: What If the Asteroid Missed? (3D, 2 min)
 
 `what-if-asteroid-missed-3d.mp4` is real-time 3D (three.js), recorded frame by frame in headless Chromium, 1080x1920 H.264 + AAC.
 
 Rebuild:
 ```
-cd 3d && npm install && node render3d.js       # ~8–10 min on CPU
+cd 3d && npm install && node render3d.js       # ~20 min on CPU
 node render3d.js --preview ./preview 3 16 30    # quick PNG stills
 ```
 Files: `3d/scene.js` (models, cameras, captions), `3d/render3d.js` (frame capture → ffmpeg), `3d/audio3d.py` (soundtrack).
@@ -60,8 +60,7 @@ Each caption is tagged **FACT**, **STORY** or **SPECULATION**:
 | "Dinosauroid" | SPECULATION | Russell & Séguin 1982, a thought experiment, not a prediction |
 | Most Mesozoic mammals small; *Repenomamus* ~12–14 kg | FACT | Hu et al. 2005, *Nature* |
 | "But what if humans evolved anyway?" | SPECULATION | Not supported: without the impact, mammal evolution would have taken another path |
-| The clash (44–56 s): a predator pack raids a town, then humans make a last stand at a barricade | STORY | Fiction |
-| HUMANS 8.3 bn → 1.2 bn, HUMANS LOST rising, "Year 1–40 of the war" | SPECULATION | Only the 8.3 bn start comes from data (UN WPP 2024, 2026 projection). The decline is invented and only shaped by a smooth curve, with no model behind it |
+| The war (53–110 s): town raid → the wall holds → night attack by flyers → last stand → retreat north → city lights go out from space | STORY | Fiction |
+| HUMANS 8.3 bn → 0.9 bn, HUMANS LOST rising, "Year 1–52 of the war" (curve keyed in `WARK` in `scene.js`) | SPECULATION | Only the 8.3 bn start comes from data (UN WPP 2024, 2026 projection). The decline is invented and only shaped by a smooth curve, with no model behind it |
 
-**Length:** 62 s. TikTok, Instagram Reels and Facebook take it as is, and YouTube Shorts now accepts up to 3 minutes. If a platform or setting caps it at 60 s, trim with
-`ffmpeg -i what-if-asteroid-missed-3d.mp4 -t 59.5 -c copy short.mp4` (this cuts the last 2.5 s, including the "Follow" line).
+**Length:** 2 min. TikTok, YouTube Shorts (up to 3 min), Instagram Reels and Facebook accept it. Threads allows up to 5 min. Check each app's current limit before posting, because these change.
