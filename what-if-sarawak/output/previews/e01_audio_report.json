@@ -1,0 +1,190 @@
+{
+ "placed": [
+  {
+   "id": "n01",
+   "speaker": "narrator",
+   "start": 0.25,
+   "end": 2.4686666666666666,
+   "scene": "s1"
+  },
+  {
+   "id": "n02",
+   "speaker": "narrator",
+   "start": 4.0,
+   "end": 5.088,
+   "scene": "s1"
+  },
+  {
+   "id": "n03",
+   "speaker": "narrator",
+   "start": 6.3,
+   "end": 9.926666666666666,
+   "scene": "s2"
+  },
+  {
+   "id": "n04",
+   "speaker": "narrator",
+   "start": 10.2,
+   "end": 15.917333333333332,
+   "scene": "s2"
+  },
+  {
+   "id": "n05",
+   "speaker": "narrator",
+   "start": 16.037333333333333,
+   "end": 17.722666666666665,
+   "scene": "s2"
+  },
+  {
+   "id": "n06",
+   "speaker": "narrator",
+   "start": 17.85,
+   "end": 20.77266666666667,
+   "scene": "s3"
+  },
+  {
+   "id": "n07",
+   "speaker": "narrator",
+   "start": 20.89266666666667,
+   "end": 22.962000000000003,
+   "scene": "s3"
+  },
+  {
+   "id": "n08",
+   "speaker": "narrator",
+   "start": 23.082000000000004,
+   "end": 25.066000000000003,
+   "scene": "s3"
+  },
+  {
+   "id": "n09",
+   "speaker": "narrator",
+   "start": 25.186000000000003,
+   "end": 27.08466666666667,
+   "scene": "s3"
+  },
+  {
+   "id": "n10",
+   "speaker": "narrator",
+   "start": 27.4,
+   "end": 30.621333333333332,
+   "scene": "s4"
+  },
+  {
+   "id": "d01",
+   "speaker": "driver",
+   "start": 32.0,
+   "end": 34.24,
+   "scene": "s4"
+  },
+  {
+   "id": "r01",
+   "speaker": "rajah",
+   "start": 34.6,
+   "end": 35.45333333333333,
+   "scene": "s4"
+  },
+  {
+   "id": "n11",
+   "speaker": "narrator",
+   "start": 35.9,
+   "end": 38.716,
+   "scene": "s4"
+  },
+  {
+   "id": "m01",
+   "speaker": "minister",
+   "start": 40.4,
+   "end": 45.882666666666665,
+   "scene": "s5"
+  },
+  {
+   "id": "a01",
+   "speaker": "auntie",
+   "start": 46.75,
+   "end": 48.712666666666664,
+   "scene": "s5"
+  },
+  {
+   "id": "r02",
+   "speaker": "rajah",
+   "start": 49.2,
+   "end": 51.824000000000005,
+   "scene": "s5"
+  },
+  {
+   "id": "n12",
+   "speaker": "narrator",
+   "start": 52.3,
+   "end": 56.11866666666666,
+   "scene": "s6"
+  },
+  {
+   "id": "m02",
+   "speaker": "minister",
+   "start": 56.6,
+   "end": 60.973333333333336,
+   "scene": "s6"
+  },
+  {
+   "id": "n13",
+   "speaker": "narrator",
+   "start": 62.4,
+   "end": 64.27733333333333,
+   "scene": "s6"
+  },
+  {
+   "id": "n14",
+   "speaker": "narrator",
+   "start": 65.4,
+   "end": 68.81333333333333,
+   "scene": "s7"
+  },
+  {
+   "id": "n15",
+   "speaker": "narrator",
+   "start": 70.7,
+   "end": 74.45466666666667,
+   "scene": "s7"
+  },
+  {
+   "id": "r03",
+   "speaker": "rajah",
+   "start": 77.7,
+   "end": 79.492,
+   "scene": "s8"
+  },
+  {
+   "id": "r04",
+   "speaker": "rajah",
+   "start": 81.2,
+   "end": 83.48266666666667,
+   "scene": "s8"
+  },
+  {
+   "id": "n16",
+   "speaker": "narrator",
+   "start": 84.4,
+   "end": 87.32266666666668,
+   "scene": "s8"
+  }
+ ],
+ "warnings": [
+  "n05 pushed 1.04s later",
+  "n07 pushed 0.49s later",
+  "n08 pushed 0.38s later",
+  "n09 pushed 0.59s later"
+ ],
+ "loudness": {
+  "input_i": "-20.49",
+  "input_tp": "-0.91",
+  "input_lra": "3.90",
+  "input_thresh": "-30.83",
+  "output_i": "-14.97",
+  "output_tp": "-1.50",
+  "output_lra": "2.90",
+  "output_thresh": "-25.24",
+  "normalization_type": "dynamic",
+  "target_offset": "0.97"
+ }
+}

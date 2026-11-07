@@ -1,0 +1,206 @@
+[
+ {
+  "check": "Master: file exists and non-empty",
+  "pass": true,
+  "detail": "54.9 MB",
+  "hard": true
+ },
+ {
+  "check": "Master: H.264 video",
+  "pass": true,
+  "detail": "h264 High",
+  "hard": true
+ },
+ {
+  "check": "Master: 1080x1920 (9:16)",
+  "pass": true,
+  "detail": "1080x1920",
+  "hard": true
+ },
+ {
+  "check": "Master: 30 fps",
+  "pass": true,
+  "detail": "30.000",
+  "hard": true
+ },
+ {
+  "check": "Master: yuv420p",
+  "pass": true,
+  "detail": "yuv420p",
+  "hard": true
+ },
+ {
+  "check": "Master: AAC audio",
+  "pass": true,
+  "detail": "aac",
+  "hard": true
+ },
+ {
+  "check": "Master: 48 kHz stereo",
+  "pass": true,
+  "detail": "48000 Hz, 2 ch",
+  "hard": true
+ },
+ {
+  "check": "Master: duration 80-105s and < 120s",
+  "pass": true,
+  "detail": "90.00s",
+  "hard": true
+ },
+ {
+  "check": "Master: A/V duration mismatch < 0.1s",
+  "pass": true,
+  "detail": "video 90.000s, audio 90.000s",
+  "hard": true
+ },
+ {
+  "check": "Master: fast-start (moov before mdat)",
+  "pass": true,
+  "detail": "ftyp moov free mdat",
+  "hard": true
+ },
+ {
+  "check": "Master: full decode without errors",
+  "pass": true,
+  "detail": "clean",
+  "hard": true
+ },
+ {
+  "check": "Master: no black segments ≥0.25s",
+  "pass": true,
+  "detail": "none",
+  "hard": true
+ },
+ {
+  "check": "Master: no static stretch ≥2.5s",
+  "pass": true,
+  "detail": "none",
+  "hard": false
+ },
+ {
+  "check": "Master: no silence ≥1.2s below -45 dBFS",
+  "pass": true,
+  "detail": "none",
+  "hard": false
+ },
+ {
+  "check": "Master: integrated loudness -16..-12 LUFS",
+  "pass": true,
+  "detail": "-14.2 LUFS",
+  "hard": true
+ },
+ {
+  "check": "Master: true peak ≤ -1.0 dBTP (no clipping)",
+  "pass": true,
+  "detail": "-1.3 dBTP",
+  "hard": true
+ },
+ {
+  "check": "Contact sheet generated",
+  "pass": true,
+  "detail": "24 frames → What_If_Brooke_Sarawak_E01_ContactSheet.png",
+  "hard": false
+ },
+ {
+  "check": "Sampled frames are not blank",
+  "pass": true,
+  "detail": "all frames have content",
+  "hard": true
+ },
+ {
+  "check": "Teaser: file exists and non-empty",
+  "pass": true,
+  "detail": "19.4 MB",
+  "hard": true
+ },
+ {
+  "check": "Teaser: H.264 video",
+  "pass": true,
+  "detail": "h264 High",
+  "hard": true
+ },
+ {
+  "check": "Teaser: 1080x1920 (9:16)",
+  "pass": true,
+  "detail": "1080x1920",
+  "hard": true
+ },
+ {
+  "check": "Teaser: 30 fps",
+  "pass": true,
+  "detail": "30.000",
+  "hard": true
+ },
+ {
+  "check": "Teaser: yuv420p",
+  "pass": true,
+  "detail": "yuv420p",
+  "hard": true
+ },
+ {
+  "check": "Teaser: AAC audio",
+  "pass": true,
+  "detail": "aac",
+  "hard": true
+ },
+ {
+  "check": "Teaser: 48 kHz stereo",
+  "pass": true,
+  "detail": "48000 Hz, 2 ch",
+  "hard": true
+ },
+ {
+  "check": "Teaser: duration 25-35s and < 120s",
+  "pass": true,
+  "detail": "30.27s",
+  "hard": true
+ },
+ {
+  "check": "Teaser: A/V duration mismatch < 0.1s",
+  "pass": true,
+  "detail": "video 30.267s, audio 30.270s",
+  "hard": true
+ },
+ {
+  "check": "Teaser: fast-start (moov before mdat)",
+  "pass": true,
+  "detail": "ftyp moov free mdat",
+  "hard": true
+ },
+ {
+  "check": "Teaser: full decode without errors",
+  "pass": true,
+  "detail": "clean",
+  "hard": true
+ },
+ {
+  "check": "Timeline: all dialogue inside the film",
+  "pass": true,
+  "detail": "24 lines",
+  "hard": true
+ },
+ {
+  "check": "Audio: every scripted line has audible narration/dialogue",
+  "pass": true,
+  "detail": "all 24 lines voiced",
+  "hard": true
+ },
+ {
+  "check": "Still: What_If_Brooke_Sarawak_E01_Cover_1080x1920.png",
+  "pass": true,
+  "detail": "(1080, 1920)",
+  "hard": true
+ },
+ {
+  "check": "Still: What_If_Brooke_Sarawak_E01_Thumbnail_1280x720.png",
+  "pass": true,
+  "detail": "(1280, 720)",
+  "hard": true
+ },
+ {
+  "check": "Subtitles: SRT present with cues",
+  "pass": true,
+  "detail": "44 cues",
+  "hard": true
+ }
+]
