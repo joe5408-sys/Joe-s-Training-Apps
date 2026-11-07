@@ -22,3 +22,16 @@ Aina, the kampung scene, the footprints and the footprint counter are fiction.
 | ~11,000 bird species | IOC World Bird List | Count depends on the taxonomy used |
 | ~26 billion chickens | FAOSTAT live-animal stocks (~2022) | Please check the latest FAOSTAT year before posting |
 | ~770x longer than humans | 230,000,000 / 300,000 (Hublin et al. 2017, *Nature*) | Compares a lineage with a species: a rhetorical ratio |
+
+---
+
+# Part 2: They Came Back (action / horror, 58 s)
+
+`they-came-back.mp4` has the same format as the first video (1080x1920, H.264 + AAC). Rebuild it with `python3 render_horror.py`.
+
+Story: dinosaurs hatch under Borneo's caves → raptor packs spread → a T. rex walks through a city → Aina hides in a basement (survivors 12 → 1) → dinosaurs outnumber humans on Day 180 → "Follow for Part 2".
+
+A live counter bar (DAY / HUMANS / DINOSAURS) and a line chart show humans falling and dinosaurs rising.
+
+**All numbers are fiction**, except the Day 0 world population: ~8.3 billion, the UN World Population Prospects 2024 projection for 2026.
+The numbers between key days are invented. Change the `KEY` table in `render_horror.py` to change them.
