@@ -64,4 +64,4 @@ Each caption is tagged **FACT**, **STORY** or **SPECULATION**:
 | HUMANS 8.3 bn → 1.2 bn, HUMANS LOST rising, "Year 1–40 of the war" | SPECULATION | Only the 8.3 bn start comes from data (UN WPP 2024, 2026 projection). The decline is invented and only shaped by a smooth curve, with no model behind it |
 
 **Length:** 62 s. TikTok, Instagram Reels and Facebook take it as is, and YouTube Shorts now accepts up to 3 minutes. If a platform or setting caps it at 60 s, trim with
-`ffmpeg -i what-if-asteroid-missed-3d.mp4 -t 59.5 -c copy short.mp4` (this cuts the last fade only).
+`ffmpeg -i what-if-asteroid-missed-3d.mp4 -t 59.5 -c copy short.mp4` (this cuts the last 2.5 s, including the "Follow" line).
