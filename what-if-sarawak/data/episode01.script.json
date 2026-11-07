@@ -1,5 +1,10 @@
 {
   "episode": "E01",
+  "slug": "What_If_Brooke_Sarawak",
+  "fiction_notice": [
+    17.8,
+    19.6
+  ],
   "title": "What If the Brooke Family Still Governed Sarawak?",
   "fps": 30,
   "width": 1080,
@@ -264,5 +269,23 @@
     "stamp": 61.0,
     "thunder": 80.2,
     "endcard": 83.9
-  }
+  },
+  "teaser": [
+    [
+      0,
+      6
+    ],
+    [
+      29.33,
+      38.9
+    ],
+    [
+      46.0,
+      51.9
+    ],
+    [
+      80.0,
+      88.8
+    ]
+  ]
 }

@@ -1,9 +1,13 @@
 """Regenerate scripts/episode01.md and scripts/narration.md from the script + built timeline."""
 import json, os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-cfg = json.load(open(os.path.join(ROOT, "data/episode01.script.json")))
-tl = json.load(open(os.path.join(ROOT, "src/data/e01.timeline.json")))
-VIS = {
+import sys
+SCRIPT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "data/episode01.script.json")
+cfg = json.load(open(SCRIPT))
+ep = cfg["episode"].lower()
+tl = json.load(open(os.path.join(ROOT, f"src/data/{ep}.timeline.json")))
+NUM = cfg["episode"][1:]
+VIS = {  # E01 descriptions (later episodes keep theirs in the script JSON)
  "s1": "Golden-hour futuristic Kuching; camera tilts down from the sky as a royal hover-car whips past the lens; title punch-in. Record scratch freezes the frame → sky-lane traffic jam, PON! PON! horns, 'SKYWAY 1 · 0 km/h'.",
  "s2": "REAL HISTORY badge. Parchment map of Borneo, schooner sails to Kuching, '1841' card with both dates. Three illustrative portrait silhouettes slide in with reign years; timeline bar runs 1841→1946; 'BRITISH CROWN COLONY · 1 JULY 1946' stamp. Map dims, giant '?' and VHS rewind.",
  "s3": "Sepia Council Negri, May 1946: real tally 19–16 PASSED. Glitch → full-width 'ALTERNATE HISTORY — FICTION' banner, numbers flip to 16–19, 'CESSION REJECTED' stamp + 'Imagined outcome — this did NOT happen'. Time vortex counts 1946→2026. Flash → 3D Three.js crown, fireworks, 'KINGDOM OF SARAWAK 2026', 'Constitutional monarchy · Elected government · 100% fictional'.",
@@ -22,15 +26,16 @@ out = [f"# {cfg['title']} — script & scene breakdown (Episode {cfg['episode']}
        "Genre: alternate-history comedy · 1080×1920 · 30 fps · " + f"{tl['durationInFrames']/tl['fps']:.0f} s\n"]
 for s in tl["scenes"]:
     out.append(f"\n## Scene {s['id'][1]} — {s['name']} ({fmt(s['from']/30)}–{fmt(s['to']/30)})\n")
-    out.append(f"**Visuals:** {VIS[s['id']]}\n")
+    vis = next((x.get("visuals") for x in cfg["scenes"] if x["id"] == s["id"] and x.get("visuals")), None) or VIS.get(s["id"], "")
+    out.append(f"**Visuals:** {vis}\n")
     for l in lines_by_scene.get(s["id"], []):
         out.append(f"- `{fmt(l['start'])}` **{l['speaker'].upper()}:** {l['text']}")
 out.append("\n## Cues (s)\n" + ", ".join(f"{k} {v/30:.2f}" for k, v in tl["cues"].items()))
-open(os.path.join(ROOT, "scripts/episode01.md"), "w").write("\n".join(out) + "\n")
+open(os.path.join(ROOT, f"scripts/episode{NUM}.md"), "w").write("\n".join(out) + "\n")
 nar = ["# Narration & dialogue — voice production sheet\n", "TTS engine: Kokoro-82M v1.0 (ONNX, Apache-2.0), run locally. `[word](/ipa/)` = pronunciation override.\n",
        "| ID | Speaker | Voice | Start | End | On-screen text | TTS input |", "|---|---|---|---|---|---|---|"]
 for l, src in zip(tl["lines"], cfg["lines"]):
     v = cfg["voices"][l["speaker"]]
     nar.append(f"| {l['id']} | {l['speaker']} | {v['voice']} ×{v['speed']} | {l['start']:.2f} | {l['end']:.2f} | {l['text']} | {src['tts']} |")
-open(os.path.join(ROOT, "scripts/narration.md"), "w").write("\n".join(nar) + "\n")
+open(os.path.join(ROOT, "scripts/narration.md" if NUM == "01" else f"scripts/narration_e{NUM}.md"), "w").write("\n".join(nar) + "\n")
 print("docs written")

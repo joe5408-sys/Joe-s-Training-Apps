@@ -3,18 +3,25 @@ import {C} from '../../styles/theme';
 import {useAbsFrame, mouthAt, isTalking} from '../../lib/timeline';
 import {autoBlink, Brow, Expr, Eye, Hand, Limb, Mouth, OUT, SW, SweatDrop} from './parts';
 import {seeded} from '../../lib/anim';
+import {Crown} from './Crown';
 
 /** AUNTIE — confident Kuching auntie on a video call. Bust; origin = bottom centre of shoulders. */
-export const Auntie: React.FC<{x: number; y: number; s?: number; expr?: Expr; point?: number; shake?: number}> = ({x, y, s = 1, expr = 'angry', point = 0, shake = 0}) => {
+export const Auntie: React.FC<{
+  x: number; y: number; s?: number; expr?: Expr; point?: number; shake?: number;
+  speaker?: string; variant?: 'auntie' | 'queen' | 'grandma'; showArm?: boolean; crownDy?: number; crownR?: number;
+}> = ({x, y, s = 1, expr = 'angry', point = 0, shake = 0, speaker = 'auntie', variant = 'auntie', showArm = true, crownDy = 0, crownR = 0}) => {
   const abs = useAbsFrame();
-  const m = mouthAt('auntie', abs);
-  const talk = isTalking('auntie', abs);
-  const skin = C.skin.auntie;
+  const m = mouthAt(speaker, abs);
+  const talk = isTalking(speaker, abs);
+  const skin = variant === 'grandma' ? '#b98a62' : C.skin.auntie;
+  const top = variant === 'grandma' ? '#8a3a4a' : C.teal;
+  const hairC = variant === 'grandma' ? '#c9c9d2' : C.hair.auntie;
+  const frame = variant === 'grandma' ? C.goldDark : '#7a2e8e';
   const nod = talk ? Math.sin(abs / 2.4) * 4 : 0;
   return (
     <g transform={`translate(${x + shake} ${y}) scale(${s})`}>
       {/* blouse with simple floral print */}
-      <path d="M -210 0 Q -200 -170 -90 -200 L 90 -200 Q 200 -170 210 0 Z" fill={C.teal} stroke={OUT} strokeWidth={SW} />
+      <path d="M -210 0 Q -200 -170 -90 -200 L 90 -200 Q 200 -170 210 0 Z" fill={top} stroke={OUT} strokeWidth={SW} />
       {Array.from({length: 9}, (_, i) => {
         const fx = -160 + (i % 5) * 80 + (i > 4 ? 40 : 0);
         const fy = -140 + (i > 4 ? 70 : 0);
@@ -26,15 +33,25 @@ export const Auntie: React.FC<{x: number; y: number; s?: number; expr?: Expr; po
         );
       })}
       <path d="M -40 -200 L 0 -150 L 40 -200" fill="none" stroke={OUT} strokeWidth={4} />
+      {variant === 'queen' && (
+        <g>
+          <path d="M -150 -170 L -110 -195 L 170 -20 L 150 0 Z" fill={C.gold} stroke={OUT} strokeWidth={4} />
+          <path d="M -135 -170 L -118 -182 L 160 -12 L 152 -4 Z" fill={C.royalPurple} />
+          <circle cx={20} cy={-90} r={16} fill={C.goldLight} stroke={OUT} strokeWidth={3} />
+        </g>
+      )}
       {/* pointing arm */}
-      <g transform={`translate(150 -120) rotate(${-150 + point * 10})`}>
-        <rect x={-26} y={-20} width={52} height={170} rx={26} fill={C.teal} stroke={OUT} strokeWidth={SW} />
-        <Hand x={0} y={160} r={28} fill={skin} point rot={180} />
-      </g>
+      {showArm && (
+        <g transform={`translate(150 -120) rotate(${-150 + point * 10})`}>
+          <rect x={-26} y={-20} width={52} height={170} rx={26} fill={top} stroke={OUT} strokeWidth={SW} />
+          <Hand x={0} y={160} r={28} fill={skin} point rot={180} />
+        </g>
+      )}
       <g transform={`translate(0 ${nod}) rotate(${nod * 0.6} 0 -220)`}>
         <rect x={-30} y={-240} width={60} height={50} fill={skin} stroke={OUT} strokeWidth={4} />
         {/* hair (back) */}
-        <ellipse cx={0} cy={-330} rx={120} ry={115} fill={C.hair.auntie} stroke={OUT} strokeWidth={SW} />
+        <ellipse cx={0} cy={-330} rx={120} ry={115} fill={hairC} stroke={OUT} strokeWidth={SW} />
+        {variant === 'grandma' && <circle cx={0} cy={-450} r={50} fill={hairC} stroke={OUT} strokeWidth={4} />}
         <ellipse cx={-92} cy={-330} rx={12} ry={20} fill={skin} stroke={OUT} strokeWidth={4} />
         <ellipse cx={92} cy={-330} rx={12} ry={20} fill={skin} stroke={OUT} strokeWidth={4} />
         <circle cx={-94} cy={-300} r={8} fill={C.gold} stroke={OUT} strokeWidth={3} />
@@ -42,34 +59,37 @@ export const Auntie: React.FC<{x: number; y: number; s?: number; expr?: Expr; po
         <ellipse cx={0} cy={-320} rx={88} ry={98} fill={skin} stroke={OUT} strokeWidth={SW} />
         {/* curls */}
         {Array.from({length: 11}, (_, i) => (
-          <circle key={i} cx={-95 + i * 19} cy={-408 + Math.abs(i - 5) * 6} r={26} fill={i === 3 ? '#8d8d96' : C.hair.auntie} stroke={OUT} strokeWidth={3.5} />
+          <circle key={i} cx={-95 + i * 19} cy={-408 + Math.abs(i - 5) * 6} r={26} fill={variant === 'grandma' ? hairC : i === 3 ? '#8d8d96' : C.hair.auntie} stroke={OUT} strokeWidth={3.5} />
         ))}
-        <rect x={34} y={-426} width={46} height={14} rx={7} fill={C.neonPink} stroke={OUT} strokeWidth={3} transform="rotate(-18 57 -419)" />
-        <Brow x={-36} y={-372} expr={expr} side={-1} color={C.hair.auntie} w={34} />
-        <Brow x={36} y={-372} expr={expr} side={1} color={C.hair.auntie} w={34} />
+        {variant === 'auntie' && <rect x={34} y={-426} width={46} height={14} rx={7} fill={C.neonPink} stroke={OUT} strokeWidth={3} transform="rotate(-18 57 -419)" />}
+        <Brow x={-36} y={-372} expr={expr} side={-1} color={variant === 'grandma' ? '#8d8d96' : C.hair.auntie} w={34} />
+        <Brow x={36} y={-372} expr={expr} side={1} color={variant === 'grandma' ? '#8d8d96' : C.hair.auntie} w={34} />
         <Eye x={-36} y={-338} blink={autoBlink(abs, 9)} expr={expr === 'angry' ? 'angry' : expr} skin={skin} side={-1} />
         <Eye x={36} y={-338} blink={autoBlink(abs, 9)} expr={expr === 'angry' ? 'angry' : expr} skin={skin} side={1} />
         {/* glasses */}
-        <circle cx={-36} cy={-338} r={30} fill="rgba(200,240,255,0.18)" stroke="#7a2e8e" strokeWidth={6} />
-        <circle cx={36} cy={-338} r={30} fill="rgba(200,240,255,0.18)" stroke="#7a2e8e" strokeWidth={6} />
-        <path d="M -6 -340 L 6 -340" stroke="#7a2e8e" strokeWidth={6} />
+        <circle cx={-36} cy={-338} r={30} fill="rgba(200,240,255,0.18)" stroke={frame} strokeWidth={6} />
+        <circle cx={36} cy={-338} r={30} fill="rgba(200,240,255,0.18)" stroke={frame} strokeWidth={6} />
+        <path d="M -6 -340 L 6 -340" stroke={frame} strokeWidth={6} />
         <path d="M 0 -322 Q 10 -302 0 -296" stroke={OUT} strokeWidth={4} fill="none" />
         <ellipse cx={-56} cy={-292} rx={13} ry={7} fill="#e2707a" opacity={0.45} />
         <ellipse cx={56} cy={-292} rx={13} ry={7} fill="#e2707a" opacity={0.45} />
         <Mouth x={0} y={-270} open={m} expr={expr} />
+        {variant === 'queen' && <g transform={`translate(10 ${-430 + crownDy}) rotate(${crownR - 4})`}><Crown s={0.62} /></g>}
       </g>
     </g>
   );
 };
 
 /** ROYAL DRIVER — peaked cap, moustache, navy uniform. Bust; origin = bottom centre. */
-export const Driver: React.FC<{x: number; y: number; s?: number; turn?: number; expr?: Expr}> = ({x, y, s = 1, turn = 0, expr = 'nervous'}) => {
+export const Driver: React.FC<{x: number; y: number; s?: number; turn?: number; expr?: Expr; speaker?: string; uniform?: string; band?: string}> = ({
+  x, y, s = 1, turn = 0, expr = 'nervous', speaker = 'driver', uniform = C.navy, band = C.gold,
+}) => {
   const abs = useAbsFrame();
-  const m = mouthAt('driver', abs);
+  const m = mouthAt(speaker, abs);
   const skin = C.skin.driver;
   return (
     <g transform={`translate(${x} ${y}) scale(${s})`}>
-      <path d="M -170 0 Q -160 -150 -70 -170 L 70 -170 Q 160 -150 170 0 Z" fill={C.navy} stroke={OUT} strokeWidth={SW} />
+      <path d="M -170 0 Q -160 -150 -70 -170 L 70 -170 Q 160 -150 170 0 Z" fill={uniform} stroke={OUT} strokeWidth={SW} />
       <path d="M -30 -170 L 0 -120 L 30 -170" fill="#fff" stroke={OUT} strokeWidth={4} />
       <rect x={-6} y={-140} width={12} height={60} fill={C.gold} />
       <g transform={`translate(${turn * 16} 0)`}>
@@ -78,8 +98,8 @@ export const Driver: React.FC<{x: number; y: number; s?: number; turn?: number; 
         <ellipse cx={-76} cy={-280} rx={11} ry={18} fill={skin} stroke={OUT} strokeWidth={4} />
         <ellipse cx={76} cy={-280} rx={11} ry={18} fill={skin} stroke={OUT} strokeWidth={4} />
         {/* cap */}
-        <path d="M -82 -330 Q -84 -400 0 -404 Q 84 -400 82 -330 Z" fill={C.navy} stroke={OUT} strokeWidth={SW} />
-        <rect x={-84} y={-342} width={168} height={18} fill={C.gold} stroke={OUT} strokeWidth={3} />
+        <path d="M -82 -330 Q -84 -400 0 -404 Q 84 -400 82 -330 Z" fill={uniform} stroke={OUT} strokeWidth={SW} />
+        <rect x={-84} y={-342} width={168} height={18} fill={band} stroke={OUT} strokeWidth={3} />
         <path d="M -70 -324 Q 0 -300 90 -322 L 96 -312 Q 0 -288 -70 -312 Z" fill={OUT} />
         <circle cx={0} cy={-366} r={12} fill={C.gold} stroke={OUT} strokeWidth={3} />
         <Brow x={-30} y={-300} expr={expr} side={-1} color={C.hair.driver} w={28} />

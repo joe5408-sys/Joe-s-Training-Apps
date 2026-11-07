@@ -8,3 +8,4 @@ output/work/
 assets/audio/*_stem_*.wav
 assets/music/*_score_full.wav
 output/previews/qa_frames/
+__pycache__/

@@ -412,3 +412,52 @@ def traffic_bed(d=2.5):
     n = n_samples(d)
     y = 0.25 * sos_filter(pink(d), "low", 400)
     return y * env(n, 0.2, 0.5)
+
+
+# ------------------------------------------------------------------ added for E02
+
+def sizzle(d=3.0):
+    """Wok sizzle: crackly high noise with random pops."""
+    n = n_samples(d)
+    y = sos_filter(_rng.normal(size=n), "band", [2500, 11000]) * 0.35
+    y *= 0.6 + 0.4 * np.interp(np.arange(n), np.linspace(0, n, 40), _rng.uniform(0.3, 1, 40))
+    for _ in range(int(40 * d)):
+        s = int(_rng.uniform(0, n - 300))
+        L = int(_rng.uniform(40, 200))
+        y[s:s + L] += _rng.normal(size=L) * np.exp(-np.arange(L) / (L / 5)) * _rng.uniform(0.2, 0.8)
+    return y * env(n, 0.15, 0.4)
+
+
+def cheer(d=2.5, voices=40):
+    """Crowd cheer: many band-passed noise 'voices' with vowel-ish formants and AM."""
+    n = n_samples(d)
+    t = np.arange(n) / SR
+    y = np.zeros(n)
+    for _ in range(voices):
+        f = _rng.uniform(500, 1600)
+        v = sos_filter(_rng.normal(size=n), "band", [f * 0.8, f * 1.25])
+        am = 0.6 + 0.4 * np.sin(2 * np.pi * _rng.uniform(3, 7) * t + _rng.uniform(0, 6))
+        y += v * am * _rng.uniform(0.3, 1.0)
+    y /= np.abs(y).max() + 1e-9
+    return y * env(n, 0.25, 0.9) * 0.8
+
+
+def kaching():
+    n = n_samples(1.2)
+    t = np.arange(n) / SR
+    clack = sos_filter(_rng.normal(size=n), "band", [800, 5000]) * np.exp(-t / 0.02)
+    bell = ding(2093, 1.2)[:n] + 0.7 * np.concatenate([np.zeros(n_samples(0.08)), ding(2637, 1.2)])[:n]
+    return 0.6 * clack + bell
+
+
+def gong(d=3.0):
+    n = n_samples(d)
+    t = np.arange(n) / SR
+    y = sum(a * np.sin(2 * np.pi * f * t * (1 + 0.002 * np.sin(2 * np.pi * 0.7 * t))) * np.exp(-t / dec)
+            for f, a, dec in ((98, 1, 2.2), (147, 0.6, 1.6), (211, 0.5, 1.2), (308, 0.35, 0.9), (447, 0.2, 0.6)))
+    y += 0.3 * sos_filter(_rng.normal(size=n), "low", 900) * np.exp(-t / 0.05)
+    return y * 0.6
+
+
+def airport_chime():
+    return np.concatenate([ding(988, 0.5)[: n_samples(0.35)], ding(784, 1.4)]) * 0.8

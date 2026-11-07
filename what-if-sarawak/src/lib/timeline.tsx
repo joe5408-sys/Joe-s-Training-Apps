@@ -8,12 +8,17 @@ export type Line = {
   start: number; end: number; from: number; to: number; mouth: number[]; chunks: Chunk[];
 };
 export type Timeline = {
-  episode: string; title: string; fps: number; width: number; height: number; durationInFrames: number;
+  episode: string; slug?: string; title: string; fps: number; width: number; height: number; durationInFrames: number;
   audio: string; scenes: {id: string; name: string; from: number; to: number}[];
   cues: Record<string, number>; lines: Line[];
 };
 
-export const TL = raw as unknown as Timeline;
+// Active episode timeline. `export let` is a live binding: the episode composition calls
+// activateTimeline() before its children render, so helpers below always read the right episode.
+export let TL = raw as unknown as Timeline;
+export const activateTimeline = (t: Timeline) => {
+  TL = t;
+};
 export const line = (id: string) => {
   const l = TL.lines.find((x) => x.id === id);
   if (!l) throw new Error(`No line ${id}`);

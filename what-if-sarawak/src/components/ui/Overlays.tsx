@@ -10,6 +10,9 @@ const SPEAKER: Record<string, {label: string; color: string}> = {
   driver: {label: 'ROYAL DRIVER', color: C.teal},
   minister: {label: 'PREMIER (fictional)', color: '#7FB2FF'},
   auntie: {label: 'AUNTIE', color: C.neonPink},
+  queen: {label: 'QUEEN AUNTIE (fictional)', color: C.neonPink},
+  officer: {label: 'IMMIGRATION OFFICER', color: C.teal},
+  grandma: {label: 'GRANDMA', color: '#ffb38a'},
 };
 
 /** Burned-in subtitles, chunked, placed inside the social safe area. */
@@ -24,7 +27,7 @@ export const Subtitles: React.FC = () => {
   }
   if (!found) return null;
   const s = found as {text: string; speaker: string; from: number; first: boolean};
-  const sp = SPEAKER[s.speaker];
+  const sp = SPEAKER[s.speaker] ?? {label: s.speaker.toUpperCase(), color: C.white};
   const k = lerp(f, s.from, s.from + 6, 0.75, 1, backOut);
   const words = s.text.split(' ');
   return (

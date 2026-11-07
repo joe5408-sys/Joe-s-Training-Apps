@@ -29,3 +29,28 @@ Team Rajah 👑 atau Team Reality 🇲🇾? Komen di bawah!
 - Post 18:00–21:00 MYT; pin the sources comment in the first minute.
 - Reply to the first 20 comments; stitch/duet invites: "What would YOUR Sarawak 2026 look like?"
 - Next episodes to tease in comments: "What if Sarawak had its own space agency?", "What if Kuching was the capital of Borneo?"
+
+---
+
+# Social media copy — E02 "What if Sarawak was its own kingdom?"
+
+Tone note: keep the comment prompt on food. Pin the sources comment. Avoid adding political hashtags.
+
+## TikTok / Reels / Threads
+**What if Sarawak was its own kingdom? 👑🍜**
+The new monarch is chosen by… a kolo mee cook-off. 😅
+ALTERNATE HISTORY — FICTION. Real: Sarawak co-founded Malaysia in 1963 (and yes, we really do have our own immigration checks).
+Most important question: KOLO MEE 🍜 or LAKSA 🍲? 👇
+#Sarawak #Kuching #KoloMee #SarawakLaksa #WhatIf #AlternateHistory #Animation #Comedy
+
+## YouTube Shorts
+Title: **What If Sarawak Was Its Own Kingdom? 👑 (Alternate History Comedy)**
+Description: In real history, Sarawak, Sabah, Malaya and Singapore formed Malaysia on 16 September 1963. In this FICTIONAL timeline, Sarawak goes solo… and picks its monarch with a kolo mee cook-off. Queen Auntie is an invented character. Everything after the 1963 divergence is fiction.
+Kolo mee or laksa? 👇 #Shorts #Sarawak
+
+Pinned comment (sources): UN Treaty Series vol. 750 (Malaysia Agreement); National Archives of Singapore (1965); DOSM Census 2020 (Sarawak 2.45 million).
+
+## Facebook Reels
+Kalau Sarawak jadi kerajaan sendiri… raja dipilih ikut pertandingan kolo mee? 😂👑
+Fiksyen / alternate history sahaja.
+Kolo mee 🍜 atau laksa 🍲? Komen di bawah!
