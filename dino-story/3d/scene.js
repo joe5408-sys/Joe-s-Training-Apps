@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 
 const W = 1080, H = 1920;
-export const DURATION = 62;
+export const DURATION = 120;
 
 // ---------------------------------------------------------------- helpers
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
@@ -188,6 +188,41 @@ function astU(t) {
   return 1;
 }
 
+
+const LP_N = 1800;
+const lpPos = new Float32Array(LP_N * 3), lpCol = new Float32Array(LP_N * 3), lpOff = new Float32Array(LP_N), lpB = new Float32Array(LP_N);
+{
+  const r = rng(55); let k = 0, guard = 0;
+  while (k < LP_N && guard++ < 500000) {
+    const z = 2 * r() - 1, th = r() * Math.PI * 2, sq = Math.sqrt(1 - z * z);
+    const px = sq * Math.cos(th), py = z, pz = sq * Math.sin(th);
+    const X = -px, Y = py, Z = pz; // same frame as the earth texture
+    if (Math.abs(Y) > 0.8 || fbm(X * 1.7 + 5, Y * 1.7, Z * 1.7, 5) <= 0.55 || fbm(X * 6, Y * 6, Z * 6, 3) <= 0.5) continue;
+    lpPos.set([px * 10.06, py * 10.06, pz * 10.06], k * 3);
+    const cl = fbm(X * 2 + 3, Y * 2, Z * 2, 3);
+    lpOff[k] = r() < 0.14 ? 1e9 : 101.3 + clamp((cl - 0.3) / 0.4) * 6.5 + r() * 0.8;
+    lpB[k] = 0.6 + r() * 0.6; k++;
+  }
+}
+const lpGeo = new THREE.BufferGeometry();
+lpGeo.setAttribute('position', new THREE.BufferAttribute(lpPos, 3));
+lpGeo.setAttribute('color', new THREE.BufferAttribute(lpCol, 3));
+const lightPts = new THREE.Points(lpGeo, new THREE.PointsMaterial({ size: 0.22, vertexColors: true, map: DOT,
+  transparent: true, blending: THREE.AdditiveBlending, depthWrite: false }));
+lightPts.visible = false;
+earth.add(lightPts);
+function updateLights(rt) {
+  lightPts.visible = true;
+  const fin = seg(rt, 100, 100.8);
+  for (let i = 0; i < LP_N; i++) {
+    let on = rt < lpOff[i] ? 1 : 0;
+    if (rt > lpOff[i] - 0.35 && rt < lpOff[i]) on = Math.sin(rt * 60 + i) > 0 ? 1 : 0.15;
+    const c = lpB[i] * on * fin;
+    lpCol[i * 3] = c; lpCol[i * 3 + 1] = c * 0.75; lpCol[i * 3 + 2] = c * 0.45;
+  }
+  lpGeo.attributes.color.needsUpdate = true;
+}
+
 function updateSpace(t) {
   const ending = t >= 56;
   earth.rotation.y = t * 0.04 + (t > 13 && t < 20 ? (t - 13) ** 2 * 0.35 : t >= 20 ? 49 * 0.35 : 0);
@@ -250,7 +285,8 @@ const sky = new THREE.Mesh(new THREE.SphereGeometry(800, 32, 16), new THREE.Shad
   fragmentShader: `uniform vec3 top; uniform vec3 bot; varying float vY; void main(){ gl_FragColor = vec4(mix(bot, top, smoothstep(0.0, 0.5, vY)), 1.0); }`
 }));
 ground.add(sky);
-ground.add(new THREE.HemisphereLight(0xcfe6ff, 0x4a5a2a, 1.1));
+const hemi = new THREE.HemisphereLight(0xcfe6ff, 0x4a5a2a, 1.1);
+ground.add(hemi);
 const gSun = new THREE.DirectionalLight(0xfff0d0, 2.6);
 gSun.castShadow = true;
 gSun.shadow.mapSize.set(2048, 2048);
@@ -260,13 +296,15 @@ ground.add(gSun, gSun.target);
 
 const CITY_Z = 95;
 const TOWN_X = 30, TOWN_Z = -175;
+const WALL_X = 30, WALL_Z = -250, WALL_H = 9;
 function heightAt(x, z) {
   const hills = (fbm(x * 0.012 + 11, 0.5, z * 0.012 - 3, 5) - 0.45) * 70;
   const valley = smooth((Math.abs(x) - 14) / 50);
   const river = Math.abs(x) < 8 ? -1.4 * (1 - Math.abs(x) / 8) : 0;
   const cityFlat = 1 - smooth((Math.hypot(x, (z - CITY_Z - 25) * 0.6) - 40) / 30);
   const townFlat = 1 - smooth((Math.hypot(x - TOWN_X, z - TOWN_Z) - 45) / 25);
-  return Math.max(hills, 0) * valley * (1 - cityFlat) * (1 - townFlat) + river + fbm(x * 0.2, 1, z * 0.2, 2) * 0.6;
+  const wallFlat = 1 - smooth((Math.hypot(x - WALL_X, (z - WALL_Z - 20) * 0.8) - 50) / 25);
+  return Math.max(hills, 0) * valley * (1 - cityFlat) * (1 - townFlat) * (1 - wallFlat) + river + fbm(x * 0.2, 1, z * 0.2, 2) * 0.6;
 }
 {
   let g = new THREE.PlaneGeometry(700, 700, 200, 200).rotateX(-Math.PI / 2);
@@ -302,6 +340,7 @@ function heightAt(x, z) {
     if (Math.abs(x) < 16 || (Math.abs(x) < 70 && z > CITY_Z - 10 && z < CITY_Z + 70)) continue;
     if (Math.abs(x - 22) < 6 && Math.abs(z) < 8) continue; // mammal spot
     if (Math.hypot(x - TOWN_X, z - TOWN_Z) < 62) continue; // human town
+    if (Math.hypot(x - WALL_X, z - WALL_Z - 20) < 75) continue; // the wall
     const sc = 0.7 + r() * 0.9;
     s.set(sc, sc * (0.8 + r() * 0.6), sc);
     m.compose(V(x, heightAt(x, z) - 0.3, z), q.setFromEuler(new THREE.Euler(0, r() * 6, 0)), s);
@@ -524,6 +563,7 @@ function makeHuman(shirt) {
 }
 const FIRE = radialTexture('rgba(255,210,120,1)', 'rgba(255,60,0,0)', 64);
 const SMOKE = radialTexture('rgba(40,35,35,0.75)', 'rgba(40,35,35,0)', 64);
+const SMOKE_L = radialTexture('rgba(120,105,100,0.8)', 'rgba(120,105,100,0)', 64);
 
 const houses = [];
 {
@@ -672,6 +712,195 @@ function updateClash(t) {
   return [V(TOWN_X - lerp(5, 2, k), lerp(6.5, 10, k), TOWN_Z - lerp(44, 52, k)), V(TOWN_X + 2, lerp(4, 6, k), TOWN_Z - 14)];
 }
 
+
+// ======================================================= NEW WAR SCENES
+// --- the wall
+const wallParts = new THREE.Group(); ground.add(wallParts);
+const WGY = heightAt(WALL_X, WALL_Z), WTOP = WGY + WALL_H - 0.5;
+{
+  const stone = mat(0x8d8a80), dark = mat(0x5f5b54);
+  const body = new THREE.Mesh(new THREE.BoxGeometry(104, WALL_H + 2, 3.5), stone);
+  body.position.set(WALL_X, WGY + WALL_H / 2 - 1.5, WALL_Z); body.castShadow = body.receiveShadow = true; wallParts.add(body);
+  for (let x = -51; x <= 51; x += 3) {
+    const c = new THREE.Mesh(new THREE.BoxGeometry(1.6, 1.4, 0.8), stone);
+    c.position.set(WALL_X + x, WTOP + 0.7, WALL_Z + 1.4); c.castShadow = true; wallParts.add(c);
+  }
+  const walk = new THREE.Mesh(new THREE.BoxGeometry(104, 0.5, 3.2), dark);
+  walk.position.set(WALL_X, WTOP - 0.25, WALL_Z - 3.2); walk.receiveShadow = true; wallParts.add(walk);
+  for (const x of [-46, -22, 22, 46]) {
+    const tw = new THREE.Mesh(new THREE.CylinderGeometry(3.2, 3.8, WALL_H + 7, 8), dark);
+    tw.position.set(WALL_X + x, WGY + (WALL_H + 7) / 2 - 1.5, WALL_Z); tw.castShadow = true; wallParts.add(tw);
+  }
+}
+const CANNON_X = [-16, -8, 0, 8, 16];
+const cannons = CANNON_X.map(dx => {
+  const g = new THREE.Group(); g.position.set(WALL_X + dx, WTOP, WALL_Z); wallParts.add(g);
+  const base = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.8, 1.8), mat(0x3d3a36)); base.position.y = 0.4; g.add(base);
+  const barrel = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.45, 3.4, 10), mat(0x22201e, { metalness: 0.6, roughness: 0.4 }));
+  barrel.rotation.x = Math.PI / 2 - 0.25; barrel.position.set(0, 1.2, 1.2); g.add(barrel);
+  const sp = () => { const o = new THREE.Sprite(new THREE.SpriteMaterial({ map: FIRE, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true })); ground.add(o); return o; };
+  const flash = sp(), boom = sp();
+  const shell = new THREE.Mesh(new THREE.SphereGeometry(0.35, 8, 6), new THREE.MeshBasicMaterial({ color: 0xffb060 }));
+  ground.add(shell);
+  const smoke = new THREE.Sprite(new THREE.SpriteMaterial({ map: SMOKE, depthWrite: false, transparent: true })); ground.add(smoke);
+  return { x: WALL_X + dx, flash, boom, shell, smoke };
+});
+// fire schedule (mirrored in audio3d.py): cannon j fires at t0 + 0.33 j + k*period, until t1
+const SHOTS = { wall: [61.0, 1.8, 69.6], night: [71.0, 2.4, 79.6] };
+function updateCannons(rt, kind) {
+  const [t0, period, t1] = SHOTS[kind];
+  cannons.forEach((c, j) => {
+    const first = t0 + 0.33 * j;
+    const k = Math.floor((rt - first) / period);
+    const tf = first + k * period, dt = rt - tf;
+    const live = rt >= first && tf <= t1;
+    const muzzle = V(c.x, WTOP + 1.6, WALL_Z + 2.9);
+    const tx = c.x + Math.sin(k * 2.3 + j * 1.7) * 9, tz = WALL_Z + 38 + ((k * 11 + j * 7) % 28);
+    const target = V(tx, heightAt(tx, tz) + 0.8, tz);
+    c.flash.visible = live && dt < 0.15;
+    c.flash.position.copy(muzzle).add(V(0, 0, 0.6)); c.flash.scale.setScalar(4.5);
+    c.shell.visible = live && dt < 1.0;
+    if (c.shell.visible) c.shell.position.lerpVectors(muzzle, target, dt).add(V(0, Math.sin(dt * Math.PI) * 9, 0));
+    const e = (dt - 1.0) / 0.7;
+    c.boom.visible = live && e >= 0 && e < 1;
+    c.boom.position.copy(target).add(V(0, 1.5 + e * 2, 0)); c.boom.scale.setScalar(3 + e * 12);
+    c.boom.material.opacity = 1 - e;
+    c.smoke.visible = c.boom.visible;
+    c.smoke.position.copy(target).add(V(0, 3 + e * 6, 0)); c.smoke.scale.setScalar(5 + e * 10); c.smoke.material.opacity = 0.7 * (1 - e);
+    if (live && dt < 0.2) shake = Math.max(shake, 0.03);
+  });
+}
+const beams = [-46, -22, 22, 46].map((dx, i) => {
+  const outer = new THREE.Group(); outer.position.set(WALL_X + dx, WGY + WALL_H + 5.6, WALL_Z); ground.add(outer);
+  const geo = new THREE.ConeGeometry(7, 90, 24, 1, true); geo.translate(0, -45, 0);
+  const m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: 0xfff1c0, transparent: true, opacity: 0.17,
+    blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false }));
+  outer.add(m);
+  const lamp = new THREE.Sprite(new THREE.SpriteMaterial({ map: DOT, color: 0xfff6d8, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true }));
+  lamp.scale.setScalar(4); outer.add(lamp);
+  return { outer, m, i };
+});
+const wallRaptors = [0x7a6a3a, 0x5f5530, 0x6e5a3a, 0x8a7046, 0x6a5a35, 0x7d6440].map(c => {
+  const r = makeTheropod(c); r.group.scale.setScalar(0.6); r.group.rotation.order = 'YXZ'; ground.add(r.group); return r; });
+const wallRex = makeTheropod(0x3e3226); wallRex.group.scale.setScalar(1.3); ground.add(wallRex.group);
+const nightPteros = [0, 1, 2, 3, 4, 5].map(() => { const p = makePterosaur(0x2a2420); p.group.scale.setScalar(1.9); p.group.rotation.order = 'YXZ'; ground.add(p.group); return p; });
+// --- the retreat
+const refugees = Array.from({ length: 40 }, (_, i) => {
+  const h = makeHuman([0x7a5c48, 0x5b6470, 0x8c7a5c, 0x6b4f4f, 0x4f5f4f][i % 5]); ground.add(h.group);
+  h.ph = i * 1.37; return h;
+});
+const smokeCols = Array.from({ length: 24 }, () => {
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: SMOKE_L, depthWrite: false, transparent: true })); ground.add(sp); return sp; });
+const ridgeSauros = [makeSauropod(0x4f5a40), makeSauropod(0x5a5040)];
+ridgeSauros.forEach(r => { r.group.scale.setScalar(1.2); ground.add(r.group); });
+
+const NEW_ACTORS = {
+  wall: [wallParts, wallRex.group, ...wallRaptors.map(r => r.group), ...cannons.flatMap(c => [c.flash, c.boom, c.shell, c.smoke])],
+  night: [...beams.map(b => b.outer), ...nightPteros.map(p => p.group)],
+  retreat: [...refugees.map(r => r.group), ...smokeCols, ...ridgeSauros.map(r => r.group)],
+};
+const CLASH_ACTORS = () => [bigSauro.group, packRex.group, ...raptors.map(r => r.group), ...barricade, ...pteros.map(p => p.group)];
+function showActors(kind) {
+  for (const o of CLASH_ACTORS()) o.visible = kind === 'o'; // updateClash refines the barricade
+  const on = new Set(kind === 'night' ? [...NEW_ACTORS.wall, ...NEW_ACTORS.night] : NEW_ACTORS[kind] || []);
+  for (const list of Object.values(NEW_ACTORS)) for (const o of list) o.visible = on.has(o);
+  if (kind !== 'wall' && kind !== 'night') wallParts.visible = true; // static scenery stays
+}
+function setSky(top, bot) {
+  sky.material.uniforms.top.value.set(top); sky.material.uniforms.bot.value.set(bot); ground.fog.color.set(bot);
+}
+
+function updateNew(kind, lt, rt) {
+  shake = 0;
+  let pos, look, focus;
+  if (kind === 'wall' || kind === 'night') {
+    const night = kind === 'night';
+    focus = V(WALL_X, 0, WALL_Z + 25);
+    if (night) {
+      setSky(0x04060f, 0x161b2e); ground.fog.near = 30; ground.fog.far = 280;
+      hemi.intensity = 0.45; gSun.intensity = 0.7; gSun.color.setRGB(0.6, 0.7, 1.0);
+    } else {
+      setSky(0x6a4040, 0xd09a7a); hemi.intensity = 0.95; gSun.intensity = 2.0; gSun.color.setRGB(1, 0.75, 0.6);
+    }
+    beams.forEach(b => {
+      b.outer.rotation.y = Math.sin(rt * 0.45 + b.i * 1.7) * 0.7;
+      b.m.rotation.x = -Math.PI / 2 + (b.i % 2 ? -0.35 : 0.12) + Math.sin(rt * 0.6 + b.i) * 0.12;
+    });
+    updateCannons(rt, kind);
+    // defenders on the walkway
+    people.forEach((p, i) => {
+      if (i >= 18) return;
+      const x = WALL_X + (i - 8.5) * 4.6 + (i % 2) * 0.6;
+      let fallen = 0;
+      const armUp = night ? 1 : (i % 3 === 0 ? 1 : 0);
+      if (night && (i === 6 || i === 7 || i === 12)) fallen = smooth((lt - 6.6) / 0.6);
+      p.group.position.set(x, WTOP, WALL_Z - 2.8); p.group.rotation.y = -Math.PI / 2;
+      p.torch.visible = !!armUp;
+      p.update(rt, 0, p.ph, fallen, armUp);
+    });
+    // raptors: charge then get driven back (day) / climb the wall (night)
+    wallRaptors.forEach((r, i) => {
+      r.group.rotation.z = 0;
+      if (!night) {
+        const x = WALL_X + (i - 2.5) * 9, tt = 4.0 + i * 0.3;
+        if (lt < tt) place(r.group, x, WALL_Z + 95 + i * 5 - lt * 10, Math.PI / 2);
+        else place(r.group, x, WALL_Z + 95 + i * 5 - tt * 10 + (lt - tt) * 12, -Math.PI / 2);
+        r.update(rt, 6, 0);
+      } else if (i < 4) {
+        const x = WALL_X + [-12, -4, 6, 14][i], cs = 2.6 + i * 0.9, c = (lt - cs) / 1.6;
+        if (c < 0) { place(r.group, x, WALL_Z + 2.4 + (cs - lt) * 10, Math.PI / 2); r.update(rt, 6, 0); }
+        else if (c < 1) { r.group.position.set(x, WGY + c * (WALL_H - 1.5), WALL_Z + 2.5); r.group.rotation.y = Math.PI / 2; r.group.rotation.z = 1.3; r.update(rt * 1.5, 6, 0); }
+        else { r.group.position.set(x, WTOP, WALL_Z + 0.3); r.group.rotation.y = Math.PI / 2; r.update(rt, 0, Math.min(1, c - 1)); }
+      } else {
+        place(r.group, WALL_X - 45 + lt * 8 + i * 5, WALL_Z + 14 + i * 4, 0); r.update(rt, 6, 0);
+      }
+    });
+    const roarRex = night ? smooth(seg(lt, 6.0, 6.5)) * (1 - smooth(seg(lt, 7.6, 8.1))) : smooth(seg(lt, 3.5, 4.0)) * (1 - smooth(seg(lt, 5.4, 5.9)));
+    place(wallRex.group, WALL_X + (night ? -10 : 4), WALL_Z + (night ? 62 : 110 - Math.min(lt, 3.5) * 4), Math.PI / 2);
+    wallRex.update(night ? 0 : Math.min(lt, 3.5) + 60, 3, roarRex);
+    if (night) nightPteros.forEach((p, i) => {
+      const tc = 1.6 + i * 1.0, z = WALL_Z + (tc - lt) * 24, dz = z - WALL_Z;
+      p.group.position.set(WALL_X + (((i * 7) % 5) - 2) * 8, clamp(13 + 0.012 * dz * dz, 13, 45), z);
+      p.group.rotation.y = Math.PI / 2; p.group.rotation.z = dz > 0 ? -0.35 : 0.25;
+      p.update(rt, i);
+      if (Math.abs(lt - tc) < 0.3) shake = Math.max(shake, 0.05);
+    });
+    if (roarRex > 0.5) shake = Math.max(shake, 0.04);
+    if (!night) {
+      const k = smooth(lt / 10);
+      pos = V(WALL_X - 8 + k * 4, WTOP + 8.5, WALL_Z - 15); look = V(WALL_X + 2, lerp(2, 4, k), WALL_Z + 55);
+    } else {
+      const k = smooth(lt / 10);
+      pos = V(WALL_X + 12 - k * 5, WTOP + 6, WALL_Z - 15); look = V(WALL_X - 3, lerp(WTOP + 10, WTOP + 1, k), WALL_Z + 30);
+    }
+  } else { // retreat
+    focus = V(12, 0, -300);
+    setSky(0x3b2a33, 0xb07a5a); ground.fog.near = 50; ground.fog.far = 340;
+    hemi.intensity = 0.75; gSun.intensity = 1.1; gSun.color.setRGB(1, 0.6, 0.45);
+    people.concat(refugees).forEach((p, i) => {
+      const x = 11 + (((i * 37) % 7) - 3) * 0.75;
+      const z = -300 + i * 2.1 - lt * 1.3 + Math.sin(i * 1.3) * 0.6;
+      place(p.group, x, z, Math.PI / 2);
+      const armUp = i % 7 === 0 ? 1 : 0;
+      p.torch.visible = !!armUp;
+      p.update(rt, 5.5, p.ph, 0, armUp);
+    });
+    smokeCols.forEach((sp, i) => {
+      const c = Math.floor(i / 6), rise = (rt * 0.06 + (i % 6) / 6) % 1;
+      sp.position.set(TOWN_X + (c - 1.5) * 20, 10 + rise * 80, TOWN_Z + 5 + c * 6);
+      sp.scale.setScalar(20 + rise * 55); sp.material.opacity = 0.6 * (1 - rise);
+    });
+    ridgeSauros.forEach((r, i) => { place(r.group, -4 + i * 3, -230 - i * 16 - lt * 1.0, Math.PI / 2); r.update(rt, i * 2); });
+    const k = smooth(lt / 13);
+    pos = V(lerp(20, 16, k), lerp(9, 5, k), lerp(-338, -332, k)); look = V(lerp(9, 10, k), lerp(5, 4, k), -280);
+  }
+  gSun.position.copy(focus).add(V(60, 90, 40)); gSun.target.position.copy(focus);
+  pos.y = Math.max(pos.y, heightAt(pos.x, pos.z) + 0.6);
+  const sh = shake * Math.sin(rt * 90);
+  groundCam.position.copy(pos).add(V(sh, sh * 0.6, 0));
+  groundCam.lookAt(look);
+}
+
 function place(obj, x, z, yaw = 0, lift = 0) {
   obj.position.set(x, heightAt(x, z) + lift, z);
   obj.rotation.y = yaw;
@@ -681,6 +910,7 @@ let shake = 0;
 const SKY_TOP = new THREE.Color(0x3a78c2), SKY_RED = new THREE.Color(0x3a1418), FOG_RED = new THREE.Color(0xc9765a);
 function updateGround(t) {
   shake = 0;
+  hemi.intensity = 1.1; gSun.intensity = 2.6; ground.fog.near = 80; ground.fog.far = 420;
   const war = smooth(seg(t, 45, 52));
   sky.material.uniforms.top.value.lerpColors(SKY_TOP, SKY_RED, war);
   sky.material.uniforms.bot.value.lerpColors(FOG, FOG_RED, war);
@@ -787,14 +1017,25 @@ const fmt = n => Math.round(n).toLocaleString('en-US');
 
 
 const HUMANS0 = 8.3e9, HUMANS1 = 1.2e9;
-const humansAt = t => Math.exp(lerp(Math.log(HUMANS0), Math.log(HUMANS1), smooth(seg(t, 44.6, 55.6))));
+let REAL_T = 0;
+// fictional war curve, keyed on real video time: [time, humans, war year]
+const WARK = [[53, 8.3e9, 1], [60, 6.9e9, 6], [70, 6.3e9, 12], [80, 4.1e9, 19], [87, 2.6e9, 27], [100, 1.2e9, 40], [110, 0.9e9, 52]];
+function warAt(rt) {
+  if (rt <= WARK[0][0]) return [WARK[0][1], 1];
+  for (let i = 0; i < WARK.length - 1; i++) {
+    const [t0, h0, y0] = WARK[i], [t1, h1, y1] = WARK[i + 1];
+    if (rt <= t1) { const p = (rt - t0) / (t1 - t0); return [Math.exp(lerp(Math.log(h0), Math.log(h1), p)), lerp(y0, y1, p)]; }
+  }
+  const L = WARK[WARK.length - 1]; return [L[1], L[2]];
+}
+const humansAt = () => warAt(REAL_T)[0];
 function hudWar(t, a) {
   if (a <= 0.01) return;
   ctx.save(); ctx.globalAlpha = a;
   ctx.fillStyle = 'rgba(0,0,0,0.6)'; ctx.fillRect(0, 200, W, 270);
   ctx.textAlign = 'center'; ctx.textBaseline = 'top';
   setFont(40); ctx.fillStyle = '#fff';
-  const yr = `YEAR ${Math.max(1, Math.round(lerp(1, 40, seg(t, 44.6, 55.6))))} OF THE WAR`;
+  const yr = `YEAR ${Math.max(1, Math.round(warAt(REAL_T)[1]))} OF THE WAR`;
   ctx.fillText(yr, W / 2, 215);
   if (Math.floor(t * 2) % 2 === 0) { ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(W / 2 - ctx.measureText(yr).width / 2 - 24, 236, 10, 0, 7); ctx.fill(); }
   const h = humansAt(t);
@@ -856,7 +1097,7 @@ function overlay(t) {
   hudWar(t, win(t, 44.2, 55.8, 0.4, 0.3));
   txt('It was never going to be peaceful.', 560, 54, '#fff', win(t, 44.6, 49.6));
   txt('Raptors hunt in packs. Towns fell first.', 720, 40, '#eee', win(t, 46.0, 49.6), { bold: false });
-  txt('Humans fought back...', 560, 64, '#fff', win(t, 50.3, 53.0));
+  txt('The last towns made a stand...', 560, 60, '#fff', win(t, 50.3, 53.0));
   txt('...but they were outnumbered.', 560, 64, '#ef4444', win(t, 53.2, 55.8), { serif: true });
   // 44-50 ending
   txt("Someone's city lights are on...", 330, 48, '#fff', win(t, 57.0, 62, 0.5, 0.6));
@@ -877,12 +1118,71 @@ function overlay(t) {
 }
 
 // ================================================================== frame
-window.frame = (t, type = 'image/jpeg') => {
-  const inSpace = t < 20 || t >= 56;
-  if (inSpace) { updateSpace(t); renderer.render(space, spaceCam); }
-  else { updateGround(t); renderer.render(ground, groundCam); }
-  ctx.drawImage(renderer.domElement, 0, 0);
-  overlay(t);
+function overlayNew(kind, lt, rt) {
+  const g = ctx.createLinearGradient(0, 120, 0, 900);
+  g.addColorStop(0, 'rgba(0,0,0,0.55)'); g.addColorStop(0.6, 'rgba(0,0,0,0.35)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, 900);
+  hudWar(rt, 1);
+  if (kind === 'wall') {
+    txt('The survivors built walls.', 560, 60, '#fff', win(lt, 0.4, 5.0));
+    txt('Stone. Fire. Cannons.', 670, 44, '#eee', win(lt, 1.2, 5.0), { bold: false });
+    txt('For a while, it worked.', 560, 66, '#fbbf24', win(lt, 5.4, 9.8), { serif: true });
+  } else if (kind === 'night') {
+    txt('Then the flyers came.', 560, 66, '#fff', win(lt, 0.6, 5.0));
+    txt("Walls don't stop wings.", 560, 66, '#ef4444', win(lt, 5.4, 9.8), { serif: true });
+  } else if (kind === 'retreat') {
+    txt('The survivors fled north.', 560, 60, '#fff', win(lt, 0.6, 6.5));
+    txt('Fewer than 1 in 6 humans remained.', 560, 56, '#fbbf24', win(lt, 7.0, 12.8));
+  } else if (kind === 'lights') {
+    txt('City by city...', 560, 62, '#fff', win(lt, 0.6, 5.0));
+    txt('...the lights went out.', 560, 66, '#fbbf24', win(lt, 4.6, 9.8), { serif: true });
+  }
+}
+
+// real time -> scene. 'o' = original scene, played over [a,b] using its own clock [c,d].
+const SEGS = [[0, 9, 'o', 0, 7], [9, 16, 'o', 7, 13], [16, 24, 'o', 13, 20], [24, 32, 'o', 20, 26],
+  [32, 39, 'o', 26, 32], [39, 46, 'o', 32, 38], [46, 53, 'o', 38, 44], [53, 60, 'o', 44, 50],
+  [60, 70, 'wall'], [70, 80, 'night'], [80, 87, 'o', 50, 56], [87, 100, 'retreat'], [100, 110, 'lights'],
+  [110, 120, 'o', 56, 62]];
+
+window.frame = (rt, type = 'image/jpeg') => {
+  REAL_T = rt;
+  const sg = SEGS.find(q => rt < q[1]) || SEGS[SEGS.length - 1];
+  const kind = sg[2];
+  showActors(kind);
+  lightPts.visible = false;
+  if (kind === 'o') {
+    const t = sg[3] + (rt - sg[0]) * (sg[4] - sg[3]) / (sg[1] - sg[0]);
+    if (t < 20 || t >= 56) {
+      updateSpace(t);
+      if (rt >= 100) { earth.material.emissiveIntensity = 0; updateLights(rt); }
+      renderer.render(space, spaceCam);
+    } else { updateGround(t); renderer.render(ground, groundCam); }
+    ctx.drawImage(renderer.domElement, 0, 0);
+    overlay(t);
+  } else if (kind === 'lights') {
+    const lt = rt - sg[0];
+    updateSpace(56 - (110 - rt) * 0.6);
+    earth.material.emissiveIntensity = 0; atmo.material.uniforms.k.value = 0.55;
+    updateLights(rt);
+    const k = smooth(lt / 10);
+    spaceCam.position.set(lerp(-6, -14, k), lerp(8, 3, k), lerp(-22, -16, k));
+    spaceCam.lookAt(0, 0, 0);
+    renderer.render(space, spaceCam);
+    ctx.drawImage(renderer.domElement, 0, 0);
+    overlayNew(kind, lt, rt);
+  } else {
+    const lt = rt - sg[0];
+    updateGround(55.6);
+    updateNew(kind, lt, rt);
+    renderer.render(ground, groundCam);
+    ctx.drawImage(renderer.domElement, 0, 0);
+    overlayNew(kind, lt, rt);
+  }
+  for (const c of [60, 70, 80, 87, 100, 110]) {
+    const d = Math.abs(rt - c);
+    if (d < 0.35) { ctx.fillStyle = `rgba(0,0,0,${0.9 * (1 - d / 0.35)})`; ctx.fillRect(0, 0, W, H); }
+  }
   return out.toDataURL(type, 0.93);
 };
 window.DURATION = DURATION;
