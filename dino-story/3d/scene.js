@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 
 const W = 1080, H = 1920;
-export const DURATION = 50;
+export const DURATION = 62;
 
 // ---------------------------------------------------------------- helpers
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
@@ -189,10 +189,10 @@ function astU(t) {
 }
 
 function updateSpace(t) {
-  const ending = t >= 44;
+  const ending = t >= 56;
   earth.rotation.y = t * 0.04 + (t > 13 && t < 20 ? (t - 13) ** 2 * 0.35 : t >= 20 ? 49 * 0.35 : 0);
   clouds.rotation.y = earth.rotation.y * 1.08 + t * 0.01;
-  earth.material.emissiveIntensity = ending ? 3.0 * seg(t, 45, 47) : 0;
+  earth.material.emissiveIntensity = ending ? 3.0 * seg(t, 57, 59) : 0;
   atmo.material.uniforms.k.value = ending ? 0.55 : 1.0;
 
   const u = astU(t);
@@ -232,7 +232,7 @@ function updateSpace(t) {
     spaceCam.position.set(Math.sin(ang) * rad, lerp(8, 4, k), Math.cos(ang) * rad);
     spaceCam.lookAt(0, 0, 0);
   } else {
-    const k = smooth(seg(t, 44, 50));
+    const k = smooth(seg(t, 56, 62));
     spaceCam.position.set(lerp(-14, -22, k), lerp(3, 9, k), lerp(-16, -32, k));
     spaceCam.lookAt(0, lerp(0, 4, k), 0);
   }
@@ -242,10 +242,10 @@ function updateSpace(t) {
 const ground = new THREE.Scene();
 const groundCam = new THREE.PerspectiveCamera(55, W / H, 0.1, 1200);
 const FOG = new THREE.Color(0xc9d8e0);
-ground.fog = new THREE.Fog(FOG, 80, 420);
+ground.fog = new THREE.Fog(FOG.clone(), 80, 420);
 const sky = new THREE.Mesh(new THREE.SphereGeometry(800, 32, 16), new THREE.ShaderMaterial({
   side: THREE.BackSide, depthWrite: false, fog: false,
-  uniforms: { top: { value: new THREE.Color(0x3a78c2) }, bot: { value: FOG } },
+  uniforms: { top: { value: new THREE.Color(0x3a78c2) }, bot: { value: FOG.clone() } },
   vertexShader: `varying float vY; void main(){ vY = normalize(position).y; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }`,
   fragmentShader: `uniform vec3 top; uniform vec3 bot; varying float vY; void main(){ gl_FragColor = vec4(mix(bot, top, smoothstep(0.0, 0.5, vY)), 1.0); }`
 }));
@@ -259,12 +259,14 @@ gSun.shadow.bias = -0.0008;
 ground.add(gSun, gSun.target);
 
 const CITY_Z = 95;
+const TOWN_X = 30, TOWN_Z = -175;
 function heightAt(x, z) {
   const hills = (fbm(x * 0.012 + 11, 0.5, z * 0.012 - 3, 5) - 0.45) * 70;
   const valley = smooth((Math.abs(x) - 14) / 50);
   const river = Math.abs(x) < 8 ? -1.4 * (1 - Math.abs(x) / 8) : 0;
   const cityFlat = 1 - smooth((Math.hypot(x, (z - CITY_Z - 25) * 0.6) - 40) / 30);
-  return Math.max(hills, 0) * valley * (1 - cityFlat) + river + fbm(x * 0.2, 1, z * 0.2, 2) * 0.6;
+  const townFlat = 1 - smooth((Math.hypot(x - TOWN_X, z - TOWN_Z) - 45) / 25);
+  return Math.max(hills, 0) * valley * (1 - cityFlat) * (1 - townFlat) + river + fbm(x * 0.2, 1, z * 0.2, 2) * 0.6;
 }
 {
   let g = new THREE.PlaneGeometry(700, 700, 200, 200).rotateX(-Math.PI / 2);
@@ -299,6 +301,7 @@ function heightAt(x, z) {
     const x = (r() - 0.5) * 520, z = (r() - 0.5) * 520 - 40;
     if (Math.abs(x) < 16 || (Math.abs(x) < 70 && z > CITY_Z - 10 && z < CITY_Z + 70)) continue;
     if (Math.abs(x - 22) < 6 && Math.abs(z) < 8) continue; // mammal spot
+    if (Math.hypot(x - TOWN_X, z - TOWN_Z) < 62) continue; // human town
     const sc = 0.7 + r() * 0.9;
     s.set(sc, sc * (0.8 + r() * 0.6), sc);
     m.compose(V(x, heightAt(x, z) - 0.3, z), q.setFromEuler(new THREE.Euler(0, r() * 6, 0)), s);
@@ -496,16 +499,195 @@ const shrew = makeShrew(); shrew.group.scale.setScalar(1.5); ground.add(shrew.gr
   }
 }
 
+
+// ============================================================ THE CLASH
+function makeHuman(shirt) {
+  const skin = mat(0xc68e64), sh = mat(shirt), pants = mat(0x2d3a4f);
+  const g = new THREE.Group();
+  const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.27, 0.55, 4, 8), sh); body.position.y = 1.2; body.castShadow = true; g.add(body);
+  const head = ball(0.22, skin, 10); head.position.y = 1.82; g.add(head);
+  const hair = ball(0.23, mat(0x1f1a17), 8); hair.scale.set(1, 0.55, 1); hair.position.set(-0.04, 1.93, 0); g.add(hair);
+  const legs = [0.13, -0.13].map(z => { const l = limb(0.1, 0.09, 0.85, pants); l.position.set(0, 0.85, z); g.add(l); return l; });
+  const arms = [0.36, -0.36].map(z => { const a = limb(0.08, 0.07, 0.7, sh); a.position.set(0, 1.48, z); g.add(a); return a; });
+  const torch = new THREE.Group(); torch.position.set(0.25, -0.65, 0); arms[0].add(torch);
+  const stick = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.05, 0.9, 5), mat(0x5a3e2b)); stick.position.y = 0.3; torch.add(stick);
+  const flame = new THREE.Sprite(new THREE.SpriteMaterial({ map: FIRE, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true }));
+  flame.scale.set(1.3, 1.6, 1); flame.position.y = 0.95; torch.add(flame);
+  return { group: g, torch, flame, update(t, speed, ph, fallen = 0, armUp = 0) {
+    const sw = speed > 0 ? Math.sin(t * speed + ph) : 0;
+    legs[0].rotation.z = sw * 0.8; legs[1].rotation.z = -sw * 0.8;
+    arms[0].rotation.z = armUp ? -2.6 + Math.sin(t * 3 + ph) * 0.15 : -sw * 0.9;
+    arms[1].rotation.z = sw * 0.9;
+    g.rotation.z = -fallen * 1.45;
+    flame.scale.set(1.2 + Math.sin(t * 17 + ph) * 0.2, 1.5 + Math.sin(t * 13 + ph) * 0.3, 1);
+  } };
+}
+const FIRE = radialTexture('rgba(255,210,120,1)', 'rgba(255,60,0,0)', 64);
+const SMOKE = radialTexture('rgba(40,35,35,0.75)', 'rgba(40,35,35,0)', 64);
+
+const houses = [];
+{
+  const r = rng(33);
+  const walls = [mat(0xe8dcc4), mat(0xd9c2a0), mat(0xc4d4d8), mat(0xe0b9a0)];
+  const roofs = [mat(0x9c3b2e), mat(0x5b6b7a), mat(0x7a4b2e)];
+  const win = new THREE.MeshStandardMaterial({ color: 0x332a1a, emissive: 0xffc070, emissiveIntensity: 0.6 });
+  while (houses.length < 36) {
+    const x = TOWN_X + (r() - 0.5) * 84, z = TOWN_Z + (r() - 0.5) * 76;
+    if (Math.abs(x) < 10 || Math.abs(x - TOWN_X) < 9 || z < TOWN_Z - 22) continue; // keep the main street + front clear
+    if (houses.some(h => Math.hypot(h.userData.x - x, h.userData.z - z) < 9)) continue;
+    const w = 4 + r() * 3, d = 4 + r() * 3, h = 3 + r() * 3.5;
+    const g = new THREE.Group();
+    const b = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), walls[Math.floor(r() * 4)]);
+    b.position.y = h / 2; b.castShadow = b.receiveShadow = true; g.add(b);
+    const roof = new THREE.Mesh(new THREE.ConeGeometry(Math.max(w, d) * 0.78, 2.6, 4), roofs[Math.floor(r() * 3)]);
+    roof.rotation.y = Math.PI / 4; roof.position.y = h + 1.3; roof.castShadow = true; g.add(roof);
+    for (const sx of [-0.25, 0.25]) {
+      const wn = new THREE.Mesh(new THREE.BoxGeometry(0.9, 0.9, d + 0.05), win); wn.position.set(sx * w, h * 0.6, 0); g.add(wn);
+    }
+    const yaw = (r() - 0.5) * 0.5;
+    place(g, x, z, yaw);
+    g.userData = { x, z, yaw, dir: r() < 0.5 ? 1 : -1, y0: g.position.y };
+    ground.add(g); houses.push(g);
+  }
+}
+const fires = Array.from({ length: 12 }, () => {
+  const f = new THREE.Sprite(new THREE.SpriteMaterial({ map: FIRE, blending: THREE.AdditiveBlending, depthWrite: false, transparent: true }));
+  const sm = new THREE.Sprite(new THREE.SpriteMaterial({ map: SMOKE, depthWrite: false, transparent: true }));
+  ground.add(f, sm); return [f, sm];
+});
+const people = Array.from({ length: 28 }, (_, i) => {
+  const shirts = [0xd14b3c, 0x3c78d1, 0xe6c34a, 0x4caf6e, 0xf2f2f2, 0x8a5cc4, 0xe08a3c];
+  const h = makeHuman(shirts[i % shirts.length]); ground.add(h.group);
+  const r = rng(100 + i);
+  h.ax = TOWN_X + (r() - 0.5) * 44; h.az = TOWN_Z + (r() - 0.5) * 34; h.sp = 4.2 + r() * 1.6; h.ph = r() * 6;
+  h.bx = TOWN_X + (i % 14 - 6.5) * 2.4 + (r() - 0.5); h.bz = TOWN_Z - 31 - Math.floor(i / 14) * 2.2;
+  return h;
+});
+const barricade = Array.from({ length: 12 }, (_, i) => {
+  const b = new THREE.Mesh(new THREE.BoxGeometry(2.6, 1.6 + (i % 3) * 0.4, 1.4), mat(i % 2 ? 0x6b5233 : 0x7d7d78));
+  b.castShadow = true; ground.add(b);
+  b.userData = { x: TOWN_X + (i - 5.5) * 2.7, vx: (i - 5.5) * 1.6, vy: 6 + (i % 4) * 2, spin: (i % 2 ? 1 : -1) * (2 + i % 3) };
+  return b;
+});
+const packRex = makeTheropod(0x4a3b2a); packRex.group.scale.setScalar(1.25); ground.add(packRex.group);
+const raptors = [0x7a6a3a, 0x5f5530, 0x6e5a3a, 0x8a7046].map(c => {
+  const r = makeTheropod(c); r.group.scale.setScalar(0.45); ground.add(r.group); return r; });
+const RAPTOR_LANE = [[-9, 6], [8, 2], [-17, 10], [15, 12]];
+const bigSauro = makeSauropod(0x5d6a48); bigSauro.group.scale.setScalar(1.35); ground.add(bigSauro.group);
+
+// where the charging animals are, so houses/people know when they are hit
+const rexZ = t => TOWN_Z + 48 - (t - 44) * 8.5;
+const sauroZ = t => TOWN_Z + 26 - (t - 50) * 11;
+const SAURO_X = TOWN_X + 3;
+
+function updateClash(t) {
+  const A = t < 50;
+  // houses collapse after an animal passes close by
+  houses.forEach(h => {
+    const { x, z, yaw, dir, y0 } = h.userData;
+    let hit = Infinity;
+    if (Math.abs(x - TOWN_X) < 13) hit = 44 + (TOWN_Z + 48 - z) / 8.5;
+    if (Math.abs(x - SAURO_X) < 15) hit = Math.min(hit, 50 + (TOWN_Z + 26 - z) / 11);
+    const c = smooth((t - hit) / 1.1);
+    h.rotation.set(c * 1.35 * dir, yaw, c * 0.3);
+    h.position.y = y0 - c * 2.2;
+    h.userData.hit = hit;
+  });
+  const burning = houses.filter(h => t > h.userData.hit + 0.3).slice(0, fires.length);
+  fires.forEach(([f, sm], i) => {
+    const h = burning[i];
+    f.visible = sm.visible = !!h;
+    if (!h) return;
+    const age = t - h.userData.hit, fl = 1 + 0.25 * Math.sin(t * 11 + i * 2);
+    f.position.set(h.userData.x, h.userData.y0 + 2.5, h.userData.z);
+    f.scale.set(7 * fl * clamp(age), 9 * fl * clamp(age), 1);
+    const rise = (age * 0.6 + i * 0.37) % 1;
+    sm.position.set(h.userData.x + rise * 3, h.userData.y0 + 5 + rise * 14, h.userData.z);
+    sm.scale.setScalar(6 + rise * 14); sm.material.opacity = 0.8 * (1 - rise);
+  });
+  // the predator pack (raid, 44-50) then waiting behind the sauropod (50-56)
+  const rz = A ? rexZ(t) : TOWN_Z + 30;
+  place(packRex.group, TOWN_X, rz, Math.PI / 2);
+  const roarA = !A ? smooth(seg(t, 51.0, 51.5)) * (1 - smooth(seg(t, 53.0, 53.6))) : 0;
+  packRex.update(A ? t : 50, 3.6, roarA);
+  raptors.forEach((r, i) => {
+    const [dx, dz] = RAPTOR_LANE[i];
+    let x = TOWN_X + dx, z = TOWN_Z + 48 + dz - (t - 44) * 10, lift = 0;
+    if (!A) { // leap over the barricade
+      z = TOWN_Z + 12 - (t - 50) * 9 + dz * 0.3;
+      const jt = seg(t, 52.6 + i * 0.2, 53.6 + i * 0.2);
+      lift = Math.sin(jt * Math.PI) * 5;
+    }
+    place(r.group, x, z, Math.PI / 2, lift);
+    r.update(t, 6, 0);
+  });
+  // the stampeding sauropod (50-56)
+  place(bigSauro.group, SAURO_X, A ? TOWN_Z + 200 : sauroZ(t), Math.PI / 2);
+  bigSauro.update(t * 1.8, 0);
+  // barricade breaks when the sauropod reaches it (~53.2 s)
+  const bz = TOWN_Z - 26, breakT = 50 + (TOWN_Z + 26 - bz - 6) / 11;
+  barricade.forEach(b => {
+    const { x, vx, vy, spin } = b.userData, dt = Math.max(0, t - breakT);
+    b.visible = !A;
+    b.position.set(x + vx * dt, heightAt(x, bz) + 0.8 + vy * dt - 9 * dt * dt, bz - dt * 6);
+    if (b.position.y < heightAt(x, bz) + 0.6) b.position.y = heightAt(x, bz) + 0.6;
+    b.rotation.set(spin * dt, 0, spin * dt * 0.7);
+  });
+  // people
+  people.forEach((p, i) => {
+    let x, z, yaw, speed = p.sp * 2.2, fallen = 0, armUp = 0;
+    if (A) {
+      x = p.ax + Math.sin(i) * (t - 44) * 0.6; z = p.az - (t - 44) * p.sp; yaw = Math.PI / 2;
+      const hitBy = Math.abs(x - TOWN_X) < 4 ? rexZ(t) :
+        Math.min(...RAPTOR_LANE.filter(([dx]) => Math.abs(x - TOWN_X - dx) < 2.5).map(([, dz]) => TOWN_Z + 48 + dz - (t - 44) * 10), Infinity);
+      if (hitBy < z + 1 && i % 3 === 0) { fallen = smooth((z + 1 - hitBy) / 2); speed = 0; z = Math.max(z, hitBy - 1); }
+      p.torch.visible = false;
+    } else {
+      x = p.bx; z = p.bz; yaw = -Math.PI / 2; speed = 0; armUp = i % 2 === 0;
+      p.torch.visible = !!armUp;
+      if (t > breakT - 0.2) { // fall back
+        const rt = t - breakT + 0.2;
+        yaw = Math.PI / 2; speed = 9; z = p.bz - rt * (5 + (i % 5)); armUp = 0; p.torch.visible = false;
+        if (Math.abs(x - SAURO_X) < 6 && i % 2) { fallen = smooth(rt / 0.8); speed = 0; z = p.bz - rt; }
+      }
+    }
+    place(p.group, x, z, yaw);
+    p.update(t, speed, p.ph, fallen, armUp);
+  });
+  // flying reptiles dive in during the last stand
+  if (!A) pteros.forEach((p, i) => {
+    const k = seg(t, 50.5 + i * 0.6, 53.5 + i * 0.6);
+    p.group.position.set(TOWN_X - 30 + k * 60 + i * 3, lerp(28, 6, Math.sin(k * Math.PI)) + i, TOWN_Z - 20 - i * 3);
+    p.group.rotation.set(0, 0, -0.3 + k * 0.6);
+  });
+  // shake on big steps
+  if (A) shake = 0.06 * Math.max(0, Math.cos(t * 3.6)) ** 16;
+  else shake = Math.max(0.07 * Math.max(0, Math.cos(t * 1.8 * 2.2)) ** 16, t > breakT && t < breakT + 0.6 ? 0.12 : 0, roarA > 0.5 ? 0.05 : 0);
+  // cameras
+  if (A) {
+    const k = smooth(seg(t, 44, 50));
+    return [V(TOWN_X + lerp(7, 4, k), lerp(4.5, 3.2, k), TOWN_Z - lerp(30, 40, k)), V(TOWN_X - 1, lerp(4, 6, k), TOWN_Z + 6)];
+  }
+  const k = smooth(seg(t, 50, 56));
+  return [V(TOWN_X - lerp(5, 2, k), lerp(6.5, 10, k), TOWN_Z - lerp(44, 52, k)), V(TOWN_X + 2, lerp(4, 6, k), TOWN_Z - 14)];
+}
+
 function place(obj, x, z, yaw = 0, lift = 0) {
   obj.position.set(x, heightAt(x, z) + lift, z);
   obj.rotation.y = yaw;
 }
 let shake = 0;
 
+const SKY_TOP = new THREE.Color(0x3a78c2), SKY_RED = new THREE.Color(0x3a1418), FOG_RED = new THREE.Color(0xc9765a);
 function updateGround(t) {
   shake = 0;
+  const war = smooth(seg(t, 45, 52));
+  sky.material.uniforms.top.value.lerpColors(SKY_TOP, SKY_RED, war);
+  sky.material.uniforms.bot.value.lerpColors(FOG, FOG_RED, war);
+  ground.fog.color.lerpColors(FOG, FOG_RED, war);
+  gSun.color.setRGB(1, lerp(0.94, 0.55, war), lerp(0.82, 0.4, war));
   // sun / shadow follows the area of interest
-  const focus = t < 26 ? V(10, 0, -55) : t < 32 ? V(-6, 0, 18) : t < 38 ? V(0, 0, CITY_Z) : V(22, 0, 0);
+  const focus = t < 26 ? V(10, 0, -55) : t < 32 ? V(-6, 0, 18) : t < 38 ? V(0, 0, CITY_Z) : t < 44 ? V(22, 0, 0) : V(TOWN_X, 0, TOWN_Z - 15);
   gSun.position.copy(focus).add(V(60, 90, 40)); gSun.target.position.copy(focus);
 
   herd.forEach((h, i) => {
@@ -541,7 +723,10 @@ function updateGround(t) {
 
   // cameras
   let pos, look;
-  if (t < 26) {
+  const clash = updateClash(t);
+  if (t >= 44) {
+    [pos, look] = clash;
+  } else if (t < 26) {
     const k = smooth(seg(t, 20, 26));
     pos = V(lerp(-30, -14, k), lerp(30, 17, k), lerp(-95, -40, k));
     look = V(lerp(10, 12, k), lerp(10, 9, k), lerp(-50, -35, k));
@@ -600,8 +785,29 @@ function tag(label, a, y = 250) {
 }
 const fmt = n => Math.round(n).toLocaleString('en-US');
 
+
+const HUMANS0 = 8.3e9, HUMANS1 = 1.2e9;
+const humansAt = t => Math.exp(lerp(Math.log(HUMANS0), Math.log(HUMANS1), smooth(seg(t, 44.6, 55.6))));
+function hudWar(t, a) {
+  if (a <= 0.01) return;
+  ctx.save(); ctx.globalAlpha = a;
+  ctx.fillStyle = 'rgba(0,0,0,0.6)'; ctx.fillRect(0, 200, W, 270);
+  ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+  setFont(40); ctx.fillStyle = '#fff';
+  const yr = `YEAR ${Math.max(1, Math.round(lerp(1, 40, seg(t, 44.6, 55.6))))} OF THE WAR`;
+  ctx.fillText(yr, W / 2, 215);
+  if (Math.floor(t * 2) % 2 === 0) { ctx.fillStyle = '#ef4444'; ctx.beginPath(); ctx.arc(W / 2 - ctx.measureText(yr).width / 2 - 24, 236, 10, 0, 7); ctx.fill(); }
+  const h = humansAt(t);
+  for (const [cx, label, val, col] of [[W * 0.27, 'HUMANS', h, '#93c5fd'], [W * 0.73, 'HUMANS LOST', HUMANS0 - h, '#ef4444']]) {
+    setFont(30); ctx.fillStyle = '#a3a3a3'; ctx.fillText(label, cx, 285);
+    let sz = 62; setFont(sz); while (ctx.measureText(fmt(val)).width > 440) { sz -= 2; setFont(sz); }
+    ctx.fillStyle = col; ctx.fillText(fmt(val), cx, 330);
+  }
+  ctx.restore();
+  tag('SPECULATION', a, 395);
+}
 function overlay(t) {
-  if (t >= 20 && t < 44) { // darken the sky behind the captions
+  if (t >= 20 && t < 56) { // darken the sky behind the captions
     const g = ctx.createLinearGradient(0, 120, 0, 900);
     g.addColorStop(0, 'rgba(0,0,0,0.55)'); g.addColorStop(0.6, 'rgba(0,0,0,0.35)'); g.addColorStop(1, 'rgba(0,0,0,0)');
     ctx.fillStyle = g; ctx.fillRect(0, 0, W, 900);
@@ -643,30 +849,36 @@ function overlay(t) {
   txt('And mammals?', 360, 66, '#fff', win(t, 38.4, 41.2));
   txt('Most dinosaur-age mammals were small. One of the biggest, Repenomamus, weighed ~12–14 kg.', 460, 40, '#eee', win(t, 38.9, 41.2), { bold: false, maxW: 880 });
   tag('SPECULATION', win(t, 41.3, 44));
-  txt('Humans in this timeline', 360, 50, '#ddd', win(t, 41.3, 44));
-  bigNum(fmt(8.3e9 * (1 - smooth(seg(t, 41.6, 43.4)))), 440, '#93c5fd', win(t, 41.3, 44), 130);
-  txt('We may never have evolved.', 650, 50, '#fff', win(t, 42.6, 44));
+  txt('Humans may never have evolved.', 360, 50, '#ddd', win(t, 41.3, 44));
+  txt('But what if we did...', 470, 72, '#fbbf24', win(t, 42.2, 44), { serif: true });
+  txt('...and had to share the planet with them?', 580, 46, '#fff', win(t, 42.8, 44));
+  // 44-56 the clash: war HUD
+  hudWar(t, win(t, 44.2, 55.8, 0.4, 0.3));
+  txt('It was never going to be peaceful.', 560, 54, '#fff', win(t, 44.6, 49.6));
+  txt('Raptors hunt in packs. Towns fell first.', 720, 40, '#eee', win(t, 46.0, 49.6), { bold: false });
+  txt('Humans fought back...', 560, 64, '#fff', win(t, 50.3, 53.0));
+  txt('...but they were outnumbered.', 560, 64, '#ef4444', win(t, 53.2, 55.8), { serif: true });
   // 44-50 ending
-  txt("Someone's city lights are on...", 330, 48, '#fff', win(t, 45.0, 50, 0.5, 0.6));
-  txt("...but they aren't ours.", 420, 56, '#fbbf24', win(t, 46.0, 50, 0.5, 0.6));
-  txt('Follow for more WHAT IF', 1420, 52, '#fff', win(t, 47.2, 50, 0.5, 0.6), { serif: true });
-  txt('Facts: Renne et al. 2013 Science; Schulte et al. 2010 Science; Hu et al. 2005 Nature; Russell & Séguin 1982. Everything after the near miss is fiction or speculation.',
-      1510, 24, '#ccc', win(t, 47.2, 50, 0.5, 0.6), { bold: false, maxW: 860 });
+  txt("Someone's city lights are on...", 330, 48, '#fff', win(t, 57.0, 62, 0.5, 0.6));
+  txt("...and fewer of them are ours.", 420, 52, '#fbbf24', win(t, 58.0, 62, 0.5, 0.6));
+  txt('Follow for more WHAT IF', 1420, 52, '#fff', win(t, 59.2, 62, 0.5, 0.6), { serif: true });
+  txt('Facts: Renne et al. 2013 Science; Schulte et al. 2010 Science; Hu et al. 2005 Nature; Russell & Séguin 1982; UN WPP 2024 (8.3 bn). Everything after the near miss is fiction or speculation.',
+      1510, 24, '#ccc', win(t, 59.2, 62, 0.5, 0.6), { bold: false, maxW: 860 });
 
   // transitions
   const flash = Math.max(win(t, 18.9, 20.6, 1.1, 0.6) * 1.0, 0);
   if (flash > 0) { ctx.fillStyle = `rgba(255,255,255,${flash})`; ctx.fillRect(0, 0, W, H); }
-  for (const c of [7, 26, 32, 38, 44]) {
+  for (const c of [7, 26, 32, 38, 44, 50, 56]) {
     const d = Math.abs(t - c);
     if (d < 0.35) { ctx.fillStyle = `rgba(0,0,0,${0.9 * (1 - d / 0.35)})`; ctx.fillRect(0, 0, W, H); }
   }
   if (t < 0.6) { ctx.fillStyle = `rgba(0,0,0,${1 - t / 0.6})`; ctx.fillRect(0, 0, W, H); }
-  if (t > 49.2) { ctx.fillStyle = `rgba(0,0,0,${(t - 49.2) / 0.8})`; ctx.fillRect(0, 0, W, H); }
+  if (t > 61.2) { ctx.fillStyle = `rgba(0,0,0,${(t - 61.2) / 0.8})`; ctx.fillRect(0, 0, W, H); }
 }
 
 // ================================================================== frame
 window.frame = (t, type = 'image/jpeg') => {
-  const inSpace = t < 20 || t >= 44;
+  const inSpace = t < 20 || t >= 56;
   if (inSpace) { updateSpace(t); renderer.render(space, spaceCam); }
   else { updateGround(t); renderer.render(ground, groundCam); }
   ctx.drawImage(renderer.domElement, 0, 0);
