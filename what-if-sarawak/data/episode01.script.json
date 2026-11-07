@@ -1,0 +1,268 @@
+{
+  "episode": "E01",
+  "title": "What If the Brooke Family Still Governed Sarawak?",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "notes": "Single source of truth for timing. 'at' = earliest start (seconds, absolute). The audio builder pushes a line later if the previous line is still speaking. TTS text may contain [word](/ipa/) overrides for Malay words.",
+  "voices": {
+    "narrator": {
+      "voice": "af_heart",
+      "lang": "en-us",
+      "speed": 1.1,
+      "gain_db": 0
+    },
+    "rajah": {
+      "voice": "bm_george",
+      "lang": "en-gb",
+      "speed": 1.0,
+      "gain_db": 1
+    },
+    "driver": {
+      "voice": "am_puck",
+      "lang": "en-us",
+      "speed": 0.95,
+      "gain_db": 0
+    },
+    "minister": {
+      "voice": "am_michael",
+      "lang": "en-us",
+      "speed": 1.08,
+      "gain_db": 0
+    },
+    "auntie": {
+      "voice": "af_bella",
+      "lang": "en-us",
+      "speed": 1.12,
+      "gain_db": 2
+    }
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "name": "The Hook",
+      "start": 0,
+      "end": 6
+    },
+    {
+      "id": "s2",
+      "name": "Real History",
+      "start": 6,
+      "end": 17.8
+    },
+    {
+      "id": "s3",
+      "name": "The Alternate Timeline",
+      "start": 17.8,
+      "end": 27.4
+    },
+    {
+      "id": "s4",
+      "name": "Royal Kuching",
+      "start": 27.4,
+      "end": 40
+    },
+    {
+      "id": "s5",
+      "name": "The Government",
+      "start": 40,
+      "end": 52
+    },
+    {
+      "id": "s6",
+      "name": "The Economy",
+      "start": 52,
+      "end": 65
+    },
+    {
+      "id": "s7",
+      "name": "Reality Check",
+      "start": 65,
+      "end": 77
+    },
+    {
+      "id": "s8",
+      "name": "Final Punchline",
+      "start": 77,
+      "end": 90
+    }
+  ],
+  "lines": [
+    {
+      "id": "n01",
+      "speaker": "narrator",
+      "at": 0.25,
+      "text": "What if the Brooke family STILL ruled Sarawak?",
+      "tts": "What if the Brooke family still ruled [Sarawak](/səɹˈɑːwak/)?"
+    },
+    {
+      "id": "n02",
+      "speaker": "narrator",
+      "at": 4.0,
+      "text": "Yep. Still jam.",
+      "tts": "Yep. Still jam."
+    },
+    {
+      "id": "n03",
+      "speaker": "narrator",
+      "at": 6.3,
+      "text": "In 1841, James Brooke became Rajah of Sarawak.",
+      "tts": "In eighteen forty-one, James Brooke became Rajah of [Sarawak](/səɹˈɑːwak/)."
+    },
+    {
+      "id": "n04",
+      "speaker": "narrator",
+      "at": 10.2,
+      "text": "Three Brooke Rajahs ruled. Then, in 1946, Sarawak became a British Crown Colony.",
+      "tts": "Three Brooke Rajahs ruled. Then in nineteen forty-six, [Sarawak](/səɹˈɑːwak/) became a British Crown Colony."
+    },
+    {
+      "id": "n05",
+      "speaker": "narrator",
+      "at": 15.0,
+      "text": "But what if that never happened?",
+      "tts": "But what if... that never happened?"
+    },
+    {
+      "id": "n06",
+      "speaker": "narrator",
+      "at": 17.85,
+      "text": "The real 1946 cession vote passed: nineteen to sixteen.",
+      "tts": "The real cession vote passed. Nineteen to sixteen."
+    },
+    {
+      "id": "n07",
+      "speaker": "narrator",
+      "at": 20.4,
+      "text": "In our made-up timeline... it fails.",
+      "tts": "In our made-up timeline... it fails."
+    },
+    {
+      "id": "n08",
+      "speaker": "narrator",
+      "at": 22.7,
+      "text": "Fast-forward to 2026.",
+      "tts": "Fast forward, to twenty twenty-six!"
+    },
+    {
+      "id": "n09",
+      "speaker": "narrator",
+      "at": 24.6,
+      "text": "Welcome to the Kingdom of Sarawak!",
+      "tts": "Welcome, to the Kingdom of [Sarawak](/səɹˈɑːwak/)!"
+    },
+    {
+      "id": "n10",
+      "speaker": "narrator",
+      "at": 27.4,
+      "text": "Flying cars. Golden palaces. Royal everything.",
+      "tts": "Flying cars. Golden palaces. Royal... everything."
+    },
+    {
+      "id": "d01",
+      "speaker": "driver",
+      "at": 32.0,
+      "text": "Your Majesty... jalan sik bagus.",
+      "tts": "Your Majesty... [jalan sik bagus](/dʒˈɑːlɐn sˈɪk bˈɑːɡʊs/)."
+    },
+    {
+      "id": "r01",
+      "speaker": "rajah",
+      "at": 34.6,
+      "text": "Again?!",
+      "tts": "Again?"
+    },
+    {
+      "id": "n11",
+      "speaker": "narrator",
+      "at": 35.9,
+      "text": "Even royalty cannot escape road maintenance.",
+      "tts": "Even royalty cannot escape... road maintenance."
+    },
+    {
+      "id": "m01",
+      "speaker": "minister",
+      "at": 40.4,
+      "text": "Your Majesty, your elected government presents: the 2026 Development Plan!",
+      "tts": "Your Majesty, your elected government presents... the twenty twenty-six Development Plan!"
+    },
+    {
+      "id": "a01",
+      "speaker": "auntie",
+      "at": 46.75,
+      "text": "Royal or not, fix the road lah!",
+      "tts": "Royal or not, fix the road lah!"
+    },
+    {
+      "id": "r02",
+      "speaker": "rajah",
+      "at": 49.2,
+      "text": "Y-yes, Auntie. Right away, Auntie.",
+      "tts": "Y... yes, Auntie. Right away, Auntie."
+    },
+    {
+      "id": "n12",
+      "speaker": "narrator",
+      "at": 52.3,
+      "text": "Maybe Sarawak becomes a global technology and energy powerhouse!",
+      "tts": "Maybe [Sarawak](/səɹˈɑːwak/) becomes a global technology and energy powerhouse!"
+    },
+    {
+      "id": "m02",
+      "speaker": "minister",
+      "at": 56.6,
+      "text": "Introducing the Royal Hyperloop: Kuching to Miri in twenty minutes!",
+      "tts": "Introducing, the Royal Hyperloop! Kuching to [Miri](/mˈiːɹi/) in twenty minutes!"
+    },
+    {
+      "id": "n13",
+      "speaker": "narrator",
+      "at": 62.4,
+      "text": "Some traditions never change.",
+      "tts": "Some traditions... never change."
+    },
+    {
+      "id": "n14",
+      "speaker": "narrator",
+      "at": 65.4,
+      "text": "But would Sarawak really be richer, more powerful... and happier?",
+      "tts": "But would [Sarawak](/səɹˈɑːwak/) really be richer, more powerful... and happier?"
+    },
+    {
+      "id": "n15",
+      "speaker": "narrator",
+      "at": 70.7,
+      "text": "Or would we have the same problems... with more expensive ceremonies?",
+      "tts": "Or would we have the same problems... with more expensive ceremonies?"
+    },
+    {
+      "id": "r03",
+      "speaker": "rajah",
+      "at": 77.7,
+      "text": "Ahh... my beautiful kingdom.",
+      "tts": "Ahh... my beautiful kingdom."
+    },
+    {
+      "id": "r04",
+      "speaker": "rajah",
+      "at": 81.2,
+      "text": "Aduh! Laundry belum angkat!",
+      "tts": "[Aduh](/ɐdˈuː/)! Laundry, [belum angkat](/bəlˈʊm ˈɑŋkɑt/)!"
+    },
+    {
+      "id": "n16",
+      "speaker": "narrator",
+      "at": 84.4,
+      "text": "Team Rajah, or Team Reality? Comment below.",
+      "tts": "Team Rajah... or Team Reality? Comment below!"
+    }
+  ],
+  "cues": {
+    "scratch": 3.45,
+    "pothole": 31.2,
+    "ring": 46.0,
+    "stamp": 61.0,
+    "thunder": 80.2,
+    "endcard": 83.9
+  }
+}

@@ -1,0 +1,10 @@
+node_modules/
+.cache/
+out/
+output/previews/frames/
+output/work/
+*.log
+# large, fully regenerable by `npm run audio`
+assets/audio/*_stem_*.wav
+assets/music/*_score_full.wav
+output/previews/qa_frames/
