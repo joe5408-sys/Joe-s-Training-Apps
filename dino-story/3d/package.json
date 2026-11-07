@@ -1,0 +1,7 @@
+{
+  "name": "what-if-3d",
+  "private": true,
+  "description": "3D 'What if the asteroid missed?' video renderer (three.js + headless Chromium + ffmpeg)",
+  "scripts": { "render": "node render3d.js" },
+  "dependencies": { "three": "0.170.0" }
+}
