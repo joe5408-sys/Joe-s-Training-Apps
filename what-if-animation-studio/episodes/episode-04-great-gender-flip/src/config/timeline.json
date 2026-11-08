@@ -1,0 +1,147 @@
+{
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "scenes": [
+    {
+      "id": "S01", "title": "The World Flips", "duration": 240,
+      "beats": {"midnight": 24, "morphStart": 26, "morphEnd": 52, "shock": 44, "drop": 56, "cutMaya": 66, "labelBody": 70, "labelSociety": 82, "split": 120, "caption": 128},
+      "captions": [
+        {"at": 128, "until": 240, "lines": [{"t": "WHAT IF EVERYTHING", "at": 128}, {"t": "FLIPPED?!", "at": 138, "hl": "#FFD23F"}]}
+      ],
+      "sfx": [
+        {"f": 0, "s": "tick"}, {"f": 12, "s": "tick"}, {"f": 24, "s": "impact"}, {"f": 24, "s": "wave"},
+        {"f": 28, "s": "sparkle"}, {"f": 56, "s": "whoosh_small"}, {"f": 62, "s": "boing"},
+        {"f": 66, "s": "whoosh"}, {"f": 66, "s": "sparkle"}, {"f": 70, "s": "stamp"}, {"f": 82, "s": "stamp"},
+        {"f": 90, "s": "swap"}, {"f": 118, "s": "scratch"}, {"f": 128, "s": "pop"}, {"f": 138, "s": "pop"}
+      ]
+    },
+    {
+      "id": "S02", "title": "The New Rulebook", "duration": 360,
+      "beats": {"capBody": 10, "phoneUp": 62, "adSwap": 84, "phoneDown": 135, "billboard": 140, "billboardFlip": 160, "notif": 210, "checklist": 232, "item1": 242, "item2": 254, "item3": 266, "item4": 278, "maya": 292, "mayaN1": 300, "mayaN2": 310, "mayaN3": 320, "mayaN4": 330, "mayaN5": 340, "capRules": 236},
+      "captions": [
+        {"at": 10, "until": 62, "lines": [{"t": "NEW BODY.", "at": 10}]},
+        {"at": 236, "until": 360, "lines": [{"t": "NEW BODY.", "at": 236}, {"t": "NEW SOCIAL RULES.", "at": 246, "hl": "#FF4FA3"}]}
+      ],
+      "sfx": [
+        {"f": 0, "s": "whoosh"}, {"f": 10, "s": "pop"}, {"f": 62, "s": "swish"}, {"f": 70, "s": "ping"}, {"f": 84, "s": "scratch_short"},
+        {"f": 135, "s": "swish"}, {"f": 160, "s": "clack"}, {"f": 166, "s": "clack"}, {"f": 172, "s": "clack"},
+        {"f": 210, "s": "glitch"}, {"f": 214, "s": "unlock"},
+        {"f": 242, "s": "check"}, {"f": 254, "s": "check"}, {"f": 266, "s": "check"}, {"f": 278, "s": "check"},
+        {"f": 292, "s": "whoosh"}, {"f": 300, "s": "ping"}, {"f": 310, "s": "ping"}, {"f": 320, "s": "ping"}, {"f": 330, "s": "ping"}, {"f": 340, "s": "ping"}
+      ]
+    },
+    {
+      "id": "S03", "title": "Wardrobe Chaos", "duration": 390,
+      "beats": {"open": 6, "sweaterOn": 30, "stuckEnd": 92, "popOut": 96, "checklist": 125, "counterStart": 140, "counterEnd": 215, "dismiss": 222, "reappear": 248, "facepalm": 258, "maya": 285, "mayaList": 292, "mayaDelete": 332, "smug": 346, "caption": 300},
+      "captions": [
+        {"at": 300, "until": 390, "lines": [{"t": "WHO INVENTED", "at": 300}, {"t": "THESE RULES?!", "at": 310, "hl": "#FFD23F"}]}
+      ],
+      "sfx": [
+        {"f": 0, "s": "whoosh"}, {"f": 6, "s": "creak"}, {"f": 30, "s": "rustle"}, {"f": 50, "s": "rustle"}, {"f": 70, "s": "rustle"},
+        {"f": 96, "s": "boing"}, {"f": 125, "s": "glitch"}, {"f": 140, "s": "typing"}, {"f": 215, "s": "ding_big"},
+        {"f": 222, "s": "swish"}, {"f": 248, "s": "boing"}, {"f": 258, "s": "slap"},
+        {"f": 285, "s": "whoosh"}, {"f": 292, "s": "ping"}, {"f": 332, "s": "crumple"}, {"f": 340, "s": "trash"}, {"f": 346, "s": "chime_small"},
+        {"f": 300, "s": "pop"}, {"f": 310, "s": "pop"}
+      ]
+    },
+    {
+      "id": "S04", "title": "The Family Role Reversal", "duration": 420,
+      "beats": {"juggle": 10, "n1": 30, "n2": 45, "n3": 60, "n4": 75, "n5": 90, "n6": 105, "n7": 120, "countStart": 40, "countEnd": 150, "wide": 190, "overflow": 200, "kidPoint": 228, "look": 270, "sigh": 292, "cap1": 300, "cap2": 336},
+      "captions": [
+        {"at": 300, "until": 420, "lines": [{"t": "DIFFERENT EXPECTATIONS.", "at": 300}, {"t": "SAME AMOUNT OF WORK.", "at": 336, "hl": "#2EE6C5"}]}
+      ],
+      "sfx": [
+        {"f": 0, "s": "whoosh"}, {"f": 12, "s": "sizzle"}, {"f": 20, "s": "boing_small"}, {"f": 50, "s": "boing_small"}, {"f": 80, "s": "boing_small"},
+        {"f": 30, "s": "ping"}, {"f": 45, "s": "ping"}, {"f": 60, "s": "ping"}, {"f": 75, "s": "ping"}, {"f": 90, "s": "ping"}, {"f": 105, "s": "ping"}, {"f": 120, "s": "ping"},
+        {"f": 40, "s": "counter"}, {"f": 150, "s": "ding_big"}, {"f": 190, "s": "whoosh"}, {"f": 200, "s": "bubbles"},
+        {"f": 228, "s": "pop"}, {"f": 270, "s": "hit_soft"}, {"f": 292, "s": "sigh_horn"}, {"f": 300, "s": "pop"}, {"f": 336, "s": "pop"}
+      ]
+    },
+    {
+      "id": "S05", "title": "Workplace Role Reversal", "duration": 450,
+      "beats": {"walkIn": 0, "poster": 40, "posterZoom": 52, "meeting": 110, "raise": 125, "bubble": 135, "slam": 150, "maya": 210, "mayaBubble": 222, "mayaNotif": 236, "recognize": 270, "manager": 305, "badge": 322, "deadline": 360, "cap1": 372, "cap2": 400},
+      "captions": [
+        {"at": 372, "until": 450, "lines": [{"t": "THE WORLD FLIPPED.", "at": 372}, {"t": "THE DEADLINE DIDN'T.", "at": 400, "hl": "#FF3B3B"}]}
+      ],
+      "sfx": [
+        {"f": 0, "s": "whoosh"}, {"f": 4, "s": "steps"}, {"f": 52, "s": "zoom"}, {"f": 60, "s": "scratch_short"},
+        {"f": 110, "s": "whoosh"}, {"f": 135, "s": "pop"}, {"f": 150, "s": "slam"}, {"f": 160, "s": "deflate"},
+        {"f": 210, "s": "whoosh"}, {"f": 222, "s": "pop"}, {"f": 236, "s": "glitch"}, {"f": 270, "s": "hit_soft"},
+        {"f": 305, "s": "door"}, {"f": 322, "s": "zoom"}, {"f": 360, "s": "hit"}, {"f": 360, "s": "scratch"}, {"f": 372, "s": "pop"}, {"f": 400, "s": "pop"}
+      ]
+    },
+    {
+      "id": "S06", "title": "The Dating App Meltdown", "duration": 390,
+      "beats": {"q1": 20, "q2": 70, "q3": 120, "frenzy": 150, "look": 205, "eachOther": 225, "close": 250, "bill": 280, "split": 300, "laugh": 315, "cap1": 215, "cap2": 262},
+      "captions": [
+        {"at": 215, "until": 262, "lines": [{"t": "NEW RULES?", "at": 215}]},
+        {"at": 262, "until": 390, "lines": [{"t": "NEW RULES?", "at": 262}, {"t": "OR NO RULES?", "at": 270, "hl": "#FF4FA3"}]}
+      ],
+      "sfx": [
+        {"f": 0, "s": "whoosh"}, {"f": 20, "s": "heart"}, {"f": 70, "s": "heart"}, {"f": 120, "s": "heart"},
+        {"f": 40, "s": "swap"}, {"f": 90, "s": "swap"}, {"f": 140, "s": "swap"}, {"f": 150, "s": "glitch"}, {"f": 175, "s": "glitch"},
+        {"f": 205, "s": "hit_soft"}, {"f": 250, "s": "slam_small"}, {"f": 254, "s": "slam_small"}, {"f": 280, "s": "swish"},
+        {"f": 300, "s": "rip"}, {"f": 306, "s": "coin"}, {"f": 315, "s": "sparkle"}, {"f": 215, "s": "pop"}, {"f": 270, "s": "pop"}
+      ]
+    },
+    {
+      "id": "S07", "title": "The Emotion Police", "duration": 390,
+      "beats": {"tear": 45, "alexNotif": 65, "mayaNotif": 95, "stare": 130, "swap": 165, "swapEnd": 195, "reglitch": 205, "meter": 240, "meterEnd": 296, "tryAgain": 300, "caption": 318},
+      "captions": [
+        {"at": 318, "until": 390, "lines": [{"t": "YOU CAN'T WIN.", "at": 318, "hl": "#FF3B3B"}]}
+      ],
+      "sfx": [
+        {"f": 0, "s": "whoosh"}, {"f": 45, "s": "drip"}, {"f": 65, "s": "alarm"}, {"f": 95, "s": "alarm"},
+        {"f": 130, "s": "hit_soft"}, {"f": 165, "s": "swish"}, {"f": 180, "s": "swish"}, {"f": 205, "s": "glitch"}, {"f": 210, "s": "alarm"},
+        {"f": 240, "s": "meter_down"}, {"f": 296, "s": "error"}, {"f": 300, "s": "alarm"}, {"f": 308, "s": "alarm"}, {"f": 318, "s": "pop"}
+      ]
+    },
+    {
+      "id": "S08", "title": "The Internet Explodes", "duration": 390,
+      "beats": {"confusion": 30, "trending": 70, "answers": 100, "scientist": 175, "diagram": 192, "diagramEnd": 280, "err404": 290, "shrug": 302, "caption": 322},
+      "captions": [
+        {"at": 322, "until": 390, "lines": [{"t": "THE INTERNET", "at": 322}, {"t": "MADE IT WORSE.", "at": 332, "hl": "#FFD23F"}]}
+      ],
+      "sfx": [
+        {"f": 0, "s": "whoosh"}, {"f": 8, "s": "ping"}, {"f": 22, "s": "ping"}, {"f": 34, "s": "ping"}, {"f": 44, "s": "ping"}, {"f": 52, "s": "ping"},
+        {"f": 60, "s": "ping"}, {"f": 66, "s": "ping"}, {"f": 72, "s": "ping"}, {"f": 78, "s": "ping"}, {"f": 84, "s": "ping"}, {"f": 90, "s": "ping"},
+        {"f": 30, "s": "counter"}, {"f": 70, "s": "ding_big"}, {"f": 100, "s": "error_small"}, {"f": 130, "s": "glitch"},
+        {"f": 175, "s": "fanfare"}, {"f": 192, "s": "marker"}, {"f": 230, "s": "marker"}, {"f": 262, "s": "marker"},
+        {"f": 290, "s": "error"}, {"f": 290, "s": "glitch"}, {"f": 302, "s": "boing_small"}, {"f": 322, "s": "pop"}, {"f": 332, "s": "pop"}
+      ]
+    },
+    {
+      "id": "S09", "title": "The Realization", "duration": 420,
+      "beats": {"reflect": 20, "split": 70, "look": 160, "nod": 176, "drag": 195, "trashClose": 252, "poof": 262, "coop": 272, "cap1": 290, "cap2": 330, "small": 348},
+      "captions": [
+        {"at": 290, "until": 420, "lines": [{"t": "MAYBE THE PROBLEM...", "at": 290}, {"t": "WAS THE RULES.", "at": 330, "hl": "#FFC85A"}], "small": {"t": "(real change takes more than one click)", "at": 348}}
+      ],
+      "sfx": [
+        {"f": 0, "s": "whoosh_soft"}, {"f": 70, "s": "pop"}, {"f": 80, "s": "pop"}, {"f": 160, "s": "chime_small"},
+        {"f": 195, "s": "swish"}, {"f": 215, "s": "swish"}, {"f": 252, "s": "trash"}, {"f": 262, "s": "poof"},
+        {"f": 272, "s": "sparkle"}, {"f": 290, "s": "pop_soft"}, {"f": 330, "s": "pop_soft"}
+      ]
+    },
+    {
+      "id": "S10", "title": "The Final Punchline", "duration": 300,
+      "beats": {"button": 0, "n5": 40, "n4": 66, "n3": 92, "n2": 118, "n1": 144, "reach": 100, "grab": 150, "silenceEnd": 168, "option2": 170, "caption": 200, "chips": 212, "shock": 268, "loop": 282},
+      "captions": [
+        {"at": 200, "until": 270, "lines": [{"t": "WHICH WORLD", "at": 200}, {"t": "WOULD YOU CHOOSE?", "at": 208, "hl": "#FFD23F"}]}
+      ],
+      "sfx": [
+        {"f": 0, "s": "riser_long"}, {"f": 30, "s": "hit"}, {"f": 40, "s": "beep"}, {"f": 66, "s": "beep"}, {"f": 92, "s": "beep"}, {"f": 118, "s": "beep"}, {"f": 144, "s": "beep_long"},
+        {"f": 150, "s": "scratch_short"}, {"f": 170, "s": "pop"}, {"f": 200, "s": "pop"}, {"f": 212, "s": "chime"},
+        {"f": 268, "s": "impact"}, {"f": 268, "s": "wave"}, {"f": 282, "s": "sparkle"}
+      ]
+    }
+  ],
+  "music": [
+    {"name": "suspense", "from": 0.0, "to": 20.0},
+    {"name": "comedy", "from": 20.0, "to": 62.0},
+    {"name": "satire", "from": 62.0, "to": 101.0},
+    {"name": "reflective", "from": 101.0, "to": 115.0},
+    {"name": "finale", "from": 115.0, "to": 125.0}
+  ],
+  "transitions": [240, 600, 990, 1410, 1860, 2250, 2640, 3030, 3450]
+}
