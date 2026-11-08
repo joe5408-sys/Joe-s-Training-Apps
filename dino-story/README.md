@@ -49,6 +49,8 @@ node render3d.js --preview ./preview 3 16 30    # quick PNG stills
 ```
 Files: `3d/scene.js` (models, cameras, captions), `3d/render3d.js` (frame capture → ffmpeg), `3d/audio3d.py` (soundtrack).
 
+Soundtrack: a film-style score built entirely in code (`pip install numpy scipy`). It has low pads, brass-like hits at key moments, taiko drums and a string pattern in the battles, roars made from shaped noise, and a hall reverb. Loudness is set to −14 LUFS, the level TikTok, YouTube and Instagram use.
+
 Each caption is tagged **FACT**, **STORY** or **SPECULATION**:
 
 | On screen | Tag | Basis |

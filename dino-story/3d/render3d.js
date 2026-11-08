@@ -48,7 +48,7 @@ async function full(outFile) {
   const duration = await page.evaluate(() => window.DURATION);
   const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS),
     '-c:v', 'mjpeg', '-i', '-', '-i', wav, '-c:v', 'libx264', '-preset', 'medium', '-crf', '19',
-    '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-r', String(FPS), '-c:a', 'aac', '-b:a', '192k',
+    '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-r', String(FPS), '-af', 'loudnorm=I=-14:TP=-1.5:LRA=11', '-c:a', 'aac', '-b:a', '192k',
     '-ar', '44100', '-movflags', '+faststart', '-shortest', outFile], { stdio: ['pipe', 'inherit', 'inherit'] });
   const total = Math.round(duration * FPS);
   const t0 = Date.now();
