@@ -76,7 +76,7 @@ export const S10: React.FC = () => {
     [B.option2 + 4, 'shock'],
     [B.chips, 'happy'],
   ]);
-  const loopIn = prog(f, B.loop, 300 - B.loop, 'inOut');
+  const loopIn = prog(f, B.loop, 300 - B.loop - 4, 'inOut');
   return (
     <AbsoluteFill style={{background: '#000'}}>
       <Camera f={f} k={[{f: 0, x: 540, y: 1000, z: 1}, {f: B.grab, x: 540, y: 1000, z: 1.06}, {f: B.option2, x: 540, y: 960, z: 1}]} shakes={[{at: 30, dur: 12, amp: 14}, {at: B.grab, dur: 8, amp: 12}]}>
@@ -97,6 +97,7 @@ export const S10: React.FC = () => {
       {f >= B.loop ? (
         <div style={{position: 'absolute', inset: 0, opacity: loopIn}}>
           <MirrorShot f={0} />
+          <Vignette strength={0.5} />
         </div>
       ) : null}
     </AbsoluteFill>

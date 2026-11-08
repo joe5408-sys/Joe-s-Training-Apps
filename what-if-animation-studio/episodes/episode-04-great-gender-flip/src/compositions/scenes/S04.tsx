@@ -76,7 +76,7 @@ export const S04: React.FC = () => {
   return (
     <AbsoluteFill style={{background: '#000'}}>
       {f < B.wide ? (
-        <SplitScreen f={f} at={0} top={<Top f={f} />} bottom={<Bottom f={f} />} divider={PAL.rev.orange} />
+        <SplitScreen f={f} at={-12} top={<Top f={f} />} bottom={<Bottom f={f} />} divider={PAL.rev.orange} />
       ) : (
         <Camera
           f={f}

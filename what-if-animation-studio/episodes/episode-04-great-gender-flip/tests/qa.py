@@ -114,6 +114,14 @@ def main():
     freezes = re.findall(r'freeze_start: ([\d.]+)', fz.stderr)
     check('MASTER: no frozen segments >= 1.5 s (motion quality)', len(freezes) == 0, freezes or 'none', hard=False)
 
+    # sporadic renderer dropouts (pure-black tiles) in any frame
+    r = subprocess.run(['ffmpeg', '-v', 'error', '-i', MASTER, '-vf', 'scale=270:480', '-f', 'rawvideo', '-pix_fmt', 'gray', '-'], capture_output=True).stdout
+    fr = np.frombuffer(r, np.uint8).reshape(-1, 480, 270)
+    cnt = np.array([(q < 3).sum() for q in fr])
+    med = np.array([np.median(cnt[max(0, i - 6):i + 7]) for i in range(len(cnt))])
+    gl = [int(i) for i in np.where(cnt > med + 1500)[0]]
+    check('MASTER: no renderer dropout frames (black tiles), every frame scanned', len(gl) == 0, gl or f'{len(cnt)} frames clean')
+
     # audio loudness / peak / clipping
     eb = run(['ffmpeg', '-hide_banner', '-i', MASTER, '-map', '0:a', '-af', 'ebur128=peak=true', '-f', 'null', '-'])
     summ = eb.stderr[eb.stderr.rfind('Summary:'):]
@@ -129,7 +137,8 @@ def main():
     fps = TL['fps']
     s10 = sum(s['duration'] for s in TL['scenes'][:9])
     g0 = (s10 + TL['scenes'][9]['beats']['grab']) / fps
-    seg = x.reshape(-1, 2)[int((g0 + 0.1) * 48000): int((g0 + 0.45) * 48000)]
+    g1 = (s10 + TL['scenes'][9]['beats']['silenceEnd']) / fps
+    seg = x.reshape(-1, 2)[int((g0 + 0.34) * 48000): int((g1 - 0.02) * 48000)]
     rms = 20 * np.log10(np.sqrt((seg ** 2).mean()) + 1e-9)
     check('MASTER: planned dramatic silence present at final countdown', rms < -40, f'{rms:.1f} dBFS RMS', hard=False)
 
