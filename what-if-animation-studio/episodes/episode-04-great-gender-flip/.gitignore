@@ -4,3 +4,10 @@ previews/*.png
 audio/*.wav
 !audio/.keep
 rendering/logs/main_render.log
+# TEMP until final QA pass (removed before final commit)
+output/final/*.mp4
+captions/
+tests/contact_sheet.jpg
+tests/qa_report.json
+rendering/logs/assemble.log
+rendering/logs/teaser_render.log
