@@ -1,0 +1,204 @@
+{
+  "fps": 30,
+  "note": "Captions are burned into the video. This file documents their timing.",
+  "captions": [
+    {
+      "scene": "S01",
+      "text": "WHAT IF EVERYTHING",
+      "start_frame": 128,
+      "end_frame": 240,
+      "start_s": 4.267,
+      "end_s": 8.0,
+      "highlight": null
+    },
+    {
+      "scene": "S01",
+      "text": "FLIPPED?!",
+      "start_frame": 138,
+      "end_frame": 240,
+      "start_s": 4.6,
+      "end_s": 8.0,
+      "highlight": "#FFD23F"
+    },
+    {
+      "scene": "S02",
+      "text": "NEW BODY.",
+      "start_frame": 250,
+      "end_frame": 302,
+      "start_s": 8.333,
+      "end_s": 10.067,
+      "highlight": null
+    },
+    {
+      "scene": "S02",
+      "text": "NEW BODY.",
+      "start_frame": 476,
+      "end_frame": 600,
+      "start_s": 15.867,
+      "end_s": 20.0,
+      "highlight": null
+    },
+    {
+      "scene": "S02",
+      "text": "NEW SOCIAL RULES.",
+      "start_frame": 486,
+      "end_frame": 600,
+      "start_s": 16.2,
+      "end_s": 20.0,
+      "highlight": "#FF4FA3"
+    },
+    {
+      "scene": "S03",
+      "text": "WHO INVENTED",
+      "start_frame": 900,
+      "end_frame": 990,
+      "start_s": 30.0,
+      "end_s": 33.0,
+      "highlight": null
+    },
+    {
+      "scene": "S03",
+      "text": "THESE RULES?!",
+      "start_frame": 910,
+      "end_frame": 990,
+      "start_s": 30.333,
+      "end_s": 33.0,
+      "highlight": "#FFD23F"
+    },
+    {
+      "scene": "S04",
+      "text": "DIFFERENT EXPECTATIONS.",
+      "start_frame": 1290,
+      "end_frame": 1410,
+      "start_s": 43.0,
+      "end_s": 47.0,
+      "highlight": null
+    },
+    {
+      "scene": "S04",
+      "text": "SAME AMOUNT OF WORK.",
+      "start_frame": 1326,
+      "end_frame": 1410,
+      "start_s": 44.2,
+      "end_s": 47.0,
+      "highlight": "#2EE6C5"
+    },
+    {
+      "scene": "S05",
+      "text": "THE WORLD FLIPPED.",
+      "start_frame": 1782,
+      "end_frame": 1860,
+      "start_s": 59.4,
+      "end_s": 62.0,
+      "highlight": null
+    },
+    {
+      "scene": "S05",
+      "text": "THE DEADLINE DIDN'T.",
+      "start_frame": 1810,
+      "end_frame": 1860,
+      "start_s": 60.333,
+      "end_s": 62.0,
+      "highlight": "#FF3B3B"
+    },
+    {
+      "scene": "S06",
+      "text": "NEW RULES?",
+      "start_frame": 2075,
+      "end_frame": 2122,
+      "start_s": 69.167,
+      "end_s": 70.733,
+      "highlight": null
+    },
+    {
+      "scene": "S06",
+      "text": "NEW RULES?",
+      "start_frame": 2122,
+      "end_frame": 2250,
+      "start_s": 70.733,
+      "end_s": 75.0,
+      "highlight": null
+    },
+    {
+      "scene": "S06",
+      "text": "OR NO RULES?",
+      "start_frame": 2130,
+      "end_frame": 2250,
+      "start_s": 71.0,
+      "end_s": 75.0,
+      "highlight": "#FF4FA3"
+    },
+    {
+      "scene": "S07",
+      "text": "YOU CAN'T WIN.",
+      "start_frame": 2568,
+      "end_frame": 2640,
+      "start_s": 85.6,
+      "end_s": 88.0,
+      "highlight": "#FF3B3B"
+    },
+    {
+      "scene": "S08",
+      "text": "THE INTERNET",
+      "start_frame": 2962,
+      "end_frame": 3030,
+      "start_s": 98.733,
+      "end_s": 101.0,
+      "highlight": null
+    },
+    {
+      "scene": "S08",
+      "text": "MADE IT WORSE.",
+      "start_frame": 2972,
+      "end_frame": 3030,
+      "start_s": 99.067,
+      "end_s": 101.0,
+      "highlight": "#FFD23F"
+    },
+    {
+      "scene": "S09",
+      "text": "MAYBE THE PROBLEM...",
+      "start_frame": 3320,
+      "end_frame": 3450,
+      "start_s": 110.667,
+      "end_s": 115.0,
+      "highlight": null
+    },
+    {
+      "scene": "S09",
+      "text": "WAS THE RULES.",
+      "start_frame": 3360,
+      "end_frame": 3450,
+      "start_s": 112.0,
+      "end_s": 115.0,
+      "highlight": "#FFC85A"
+    },
+    {
+      "scene": "S09",
+      "text": "(real change takes more than one click)",
+      "start_frame": 3378,
+      "end_frame": 3450,
+      "start_s": 112.6,
+      "end_s": 115.0,
+      "highlight": null
+    },
+    {
+      "scene": "S10",
+      "text": "WHICH WORLD",
+      "start_frame": 3650,
+      "end_frame": 3720,
+      "start_s": 121.667,
+      "end_s": 124.0,
+      "highlight": null
+    },
+    {
+      "scene": "S10",
+      "text": "WOULD YOU CHOOSE?",
+      "start_frame": 3658,
+      "end_frame": 3720,
+      "start_s": 121.933,
+      "end_s": 124.0,
+      "highlight": "#FFD23F"
+    }
+  ]
+}
