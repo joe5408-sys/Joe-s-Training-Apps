@@ -9,8 +9,8 @@ sys.path.insert(0, os.path.join(ROOT, "src", "audio"))
 import synth as S  # noqa: E402
 
 FPS = 30
-SCENE = {"S01": 0, "S02": 240, "S03": 570, "S04": 930, "S05": 1290, "S06": 1680, "S07": 2040, "S08": 2280}
-TOTAL = 2460 / FPS
+SCENE = {"H01": 0, "S01": 90, "S02": 210, "S03": 480, "S04": 840, "S05": 1200, "S06": 1590, "S07": 1950, "S08": 2160}
+TOTAL = 2400 / FPS
 
 
 def T(scene, local):
@@ -32,39 +32,43 @@ def beat_grid(t0, bpm, n):
     return [t0 + i * 60 / bpm for i in range(n)]
 
 
-# ======================= S01 THE LAST SECOND (0-8 s): suspense + ticking
-for k in range(3):
-    cue("tick", T("S01", k * 30), S.tick(True), 0.9)
-    cue("tock", T("S01", k * 30 + 15), S.tick(False), 0.7)
-for k, dt in enumerate([0.25, 0.4, 0.5, 0.58, 0.64, 0.69, 0.73, 0.76, 0.79, 0.82, 0.85, 0.87, 0.89, 0.91, 0.93, 0.95, 0.97]):
-    sfx.add(S.tick(k % 2 == 0), 2.0 + dt, 0.6 + 0.02 * k)  # accelerating ticks into midnight
-music.add(S.drone(38, 3.0), 0.0, 0.8)
-music.add(S.tremolo_strings(62, 1.0) * 0.4, 2.0, 0.6)
-cue("midnight_hit", T("S01", 90), S.stinger([50, 57, 62], 0.5), 0.6)
-cue("midnight_glitch", T("S01", 90), S.glitch(0.5), 0.6)
-cue("crack_glitch", T("S01", 100), S.glitch(0.6), 0.7, 0.3)
-cue("explosion_impact", T("S01", 120), S.impact(2.2), 1.2)
-cue("brass_stinger_title", T("S01", 130), S.stinger([38, 45, 50, 57, 62], 1.6, 1.8), 0.9, bus=music)
-music.add(S.timpani(38, 1.5), T("S01", 130), 1.0)
-cue("whoosh_subtitle", T("S01", 160), S.whoosh(0.5), 0.6, -0.3)
-cue("time_resumes_shimmer", T("S01", 175), S.sparkle(1.4), 0.6)
-music.add(S.pad([50, 57, 62, 65], 2.7), T("S01", 160), 0.5)
-cue("boing_confused_clock", T("S01", 185), S.boing(0.6, 220), 0.6, 0.6)
+# ======================= H01 HOOK (0-3 s): tick -> RING -> glitch -> boom "NO TIME?!" -> boing "NO WORK!"
+for k, lf in enumerate((0, 10)):
+    cue("tick_hook", T("H01", lf), S.tick(k % 2 == 0), 0.9)
+cue("alarm_bell_RING", T("H01", 20), S.alarm_bell(0.36), 1.0, 0.2)
+cue("digital_glitch", T("H01", 30), S.glitch(0.5), 0.9)
+cue("error_buzzer", T("H01", 36), S.buzzer(0.3), 0.6)
+cue("explosion_NO_TIME", T("H01", 45), S.impact(1.6), 1.2)
+cue("brass_stinger_NO_TIME", T("H01", 45), S.stinger([50, 53, 56, 62], 0.5, 1.8), 0.9, bus=music)
+cue("boing_wake", T("H01", 58), S.boing(0.4, 260), 0.8)
+cue("slide_whistle_jump", T("H01", 66), S.slide_whistle(500, 1500, 0.3), 0.6)
+cue("crash_NO_WORK", T("H01", 70), S.crash(1.8), 0.8)
+cue("party_popper", T("H01", 70), S.party_popper(), 0.9)
+cue("brass_fanfare_NO_WORK", T("H01", 70), S.stinger([48, 55, 60, 64, 67], 0.6, 2.0), 0.8, bus=music)
 
-# ======================= S02 NO MORE ALARMS (8-19 s): triumphant orchestra
-cue("alarm_bell", T("S02", 0), S.alarm_bell(1.33), 0.8, 0.5)
-cue("pop_alarm_vanish", T("S02", 40), S.pop(700), 0.9, 0.5)
-cue("whoosh_calendar", T("S02", 48), S.whoosh(0.8, False), 0.6, 0.6)
-cue("pop_notification", T("S02", 84), S.pop(900), 0.8)
-cue("boing_jump", T("S02", 100), S.boing(0.7, 160), 0.9)
+# ======================= S01 TIME STILL PASSES (3-7 s): mystery pad, freeze, resume
+music.add(S.drone(38, 4.0), T("S01", 0), 0.7)
+music.add(S.pad([50, 57, 62, 65], 4.0), T("S01", 0), 0.4)
+cue("glitch_world_clocks", T("S01", 8), S.glitch(0.6), 0.5, -0.3)
+cue("freeze_hit", T("S01", 12), S.stinger([50, 57, 62], 0.4), 0.5)
+cue("whoosh_time_resumes", T("S01", 46), S.whoosh(0.7), 0.6)
+cue("shimmer_still_passes", T("S01", 48), S.sparkle(1.4), 0.6)
+cue("boing_confused_clock", T("S01", 52), S.boing(0.6, 220), 0.6, 0.6)
+cue("pop_clocks_break", T("S01", 62), S.pop(500), 0.5)
+
+# ======================= S02 LEVEL 1 FREEDOM (7-16 s): triumphant orchestra
+cue("badge_LEVEL1", T("S02", 0), S.stinger([60, 64, 67], 0.3, 1.8), 0.6, bus=music)
+cue("whoosh_calendar_dissolve", T("S02", 34), S.whoosh(0.8, False), 0.6, -0.4)
+cue("whoosh_swat_notification", T("S02", 50), S.whoosh(0.3), 0.7, 0.5)
+cue("pop_notification", T("S02", 52), S.pop(900), 0.6, 0.6)
 BPM = 128
 b = 60 / BPM
-t0 = T("S02", 44)
-# fanfare build: I - IV - V - I - vi - IV - V - I (C major), 2 beats each, brass melody on top
+t0 = T("S02", 30)
+END = T("S02", 204)
 prog_ = [[48, 52, 55], [53, 57, 60], [55, 59, 62], [48, 52, 55], [57, 60, 64], [53, 57, 60], [55, 59, 62], [48, 52, 55]] * 2
 for i, ch in enumerate(prog_):
     at = t0 + i * 2 * b
-    if at > T("S02", 280):
+    if at > END:
         break
     for m in ch:
         music.add(S.strings(m + 12, 2 * b), at, 0.18, -0.3)
@@ -76,29 +80,29 @@ melody = [(0, 67, 0.5), (0.5, 72, 0.5), (1, 76, 1), (2, 77, 1), (3, 76, 0.5), (3
 for rep in range(2):
     for beat, m, d in melody:
         at = t0 + (beat + rep * 16) * b
-        if at < T("S02", 280):
+        if at < END:
             music.add(S.brass(m - 12, d * b * 0.95), at, 0.35, 0.2)
             music.add(S.brass(m - 24, d * b * 0.95), at, 0.18, -0.2)
 for i, at in enumerate(beat_grid(t0, BPM, 40)):
-    if at < T("S02", 280):
+    if at < END:
         music.add(S.hat(), at + b / 2, 0.35, 0.4)
         if i % 2 == 1:
             music.add(S.snare(), at, 0.35)
-for k, lf in enumerate([160, 172, 184]):
+for k, lf in enumerate([100, 110, 120]):
     cue("ding_counter_zero", T("S02", lf), S.ding(88 + k * 4), 0.6, -0.3 + 0.3 * k)
 for k in range(30):
-    sfx.add(S.tick(True), T("S02", 124) + k * 0.06, 0.25)
-cue("crash_FREEDOM", T("S02", 196), S.crash(3.0), 0.9)
-cue("brass_tutti_FREEDOM", T("S02", 196), S.stinger([48, 55, 60, 64, 67, 72], 1.4, 2.0), 0.8, bus=music)
-cue("party_popper", T("S02", 194), S.party_popper(), 0.9, -0.2)
-cue("party_popper", T("S02", 216), S.party_popper(), 0.8, -0.6)
-cue("party_popper", T("S02", 226), S.party_popper(), 0.8, 0.6)
-cue("slide_whistle_throw", T("S02", 196), S.slide_whistle(500, 1600, 0.85), 0.6, 0.5)
-cue("distant_crash_BYE", T("S02", 222), S.snare(0.4) * 0.5 + S.crash(0.4)[: len(S.snare(0.4))], 0.6, 0.8)
-cue("record_scratch_WAIT", T("S02", 280), S.record_scratch(0.5), 1.0)
-music.mute(T("S02", 280), T("S03", 0))
+    sfx.add(S.tick(True), T("S02", 70) + k * 0.05, 0.25)
+cue("crash_FREEDOM", T("S02", 130), S.crash(3.0), 0.9)
+cue("brass_tutti_FREEDOM", T("S02", 130), S.stinger([48, 55, 60, 64, 67, 72], 1.4, 2.0), 0.8, bus=music)
+cue("party_popper", T("S02", 128), S.party_popper(), 0.9, -0.2)
+cue("party_popper", T("S02", 150), S.party_popper(), 0.8, -0.6)
+cue("party_popper", T("S02", 160), S.party_popper(), 0.8, 0.6)
+cue("slide_whistle_throw", T("S02", 136), S.slide_whistle(500, 1600, 0.85), 0.6, 0.5)
+cue("record_scratch_WAIT", T("S02", 204), S.record_scratch(0.5), 1.0)
+music.mute(T("S02", 204), T("S03", 0))
 
-# ======================= S03 AIRPORT (19-31 s): quirky chaos
+# ======================= S03 AIRPORT (16-28 s): quirky chaos
+cue("badge_LEVEL2", T("S03", 0), S.stinger([62, 65, 68], 0.3, 1.8), 0.6, bus=music)
 BPM = 140
 b = 60 / BPM
 t0 = T("S03", 0)
@@ -189,7 +193,8 @@ for k, lf in enumerate((290, 315, 340)):
 for k in range(5):
     sfx.add(S.tick(False), T("S05", 250) + k * 1.0, 0.4, -0.6)
 
-# ======================= S06 DISCOVERY (56-68 s): epic fanfare
+# ======================= S06 DISCOVERY (53-65 s): epic fanfare
+cue("badge_LEVEL3", T("S06", 0), S.stinger([55, 59, 62, 67], 0.35, 1.8), 0.6, bus=music)
 music.add(S.pad([50, 57, 62, 66], 5.6), T("S06", 0), 0.35)
 SW = 24
 for k in range(1, 7):
@@ -207,7 +212,7 @@ t0 = T("S06", 166)
 fan = [(0, 74, 1.5), (1.5, 74, 0.5), (2, 81, 2), (4, 79, 0.5), (4.5, 78, 0.5), (5, 76, 0.5), (5.5, 78, 0.5), (6, 74, 2),
        (8, 81, 1), (9, 83, 1), (10, 86, 2), (12, 85, 1), (13, 83, 1), (14, 86, 2), (16, 86, 2)]
 chords = [[50, 54, 57], [50, 54, 57], [55, 59, 62], [57, 61, 64], [47, 50, 54], [55, 59, 62], [57, 61, 64], [50, 54, 57], [50, 54, 57]]
-end_music = T("S07", 84)
+end_music = T("S07", 76)
 for k, ch in enumerate(chords * 2):
     at = t0 + k * 2 * b
     if at >= end_music:
@@ -232,34 +237,40 @@ for i, at in enumerate(beat_grid(dance0, BPM, 20)):
         music.add(S.clap(), at, 0.45)
 cue("confetti_pop_AGAIN", T("S06", 236), S.party_popper(), 0.8)
 
-# ======================= S07 WORST INVENTION (68-76 s)
+# ======================= S07 WORST INVENTION (65-72 s)
 for k in range(12):
     sfx.add(S.pop(500 + k * 60), T("S07", k * 3), 0.45, -0.6 + k * 0.1)
 cue("whoosh_calendars_return", T("S07", 20), S.whoosh(0.9, False), 0.5)
-cue("whoosh_cut_office", T("S07", 62), S.whoosh(0.3), 0.5)
-music.mute(T("S07", 84), TOTAL)  # music stops dead when MONDAY appears
-cue("ALARM_monday", T("S07", 84), S.alarm(2.2), 0.9)
-cue("impact_notification", T("S07", 84), S.impact(1.0), 0.8)
-cue("slide_whistle_tie_drop", T("S07", 108), S.slide_whistle(1300, 300, 0.5), 0.6, -0.3)
-cue("tiny_thud_tie", T("S07", 124), S.thud() * 0.4, 0.6)
-cue("sad_trombone", T("S07", 122), S.sad_trombone(), 0.9)
-cue("doom_stinger_MONDAY_BACK", T("S07", 168), S.stinger([36, 43, 46], 1.2, 0.8), 0.8)
-cue("alarm_soft", T("S07", 200), S.alarm(1.2), 0.4)
+cue("whoosh_cut_office", T("S07", 58), S.whoosh(0.3), 0.5)
+music.mute(T("S07", 76), TOTAL)  # music stops dead when MONDAY appears
+cue("ALARM_monday", T("S07", 76), S.alarm(2.0), 0.9)
+cue("impact_notification", T("S07", 76), S.impact(1.0), 0.8)
+cue("slide_whistle_tie_drop", T("S07", 98), S.slide_whistle(1300, 300, 0.5), 0.6, -0.3)
+cue("tiny_thud_tie", T("S07", 114), S.thud() * 0.4, 0.6)
+cue("sad_trombone", T("S07", 110), S.sad_trombone(), 0.9)
 
-# ======================= S08 FINAL LOOP (76-82 s)
-for k in range(8):
-    sfx.add(S.heartbeat(), T("S08", 0) + k * 0.5, 0.8)
-for k, lf in enumerate((0, 40, 80)):
-    cue(f"countdown_hit_{3 - k}", T("S08", lf), S.countdown_beep(660 + 220 * k) + 0 * 1, 0.8)
-    cue(f"countdown_boom_{3 - k}", T("S08", lf), S.timpani(38 - k * 2, 0.9), 0.8)
-sfx.add(S.drone(38, 3.0), T("S08", 90), 0.6)
-cue("boing_choice_yes", T("S08", 14), S.boing(0.4, 300), 0.5, -0.4)
-cue("boing_choice_no", T("S08", 20), S.boing(0.4, 200), 0.5, 0.4)
-cue("glitch_morph", T("S08", 120), S.glitch(0.5), 0.6)
-cue("whoosh_morph", T("S08", 118), S.whoosh(0.6), 0.5)
-# pre-roll of the opening: tick at 81.0, tock at 81.5 -> loops into tick at 0.0
-cue("tick_preroll", T("S08", 150), S.tick(True), 0.9)
-cue("tock_preroll", T("S08", 165), S.tick(False), 0.7)
+# ======================= S08 FINALE (72-80 s): MONDAY alarm, panic, SMASH, glitch-rewind -> loop
+cue("alarm_bell_MONDAY", T("S08", 0), S.alarm_bell(1.6), 1.0, 0.2)
+cue("alarm_beeps_MONDAY", T("S08", 0), S.alarm(3.1), 0.6)
+cue("doom_stinger_MONDAY", T("S08", 2), S.stinger([36, 43, 46], 1.0, 0.8), 0.9)
+cue("doom_stinger_MONDAY_BACK", T("S08", 52), S.stinger([35, 42, 45], 1.0, 0.8), 0.8)
+for k in range(6):
+    sfx.add(S.heartbeat(), T("S08", 30) + k * 0.4, 0.8)
+cue("whoosh_lunge", T("S08", 96), S.whoosh(0.7), 0.9)
+cue("SMASH_impact", T("S08", 118), S.impact(1.4), 1.3)
+cue("SMASH_glass", T("S08", 118), S.crash(1.2), 0.9)
+cue("glitch_broken_clock", T("S08", 122), S.glitch(1.8), 0.7)
+cue("error_beep_broken", T("S08", 140), S.error_beep(), 0.5)
+cue("boing_dazed", T("S08", 128), S.boing(0.6, 140), 0.6)
+cue("slide_whistle_back_to_bed", T("S08", 166), S.slide_whistle(1200, 400, 0.5), 0.5)
+# tape-rewind: reversed rising whoosh + fast chirps
+rw = S.whoosh(1.2, True)[::-1] * 0.8
+cue("tape_rewind", T("S08", 186), rw, 0.9)
+for k in range(14):
+    sfx.add(S.tick(k % 2 == 0), T("S08", 186) + k * 0.08, 0.35)
+# pre-roll ticks matching the hook cadence (one per 10 frames) -> continues into the hook's tick at frame 0
+cue("tick_preroll", T("S08", 220), S.tick(True), 0.9)
+cue("tock_preroll", T("S08", 230), S.tick(False), 0.8)
 
 
 def write_wav(path, st):

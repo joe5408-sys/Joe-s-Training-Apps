@@ -4,6 +4,7 @@ import { Toon } from "../../../src/components/characters/Toon";
 import { CAST } from "../../../src/components/characters/cast";
 import { DigitalClock } from "../../../src/components/counters";
 import { LightBeams, LightBulb, Sparkles, Confetti, Flash, Vignette } from "../../../src/components/effects";
+import { LevelBadge } from "../../../src/components/effects/LevelBadge";
 import { Caption } from "../../../src/components/typography/Caption";
 import { swingCount as swingCountLib } from "../../../src/lib/clock";
 import { prog, ease, clamp, key } from "../../../src/lib/anim";
@@ -90,6 +91,7 @@ export const Scene06: React.FC = () => {
       <Caption frame={f} start={GENIUS} end={AGAIN - 2} text="GENIUS!" y={600} size={170} color="#ffd166" anim="slam" bg={null} rotate={-5} />
       <Caption frame={f} start={AGAIN} end={359} text={"WE INVENTED\nCLOCKS... AGAIN."} y={600} size={96} color="#fff" anim="pop" bg="rgba(0,40,80,.7)" />
       <Vignette strength={0.5} />
+      <LevelBadge frame={f} level={3} label="PLOT TWIST" color="#6c5ce7" />
     </AbsoluteFill>
   );
 };

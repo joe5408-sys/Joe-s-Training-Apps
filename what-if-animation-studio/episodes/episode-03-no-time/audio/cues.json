@@ -2,541 +2,561 @@
  {
   "t": 0.0,
   "frame": 0,
-  "sfx": "tick"
+  "sfx": "tick_hook"
  },
  {
-  "t": 0.5,
-  "frame": 15,
-  "sfx": "tock"
+  "t": 0.333,
+  "frame": 10,
+  "sfx": "tick_hook"
+ },
+ {
+  "t": 0.667,
+  "frame": 20,
+  "sfx": "alarm_bell_RING"
  },
  {
   "t": 1.0,
   "frame": 30,
-  "sfx": "tick"
+  "sfx": "digital_glitch"
+ },
+ {
+  "t": 1.2,
+  "frame": 36,
+  "sfx": "error_buzzer"
  },
  {
   "t": 1.5,
   "frame": 45,
-  "sfx": "tock"
+  "sfx": "explosion_NO_TIME"
  },
  {
-  "t": 2.0,
-  "frame": 60,
-  "sfx": "tick"
+  "t": 1.5,
+  "frame": 45,
+  "sfx": "brass_stinger_NO_TIME"
  },
  {
-  "t": 2.5,
-  "frame": 75,
-  "sfx": "tock"
+  "t": 1.933,
+  "frame": 58,
+  "sfx": "boing_wake"
  },
  {
-  "t": 3.0,
-  "frame": 90,
-  "sfx": "midnight_hit"
+  "t": 2.2,
+  "frame": 66,
+  "sfx": "slide_whistle_jump"
  },
  {
-  "t": 3.0,
-  "frame": 90,
-  "sfx": "midnight_glitch"
+  "t": 2.333,
+  "frame": 70,
+  "sfx": "crash_NO_WORK"
  },
  {
-  "t": 3.333,
-  "frame": 100,
-  "sfx": "crack_glitch"
+  "t": 2.333,
+  "frame": 70,
+  "sfx": "party_popper"
  },
  {
-  "t": 4.0,
-  "frame": 120,
-  "sfx": "explosion_impact"
+  "t": 2.333,
+  "frame": 70,
+  "sfx": "brass_fanfare_NO_WORK"
  },
  {
-  "t": 4.333,
-  "frame": 130,
-  "sfx": "brass_stinger_title"
+  "t": 3.267,
+  "frame": 98,
+  "sfx": "glitch_world_clocks"
  },
  {
-  "t": 5.333,
-  "frame": 160,
-  "sfx": "whoosh_subtitle"
+  "t": 3.4,
+  "frame": 102,
+  "sfx": "freeze_hit"
  },
  {
-  "t": 5.833,
-  "frame": 175,
-  "sfx": "time_resumes_shimmer"
+  "t": 4.533,
+  "frame": 136,
+  "sfx": "whoosh_time_resumes"
  },
  {
-  "t": 6.167,
-  "frame": 185,
+  "t": 4.6,
+  "frame": 138,
+  "sfx": "shimmer_still_passes"
+ },
+ {
+  "t": 4.733,
+  "frame": 142,
   "sfx": "boing_confused_clock"
  },
  {
-  "t": 8.0,
-  "frame": 240,
-  "sfx": "alarm_bell"
+  "t": 5.067,
+  "frame": 152,
+  "sfx": "pop_clocks_break"
  },
  {
-  "t": 9.333,
-  "frame": 280,
-  "sfx": "pop_alarm_vanish"
+  "t": 7.0,
+  "frame": 210,
+  "sfx": "badge_LEVEL1"
  },
  {
-  "t": 9.6,
-  "frame": 288,
-  "sfx": "whoosh_calendar"
+  "t": 8.133,
+  "frame": 244,
+  "sfx": "whoosh_calendar_dissolve"
  },
  {
-  "t": 10.8,
-  "frame": 324,
+  "t": 8.667,
+  "frame": 260,
+  "sfx": "whoosh_swat_notification"
+ },
+ {
+  "t": 8.733,
+  "frame": 262,
   "sfx": "pop_notification"
+ },
+ {
+  "t": 10.333,
+  "frame": 310,
+  "sfx": "ding_counter_zero"
+ },
+ {
+  "t": 10.667,
+  "frame": 320,
+  "sfx": "ding_counter_zero"
+ },
+ {
+  "t": 11.0,
+  "frame": 330,
+  "sfx": "ding_counter_zero"
+ },
+ {
+  "t": 11.267,
+  "frame": 338,
+  "sfx": "party_popper"
  },
  {
   "t": 11.333,
   "frame": 340,
-  "sfx": "boing_jump"
- },
- {
-  "t": 13.333,
-  "frame": 400,
-  "sfx": "ding_counter_zero"
- },
- {
-  "t": 13.733,
-  "frame": 412,
-  "sfx": "ding_counter_zero"
- },
- {
-  "t": 14.133,
-  "frame": 424,
-  "sfx": "ding_counter_zero"
- },
- {
-  "t": 14.467,
-  "frame": 434,
-  "sfx": "party_popper"
- },
- {
-  "t": 14.533,
-  "frame": 436,
   "sfx": "crash_FREEDOM"
  },
  {
-  "t": 14.533,
-  "frame": 436,
+  "t": 11.333,
+  "frame": 340,
   "sfx": "brass_tutti_FREEDOM"
  },
  {
-  "t": 14.533,
-  "frame": 436,
+  "t": 11.533,
+  "frame": 346,
   "sfx": "slide_whistle_throw"
  },
  {
-  "t": 15.2,
-  "frame": 456,
+  "t": 12.0,
+  "frame": 360,
   "sfx": "party_popper"
  },
  {
-  "t": 15.4,
-  "frame": 462,
-  "sfx": "distant_crash_BYE"
- },
- {
-  "t": 15.533,
-  "frame": 466,
+  "t": 12.333,
+  "frame": 370,
   "sfx": "party_popper"
  },
  {
-  "t": 17.333,
-  "frame": 520,
+  "t": 13.8,
+  "frame": 414,
   "sfx": "record_scratch_WAIT"
  },
  {
-  "t": 20.0,
-  "frame": 600,
+  "t": 16.0,
+  "frame": 480,
+  "sfx": "badge_LEVEL2"
+ },
+ {
+  "t": 17.0,
+  "frame": 510,
   "sfx": "digital_glitch_board"
  },
  {
-  "t": 20.133,
-  "frame": 604,
+  "t": 17.133,
+  "frame": 514,
   "sfx": "error_beep"
  },
  {
-  "t": 20.667,
-  "frame": 620,
+  "t": 17.667,
+  "frame": 530,
   "sfx": "digital_glitch_board"
  },
  {
-  "t": 20.8,
-  "frame": 624,
+  "t": 17.8,
+  "frame": 534,
   "sfx": "error_beep"
  },
  {
-  "t": 21.333,
-  "frame": 640,
+  "t": 18.333,
+  "frame": 550,
   "sfx": "digital_glitch_board"
  },
  {
-  "t": 21.467,
-  "frame": 644,
+  "t": 18.467,
+  "frame": 554,
   "sfx": "error_beep"
+ },
+ {
+  "t": 19.0,
+  "frame": 570,
+  "sfx": "boing_point"
+ },
+ {
+  "t": 20.867,
+  "frame": 626,
+  "sfx": "whoosh_watch_zoom"
  },
  {
   "t": 22.0,
   "frame": 660,
-  "sfx": "boing_point"
+  "sfx": "slide_whistle_dizzy"
  },
  {
-  "t": 23.867,
-  "frame": 716,
-  "sfx": "whoosh_watch_zoom"
+  "t": 22.933,
+  "frame": 688,
+  "sfx": "engine_forward"
+ },
+ {
+  "t": 24.333,
+  "frame": 730,
+  "sfx": "brass_stinger_WHENEVER"
  },
  {
   "t": 25.0,
   "frame": 750,
-  "sfx": "slide_whistle_dizzy"
- },
- {
-  "t": 25.933,
-  "frame": 778,
-  "sfx": "engine_forward"
- },
- {
-  "t": 27.333,
-  "frame": 820,
-  "sfx": "brass_stinger_WHENEVER"
- },
- {
-  "t": 28.0,
-  "frame": 840,
   "sfx": "engine_sputter_backward"
  },
  {
-  "t": 29.0,
-  "frame": 870,
+  "t": 26.0,
+  "frame": 780,
   "sfx": "sad_trombone_short"
  },
  {
-  "t": 31.667,
-  "frame": 950,
+  "t": 28.667,
+  "frame": 860,
   "sfx": "timer_beep_0"
+ },
+ {
+  "t": 29.333,
+  "frame": 880,
+  "sfx": "timer_beep_1"
+ },
+ {
+  "t": 30.0,
+  "frame": 900,
+  "sfx": "timer_beep_2"
+ },
+ {
+  "t": 30.667,
+  "frame": 920,
+  "sfx": "timer_beep_3"
+ },
+ {
+  "t": 31.333,
+  "frame": 940,
+  "sfx": "record_stop+buzzer_ERROR"
+ },
+ {
+  "t": 31.4,
+  "frame": 942,
+  "sfx": "buzzer_ERROR"
  },
  {
   "t": 32.333,
   "frame": 970,
-  "sfx": "timer_beep_1"
+  "sfx": "shimmer_infinity"
  },
  {
   "t": 33.0,
   "frame": 990,
-  "sfx": "timer_beep_2"
- },
- {
-  "t": 33.667,
-  "frame": 1010,
-  "sfx": "timer_beep_3"
- },
- {
-  "t": 34.333,
-  "frame": 1030,
-  "sfx": "record_stop+buzzer_ERROR"
- },
- {
-  "t": 34.4,
-  "frame": 1032,
-  "sfx": "buzzer_ERROR"
- },
- {
-  "t": 35.333,
-  "frame": 1060,
-  "sfx": "shimmer_infinity"
- },
- {
-  "t": 36.0,
-  "frame": 1080,
   "sfx": "rubber_stretch"
  },
  {
-  "t": 37.533,
-  "frame": 1126,
+  "t": 34.533,
+  "frame": 1036,
   "sfx": "stinger_WHATS_A_SECOND"
  },
  {
-  "t": 39.133,
-  "frame": 1174,
+  "t": 36.133,
+  "frame": 1084,
   "sfx": "body_drop_thud"
  },
  {
-  "t": 39.4,
-  "frame": 1182,
+  "t": 36.4,
+  "frame": 1092,
   "sfx": "whoosh_cut_chef"
  },
  {
-  "t": 39.5,
-  "frame": 1185,
+  "t": 36.5,
+  "frame": 1095,
   "sfx": "boiling_bubbles"
  },
  {
-  "t": 40.667,
-  "frame": 1220,
+  "t": 37.667,
+  "frame": 1130,
   "sfx": "slide_whistle_hands_up"
  },
  {
-  "t": 40.8,
-  "frame": 1224,
+  "t": 37.8,
+  "frame": 1134,
   "sfx": "brass_wah_chef"
  },
  {
-  "t": 43.0,
-  "frame": 1290,
+  "t": 40.0,
+  "frame": 1200,
   "sfx": "washer_hum"
  },
  {
-  "t": 43.6,
-  "frame": 1308,
+  "t": 40.6,
+  "frame": 1218,
   "sfx": "impact_caption_slam"
  },
  {
-  "t": 43.6,
-  "frame": 1308,
+  "t": 40.6,
+  "frame": 1218,
   "sfx": "impact_hit"
  },
  {
-  "t": 47.0,
-  "frame": 1410,
+  "t": 44.0,
+  "frame": 1320,
   "sfx": "record_scratch_cut"
  },
  {
-  "t": 47.333,
-  "frame": 1420,
+  "t": 44.333,
+  "frame": 1330,
   "sfx": "shimmer_infinity_exam"
  },
  {
-  "t": 47.6,
-  "frame": 1428,
+  "t": 44.6,
+  "frame": 1338,
   "sfx": "impact_caption_slam"
  },
  {
-  "t": 47.6,
-  "frame": 1428,
+  "t": 44.6,
+  "frame": 1338,
   "sfx": "impact_hit"
+ },
+ {
+  "t": 48.333,
+  "frame": 1450,
+  "sfx": "record_scratch_cut"
+ },
+ {
+  "t": 49.333,
+  "frame": 1480,
+  "sfx": "impact_caption_slam"
+ },
+ {
+  "t": 49.333,
+  "frame": 1480,
+  "sfx": "impact_hit"
+ },
+ {
+  "t": 49.667,
+  "frame": 1490,
+  "sfx": "car_honk"
+ },
+ {
+  "t": 50.5,
+  "frame": 1515,
+  "sfx": "car_honk"
  },
  {
   "t": 51.333,
   "frame": 1540,
-  "sfx": "record_scratch_cut"
- },
- {
-  "t": 52.333,
-  "frame": 1570,
-  "sfx": "impact_caption_slam"
- },
- {
-  "t": 52.333,
-  "frame": 1570,
-  "sfx": "impact_hit"
- },
- {
-  "t": 52.667,
-  "frame": 1580,
   "sfx": "car_honk"
  },
  {
-  "t": 53.5,
-  "frame": 1605,
-  "sfx": "car_honk"
+  "t": 53.0,
+  "frame": 1590,
+  "sfx": "badge_LEVEL3"
  },
  {
-  "t": 54.333,
-  "frame": 1630,
-  "sfx": "car_honk"
- },
- {
-  "t": 57.133,
-  "frame": 1714,
+  "t": 54.133,
+  "frame": 1624,
   "sfx": "pendulum_tick"
  },
  {
-  "t": 57.133,
-  "frame": 1714,
+  "t": 54.133,
+  "frame": 1624,
   "sfx": "count_glock_1"
  },
  {
-  "t": 57.933,
-  "frame": 1738,
+  "t": 54.933,
+  "frame": 1648,
   "sfx": "pendulum_tick"
  },
  {
-  "t": 57.933,
-  "frame": 1738,
+  "t": 54.933,
+  "frame": 1648,
   "sfx": "count_glock_2"
  },
  {
-  "t": 58.733,
-  "frame": 1762,
+  "t": 55.733,
+  "frame": 1672,
   "sfx": "pendulum_tick"
  },
  {
-  "t": 58.733,
-  "frame": 1762,
+  "t": 55.733,
+  "frame": 1672,
   "sfx": "count_glock_3"
  },
  {
-  "t": 59.533,
-  "frame": 1786,
+  "t": 56.533,
+  "frame": 1696,
   "sfx": "pendulum_tick"
  },
  {
-  "t": 59.533,
-  "frame": 1786,
+  "t": 56.533,
+  "frame": 1696,
   "sfx": "count_glock_4"
  },
  {
-  "t": 60.333,
-  "frame": 1810,
+  "t": 57.333,
+  "frame": 1720,
   "sfx": "pendulum_tick"
  },
  {
-  "t": 60.333,
-  "frame": 1810,
+  "t": 57.333,
+  "frame": 1720,
   "sfx": "count_glock_5"
  },
  {
-  "t": 60.4,
-  "frame": 1812,
+  "t": 57.4,
+  "frame": 1722,
   "sfx": "whoosh_assemble"
  },
  {
-  "t": 61.0,
-  "frame": 1830,
+  "t": 58.0,
+  "frame": 1740,
   "sfx": "machine_startup"
  },
  {
-  "t": 61.133,
-  "frame": 1834,
+  "t": 58.133,
+  "frame": 1744,
   "sfx": "pendulum_tick"
  },
  {
-  "t": 61.333,
-  "frame": 1840,
+  "t": 58.333,
+  "frame": 1750,
   "sfx": "ding_lightbulb"
  },
  {
-  "t": 61.533,
-  "frame": 1846,
+  "t": 58.533,
+  "frame": 1756,
   "sfx": "crash_GENIUS"
  },
  {
-  "t": 61.533,
-  "frame": 1846,
+  "t": 58.533,
+  "frame": 1756,
   "sfx": "sparkle_magic"
  },
  {
-  "t": 63.867,
-  "frame": 1916,
+  "t": 60.867,
+  "frame": 1826,
   "sfx": "confetti_pop_AGAIN"
+ },
+ {
+  "t": 65.667,
+  "frame": 1970,
+  "sfx": "whoosh_calendars_return"
+ },
+ {
+  "t": 66.933,
+  "frame": 2008,
+  "sfx": "whoosh_cut_office"
+ },
+ {
+  "t": 67.533,
+  "frame": 2026,
+  "sfx": "ALARM_monday"
+ },
+ {
+  "t": 67.533,
+  "frame": 2026,
+  "sfx": "impact_notification"
+ },
+ {
+  "t": 68.267,
+  "frame": 2048,
+  "sfx": "slide_whistle_tie_drop"
  },
  {
   "t": 68.667,
   "frame": 2060,
-  "sfx": "whoosh_calendars_return"
+  "sfx": "sad_trombone"
  },
  {
-  "t": 70.067,
-  "frame": 2102,
-  "sfx": "whoosh_cut_office"
+  "t": 68.8,
+  "frame": 2064,
+  "sfx": "tiny_thud_tie"
  },
  {
-  "t": 70.8,
-  "frame": 2124,
-  "sfx": "ALARM_monday"
+  "t": 72.0,
+  "frame": 2160,
+  "sfx": "alarm_bell_MONDAY"
  },
  {
-  "t": 70.8,
-  "frame": 2124,
-  "sfx": "impact_notification"
- },
- {
-  "t": 71.6,
-  "frame": 2148,
-  "sfx": "slide_whistle_tie_drop"
+  "t": 72.0,
+  "frame": 2160,
+  "sfx": "alarm_beeps_MONDAY"
  },
  {
   "t": 72.067,
   "frame": 2162,
-  "sfx": "sad_trombone"
+  "sfx": "doom_stinger_MONDAY"
  },
  {
-  "t": 72.133,
-  "frame": 2164,
-  "sfx": "tiny_thud_tie"
- },
- {
-  "t": 73.6,
-  "frame": 2208,
+  "t": 73.733,
+  "frame": 2212,
   "sfx": "doom_stinger_MONDAY_BACK"
  },
  {
-  "t": 74.667,
-  "frame": 2240,
-  "sfx": "alarm_soft"
+  "t": 75.2,
+  "frame": 2256,
+  "sfx": "whoosh_lunge"
  },
  {
-  "t": 76.0,
-  "frame": 2280,
-  "sfx": "countdown_hit_3"
+  "t": 75.933,
+  "frame": 2278,
+  "sfx": "SMASH_impact"
  },
  {
-  "t": 76.0,
-  "frame": 2280,
-  "sfx": "countdown_boom_3"
+  "t": 75.933,
+  "frame": 2278,
+  "sfx": "SMASH_glass"
  },
  {
-  "t": 76.467,
-  "frame": 2294,
-  "sfx": "boing_choice_yes"
+  "t": 76.067,
+  "frame": 2282,
+  "sfx": "glitch_broken_clock"
+ },
+ {
+  "t": 76.267,
+  "frame": 2288,
+  "sfx": "boing_dazed"
  },
  {
   "t": 76.667,
   "frame": 2300,
-  "sfx": "boing_choice_no"
+  "sfx": "error_beep_broken"
  },
  {
-  "t": 77.333,
-  "frame": 2320,
-  "sfx": "countdown_hit_2"
+  "t": 77.533,
+  "frame": 2326,
+  "sfx": "slide_whistle_back_to_bed"
  },
  {
-  "t": 77.333,
-  "frame": 2320,
-  "sfx": "countdown_boom_2"
+  "t": 78.2,
+  "frame": 2346,
+  "sfx": "tape_rewind"
  },
  {
-  "t": 78.667,
-  "frame": 2360,
-  "sfx": "countdown_hit_1"
- },
- {
-  "t": 78.667,
-  "frame": 2360,
-  "sfx": "countdown_boom_1"
- },
- {
-  "t": 79.933,
-  "frame": 2398,
-  "sfx": "whoosh_morph"
- },
- {
-  "t": 80.0,
-  "frame": 2400,
-  "sfx": "glitch_morph"
- },
- {
-  "t": 81.0,
-  "frame": 2430,
+  "t": 79.333,
+  "frame": 2380,
   "sfx": "tick_preroll"
  },
  {
-  "t": 81.5,
-  "frame": 2445,
+  "t": 79.667,
+  "frame": 2390,
   "sfx": "tock_preroll"
  }
 ]

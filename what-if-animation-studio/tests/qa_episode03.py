@@ -68,7 +68,7 @@ r = sh(f"ffmpeg -v error -i '{MAIN}' -map 0 -f null - 2>&1")
 check("MAIN: full decode without errors", r.stdout.strip() == "" and r.returncode == 0, r.stdout.strip()[:200] or "0 decoder errors")
 r = sh(f"ffprobe -v error -count_frames -select_streams v:0 -show_entries stream=nb_read_frames -of csv=p=0 '{MAIN}'")
 nf = int(r.stdout.strip() or 0)
-check("MAIN: frame count = 2460 (no missing frames)", nf == 2460, str(nf))
+check("MAIN: frame count = 2400 (no missing frames)", nf == 2400, str(nf))
 
 # ---- 3. frozen / black frames
 r = sh(f"ffmpeg -i '{MAIN}' -vf freezedetect=n=0.0005:d=1.5 -map 0:v -f null - 2>&1")
@@ -98,14 +98,15 @@ sh(f"ffmpeg -y -v error -i '{MAIN}' -vf select='eq(n\\,0)' -frames:v 1 '{QA}/fir
 sh(f"ffmpeg -y -v error -sseof -0.1 -i '{MAIN}' -update 1 '{QA}/last.png'")
 r = sh(f"ffmpeg -i '{QA}/first.png' -i '{QA}/last.png' -lavfi ssim -f null - 2>&1")
 ss = re.findall(r"All:([\d.]+)", r.stdout)
-check("LOOP: last frame ≈ first frame (SSIM ≥ 0.90; only the seconds digit differs 56→57)", bool(ss) and float(ss[0]) >= 0.90, f"SSIM {ss}")
+check("LOOP: last frame ≈ first frame (SSIM ≥ 0.90; only the seconds digit differs 57→58)", bool(ss) and float(ss[0]) >= 0.90, f"SSIM {ss}")
 
 # ---- 6. caption/SFX sync
 cues = json.load(open(os.path.join(ROOT, "episodes/episode-03-no-time/audio/cues.json")))
 caps = json.load(open(os.path.join(ROOT, "episodes/episode-03-no-time/captions/captions.json")))
-pairs = [("FREEDOM!!!", "crash_FREEDOM"), ("WAIT...", "record_scratch_WAIT"), ("GENIUS!", "crash_GENIUS"),
-         ("FLIGHT DEPARTURE: WHENEVER.", "brass_stinger_WHENEVER"), ("WHAT'S A SECOND?!", "stinger_WHATS_A_SECOND"),
-         ("MONDAY IS BACK. 💀", "doom_stinger_MONDAY_BACK"), ("WHAT IF TIME DIDN'T EXIST?", "brass_stinger_title")]
+pairs = [("NO TIME?!", "explosion_NO_TIME"), ("NO WORK! 😎", "crash_NO_WORK"), ("FREEDOM!!!", "crash_FREEDOM"),
+         ("WAIT...", "record_scratch_WAIT"), ("GENIUS!", "crash_GENIUS"), ("FLIGHT DEPARTURE: WHENEVER.", "brass_stinger_WHENEVER"),
+         ("WHAT'S A SECOND?!", "stinger_WHATS_A_SECOND"), ("MONDAY — 08:00", "doom_stinger_MONDAY"),
+         ("MONDAY IS BACK. 💀", "doom_stinger_MONDAY_BACK"), ("SMASH!", "SMASH_impact")]
 for ctext, cname in pairs:
     cf = next(c["start"] for c in caps if c["text"] == ctext)
     sf = next(c["frame"] for c in cues if c["sfx"] == cname)
@@ -138,7 +139,7 @@ h = [hashlib.md5(open(f"{det}/{x}/E03-Full_f1100.png", "rb").read()).hexdigest()
 check("DETERMINISM: frame 1100 rendered twice is byte-identical", h[0] == h[1], f"{h[0][:10]} / {h[1][:10]}")
 
 # ---- 9. contact sheet: 2 frames per scene (16 frames), labelled
-scenes = [("S01", 0, 240), ("S02", 240, 570), ("S03", 570, 930), ("S04", 930, 1290), ("S05", 1290, 1680), ("S06", 1680, 2040), ("S07", 2040, 2280), ("S08", 2280, 2460)]
+scenes = [("H01", 0, 90), ("S01", 90, 210), ("S02", 210, 480), ("S03", 480, 840), ("S04", 840, 1200), ("S05", 1200, 1590), ("S06", 1590, 1950), ("S07", 1950, 2160), ("S08", 2160, 2400)]
 picks = []
 for sid, a, b in scenes:
     picks += [(sid, a + (b - a) * 0.35), (sid, a + (b - a) * 0.8)]
@@ -147,8 +148,16 @@ font = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 for i, (sid, fr) in enumerate(picks):
     t = fr / 30
     sh(f"ffmpeg -y -v error -ss {t:.3f} -i '{MAIN}' -frames:v 1 -vf \"scale=360:640,drawtext=fontfile={font}:text='{sid}  {t:05.2f}s':x=12:y=12:fontsize=26:fontcolor=white:box=1:boxcolor=black@0.6\" '{QA}/frames/{i:02d}.png'")
-sh(f"ffmpeg -y -v error -i '{QA}/frames/%02d.png' -vf tile=8x2:padding=6:color=black -frames:v 1 '{FIN}/{NAME}_CONTACT_SHEET.png'")
-check("CONTACT SHEET: 16 frames from all 8 scenes", os.path.exists(f"{FIN}/{NAME}_CONTACT_SHEET.png"))
+sh(f"ffmpeg -y -v error -i '{QA}/frames/%02d.png' -vf tile=9x2:padding=6:color=black -frames:v 1 '{FIN}/{NAME}_CONTACT_SHEET.png'")
+check("CONTACT SHEET: 18 frames from all 9 sections", os.path.exists(f"{FIN}/{NAME}_CONTACT_SHEET.png"))
+
+# ---- 10. retention contact sheet at fixed timestamps
+RT = [0, 1, 2, 3, 10, 20, 35, 50, 65, 79]
+os.makedirs(f"{QA}/retention", exist_ok=True)
+for i, t in enumerate(RT):
+    sh(f"ffmpeg -y -v error -ss {t + 0.5/30:.4f} -i '{MAIN}' -frames:v 1 -vf \"scale=360:640,drawtext=fontfile={font}:text='{t}s':x=12:y=12:fontsize=34:fontcolor=white:box=1:boxcolor=black@0.6\" '{QA}/retention/{i:02d}.png'")
+sh(f"ffmpeg -y -v error -i '{QA}/retention/%02d.png' -vf tile=10x1:padding=6:color=black -frames:v 1 '{FIN}/{NAME}_RETENTION_SHEET.png'")
+check("RETENTION SHEET: frames at 0,1,2,3,10,20,35,50,65,79 s", os.path.exists(f"{FIN}/{NAME}_RETENTION_SHEET.png"))
 
 # ---- report
 with open(os.path.join(QA, "QA_REPORT.md"), "w") as fh:

@@ -1,17 +1,18 @@
-/** Single source of truth for scene timing (frames @ 30 fps). Audio cues use the same numbers (see audio/cues.json). */
+/** Single source of truth for scene timing (frames @ 30 fps). Audio cues use the same numbers (audio/generate_audio.py). */
 export const FPS = 30;
 export const SCENES = [
-  { id: "S01", name: "The Last Second", from: 0, dur: 240 },
-  { id: "S02", name: "No More Alarms", from: 240, dur: 330 },
-  { id: "S03", name: "Airport Disaster", from: 570, dur: 360 },
-  { id: "S04", name: "The Infinite Plank", from: 930, dur: 360 },
-  { id: "S05", name: "Everyday Chaos", from: 1290, dur: 390 },
-  { id: "S06", name: "Humanity Reinvents Clocks", from: 1680, dur: 360 },
-  { id: "S07", name: "The Worst Invention", from: 2040, dur: 240 },
-  { id: "S08", name: "The Final Loop", from: 2280, dur: 180 },
+  { id: "H01", name: "Hook - No Time No Work", from: 0, dur: 90 },
+  { id: "S01", name: "Time Still Passes", from: 90, dur: 120 },
+  { id: "S02", name: "Level 1 - Freedom", from: 210, dur: 270 },
+  { id: "S03", name: "Level 2 - Airport Disaster", from: 480, dur: 360 },
+  { id: "S04", name: "Level 2 - Infinite Plank", from: 840, dur: 360 },
+  { id: "S05", name: "Level 2 - Everyday Chaos", from: 1200, dur: 390 },
+  { id: "S06", name: "Level 3 - Clocks Reinvented", from: 1590, dur: 360 },
+  { id: "S07", name: "Level 3 - Worst Invention", from: 1950, dur: 210 },
+  { id: "S08", name: "Finale - Smash and Loop", from: 2160, dur: 240 },
 ] as const;
-export const TOTAL_FRAMES = 2460; // 82.0 s
+export const TOTAL_FRAMES = 2400; // 80.0 s
 
-/** The opening clock — shared by S01 frame 0 and S08's last frame so the film loops seamlessly. */
-export const OPENING_CLOCK = { seconds: 86397, x: 540, y: 860, height: 135 };
-export const OPENING_BG = "radial-gradient(ellipse at 50% 45%, #0d2347 0%, #050b1a 55%, #000 100%)";
+/** Shared close-up framing for the hook (first shot) and the finale (last shot) => seamless loop. */
+export const ALARM = { x: 540, y: 760, w: 900, h: 430, digitH: 128 };
+export const BEDROOM_BG = "linear-gradient(#0b1633 0%, #1b2d5c 55%, #2a1f3d 100%)";

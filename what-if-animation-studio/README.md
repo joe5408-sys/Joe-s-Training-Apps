@@ -1,17 +1,19 @@
 # WHAT IF...? Animation Studio
 
 Code-driven pipeline (Remotion + React/TypeScript + FFmpeg + procedural Python audio) for vertical
-1080×1920 short films. Episode 03: **What if time didn't exist on Earth?** (82 s, no voices).
+1080×1920 short films. Episode 03: **What if time didn't exist on Earth?** (80 s, no voices). v2: 3-second cold-open hook, three comedy levels, smash-and-rewind ending that loops into frame 0.
 
 ## Deliverables (`output/final/`)
 | File | What |
 |---|---|
 | `What_If_No_Time_Earth_E03_1080x1920.mp4` | Main film — H.264 High CRF 18, yuv420p, 30 fps, AAC 192k 48 kHz stereo, −14 LUFS, faststart |
 | `..._SILENT_1080x1920.mp4` | Same picture, silent AAC track |
-| `..._TEASER_1080x1920.mp4` | 27 s teaser + end card |
+| `..._TEASER_1080x1920.mp4` | 28 s teaser + end card |
 | `..._COVER_1080x1920.png` | Vertical cover |
 | `..._captions.srt / .vtt / _timeline.json` | Caption + on-screen-text timeline |
-| `..._CONTACT_SHEET.png` | 16 frames, 2 per scene |
+| `..._CONTACT_SHEET.png` | 18 frames, 2 per section |
+| `..._RETENTION_SHEET.png` | Frames at 0, 1, 2, 3, 10, 20, 35, 50, 65, 79 s |
+| `output/qa/MUTED_REVIEW.md` | Beat-by-beat muted comprehension review |
 | `output/qa/QA_REPORT.md` | Automated QA results |
 | `output/previews/proof_of_concept.mp4` | 4 s technical proof (counter, character, caption, music cue, SFX) |
 
@@ -20,7 +22,7 @@ Code-driven pipeline (Remotion + React/TypeScript + FFmpeg + procedural Python a
 npm install
 npm run build:e03          # audio -> Remotion master -> FFmpeg finals, teaser, cover, captions (~5 min, 4 CPU)
 SKIP_MASTER=1 npm run build:e03   # re-mux only
-npm run qa:e03             # 49 automated checks
+npm run qa:e03             # 53 automated checks
 npm run studio             # interactive preview
 ```
 Requires Node ≥ 22.18, Python 3 with numpy + scipy, FFmpeg/FFprobe, a headless Chromium

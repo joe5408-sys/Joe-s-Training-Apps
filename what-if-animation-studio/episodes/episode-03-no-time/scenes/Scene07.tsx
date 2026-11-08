@@ -10,7 +10,7 @@ import { key, noise, prog, ease, clamp, rnd } from "../../../src/lib/anim";
 /** S07 — THE WORST INVENTION (68–76 s, 240 frames). */
 export const Scene07: React.FC = () => {
   const f = useCurrentFrame();
-  const OFFICE = 64, NOTIF = 84, FALL = 110, OHNO = 120, BACK = 168;
+  const OFFICE = 60, NOTIF = 76, FALL = 100, OHNO = 108, BACK = 999;
   if (f < OFFICE) return <WorldClocks f={f} />;
   const g = f - OFFICE;
   const alarm = f >= NOTIF ? Math.floor((f - NOTIF) / 6) % 2 === 0 : false;
@@ -28,7 +28,7 @@ export const Scene07: React.FC = () => {
         <CalendarExplosion progress={0} x={860} y={980} w={240} month="MONDAY" />
         <Toon look={CAST.worker} x={430} y={1660} scale={0.86} frame={f} tieDrop={tieDrop}
           pose={smile < 0.5 ? { armL: 140, armR: 140, elbowL: 25, elbowR: 25, bodyY: -Math.abs(Math.sin(g / 4)) * 20 } : { armL: 6 + (1 - smile) * 100, armR: 6 + (1 - smile) * 100, elbowL: 4, elbowR: 4, headTilt: 6 * smile, squash: 0.04 * smile }}
-          face={smile < 0.2 ? { eyes: "happy", mouth: "grin" } : smile < 0.6 ? { eyes: "open", mouth: "smile", pupilY: -1, brows: 0.4 } : smile < 1 ? { eyes: "wide", mouth: "flat", pupilY: -1, brows: 0.8 } : { eyes: "sad", mouth: "frown", brows: 1, tears: f > BACK }} />
+          face={smile >= 1 && f > OHNO + 40 ? { eyes: "sad", mouth: "frown", brows: 1, tears: true } : smile < 0.2 ? { eyes: "happy", mouth: "grin" } : smile < 0.6 ? { eyes: "open", mouth: "smile", pupilY: -1, brows: 0.4 } : smile < 1 ? { eyes: "wide", mouth: "flat", pupilY: -1, brows: 0.8 } : { eyes: "sad", mouth: "frown", brows: 1, tears: f > BACK }} />
         {/* desk */}
         <rect x={80} y={1430} width={920} height={40} rx={10} fill="#5d6870" />
         <rect x={600} y={1250} width={300} height={180} rx={14} fill="#37474f" />
@@ -45,8 +45,7 @@ export const Scene07: React.FC = () => {
       </svg>
       {f >= NOTIF && alarm && <div style={{ position: "absolute", inset: 0, background: "rgba(255,0,0,.18)" }} />}
       <Flash frame={f} at={NOTIF} dur={6} color="#ff1744" max={0.6} />
-      <Caption frame={f} start={OHNO} end={BACK - 2} text="OH NO." y={720} size={150} anim="slam" bg="rgba(0,0,0,.6)" />
-      <Caption frame={f} start={BACK} end={239} text={"MONDAY IS BACK. 💀"} y={720} size={100} color="#ff5252" anim="shake" bg="rgba(0,0,0,.7)" />
+      <Caption frame={f} start={OHNO} end={209} text="OH NO." y={720} size={150} anim="slam" bg="rgba(0,0,0,.6)" />
       <Vignette strength={0.55} color="60,0,0" />
     </AbsoluteFill>
   );
@@ -60,12 +59,12 @@ const WorldClocks: React.FC<{ f: number }> = ({ f }) => (
       <Earth x={540} y={960} r={300} rot={f * 3} />
       {Array.from({ length: 12 }).map((_, i) => {
         const a = (i / 12) * Math.PI * 2 + f * 0.01;
-        const at = i * 3;
+        const at = i * 2 - 6;
         const s = prog(f, at, at + 10, ease.back);
-        const x = 540 + Math.cos(a) * 420;
-        const y = 960 + Math.sin(a) * 520;
+        const x = 540 + Math.cos(a) * 380;
+        const y = 960 + Math.sin(a) * 560;
         return (
-          <g key={i} transform={`translate(${x},${y}) scale(${s * 0.5})`}>
+          <g key={i} transform={`translate(${x},${y}) scale(${s * 0.78})`}>
             <DigitalClock text={`0${(i % 9) + 1}:00`} x={0} y={0} height={90} color={["#7df9ff", "#ffd166", "#ff5252"][i % 3]} />
           </g>
         );
@@ -74,6 +73,6 @@ const WorldClocks: React.FC<{ f: number }> = ({ f }) => (
         <CalendarExplosion key={k} progress={prog(f, 20 + k * 6, 50 + k * 6)} reverse x={[200, 880, 540][k]} y={[300, 330, 250][k]} w={200} month="MON" seed={"r" + k} />
       ))}
     </svg>
-    <Caption frame={f} start={8} end={63} text={"CLOCKS: ONLINE ✅"} y={1500} size={78} color="#7df9ff" anim="pop" bg="rgba(0,0,0,.6)" />
+    <Caption frame={f} start={-8} end={59} text={"CLOCKS: ONLINE ✅"} y={1500} size={78} color="#7df9ff" anim="pop" bg="rgba(0,0,0,.6)" />
   </AbsoluteFill>
 );

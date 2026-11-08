@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, useCurrentFrame } from "remotion";
 import { EpisodeTimeline, SceneDef } from "../../src/compositions/EpisodeTimeline";
 import { SCENES } from "./timeline";
+import { Hook } from "./scenes/Hook";
 import { Scene01 } from "./scenes/Scene01";
 import { Scene02 } from "./scenes/Scene02";
 import { Scene03 } from "./scenes/Scene03";
@@ -16,7 +17,7 @@ import { DigitalClock, InfiniteCounter } from "../../src/components/counters";
 import { Stars, LightBeams, TimeFragmentParticles, Vignette } from "../../src/components/effects";
 import { FONT, prog, ease } from "../../src/lib/anim";
 
-const COMPONENTS = [Scene01, Scene02, Scene03, Scene04, Scene05, Scene06, Scene07, Scene08];
+const COMPONENTS = [Hook, Scene01, Scene02, Scene03, Scene04, Scene05, Scene06, Scene07, Scene08];
 export const E03_SCENES: SceneDef[] = SCENES.map((s, i) => ({ ...s, component: COMPONENTS[i] }));
 
 export const Episode03: React.FC<{ withAudio?: boolean }> = ({ withAudio = false }) => (

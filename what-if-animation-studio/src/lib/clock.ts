@@ -20,3 +20,7 @@ export const plankSeconds = (f: number, start = 20): number => (f < start ? 0 : 
 
 /** Episode 03 pendulum swing count at S06-local frame. */
 export const swingCount = (f: number, start = 10, swing = 24): number => Math.max(0, Math.min(5, Math.floor((f - start) / swing)));
+
+/** Hook alarm clock: 06:59:58 -> 06:59:59 -> 07:00:00 (one step per 10 frames); negative frames (S08 pre-roll) = 06:59:57. */
+export const HOOK_CLOCK_START = 6 * 3600 + 59 * 60 + 58;
+export const hookClockSeconds = (f: number): number => (f < 0 ? HOOK_CLOCK_START - 1 : HOOK_CLOCK_START + Math.min(2, Math.floor(f / 10)));

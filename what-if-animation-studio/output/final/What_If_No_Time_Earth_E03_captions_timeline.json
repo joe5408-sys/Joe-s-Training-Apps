@@ -1,238 +1,317 @@
 [
  {
-  "scene": "S01",
-  "start": 130,
-  "end": 239,
-  "text": "WHAT IF TIME DIDN'T EXIST?",
-  "start_s": 4.333,
-  "end_s": 8.0
+  "scene": "H01",
+  "start": 0,
+  "end": 29,
+  "text": "06:59:58 → 07:00:00",
+  "kind": "on-screen alarm clock",
+  "start_s": 0.0,
+  "end_s": 1.0
+ },
+ {
+  "scene": "H01",
+  "start": 36,
+  "end": 44,
+  "text": "ERROR",
+  "kind": "on-screen alarm clock",
+  "start_s": 1.2,
+  "end_s": 1.5
+ },
+ {
+  "scene": "H01",
+  "start": 45,
+  "end": 68,
+  "text": "NO TIME?!",
+  "start_s": 1.5,
+  "end_s": 2.3
+ },
+ {
+  "scene": "H01",
+  "start": 70,
+  "end": 89,
+  "text": "NO WORK! 😎",
+  "start_s": 2.333,
+  "end_s": 3.0
  },
  {
   "scene": "S01",
-  "start": 165,
-  "end": 239,
+  "start": 90,
+  "end": 209,
+  "text": "WHAT IF TIME DIDN'T EXIST?",
+  "start_s": 3.0,
+  "end_s": 7.0
+ },
+ {
+  "scene": "S01",
+  "start": 138,
+  "end": 209,
   "text": "TIME STILL PASSES. CLOCKS DON'T.",
-  "start_s": 5.5,
-  "end_s": 8.0
+  "start_s": 4.6,
+  "end_s": 7.0
  },
  {
   "scene": "S02",
-  "start": 360,
-  "end": 436,
+  "start": 210,
+  "end": 240,
+  "text": "LEVEL 1: FREEDOM",
+  "kind": "section card",
+  "start_s": 7.0,
+  "end_s": 8.033
+ },
+ {
+  "scene": "S02",
+  "start": 210,
+  "end": 243,
+  "text": "DEADLINES — DUE: TODAY! / MEETING 08:00",
+  "kind": "on-screen",
+  "start_s": 7.0,
+  "end_s": 8.133
+ },
+ {
+  "scene": "S02",
+  "start": 276,
+  "end": 339,
   "text": "ALARMS: 0 / DEADLINES: 0 / MONDAYS: 0",
   "kind": "on-screen counters",
-  "start_s": 12.0,
-  "end_s": 14.567
+  "start_s": 9.2,
+  "end_s": 11.333
  },
  {
   "scene": "S02",
-  "start": 436,
-  "end": 514,
+  "start": 340,
+  "end": 407,
   "text": "FREEDOM!!!",
-  "start_s": 14.533,
-  "end_s": 17.167
+  "start_s": 11.333,
+  "end_s": 13.6
  },
  {
   "scene": "S02",
-  "start": 520,
-  "end": 569,
+  "start": 414,
+  "end": 479,
   "text": "WAIT...",
-  "start_s": 17.333,
-  "end_s": 19.0
+  "start_s": 13.8,
+  "end_s": 16.0
  },
  {
   "scene": "S03",
-  "start": 600,
-  "end": 929,
+  "start": 480,
+  "end": 510,
+  "text": "LEVEL 2: CHAOS",
+  "kind": "section card",
+  "start_s": 16.0,
+  "end_s": 17.033
+ },
+ {
+  "scene": "S03",
+  "start": 510,
+  "end": 839,
   "text": "DEPARTURE: ??:?? / ARRIVAL: ??? / DELAY: FOREVER?",
   "kind": "on-screen board",
-  "start_s": 20.0,
-  "end_s": 31.0
+  "start_s": 17.0,
+  "end_s": 28.0
  },
  {
   "scene": "S03",
-  "start": 820,
-  "end": 929,
+  "start": 730,
+  "end": 839,
   "text": "FLIGHT DEPARTURE: WHENEVER.",
-  "start_s": 27.333,
-  "end_s": 31.0
+  "start_s": 24.333,
+  "end_s": 28.0
  },
  {
   "scene": "S04",
-  "start": 950,
-  "end": 1029,
+  "start": 860,
+  "end": 939,
   "text": "00:00 → 00:03",
   "kind": "on-screen timer",
-  "start_s": 31.667,
-  "end_s": 34.333
+  "start_s": 28.667,
+  "end_s": 31.333
  },
  {
   "scene": "S04",
-  "start": 1030,
-  "end": 1059,
+  "start": 940,
+  "end": 969,
   "text": "ERROR",
   "kind": "on-screen timer",
-  "start_s": 34.333,
-  "end_s": 35.333
+  "start_s": 31.333,
+  "end_s": 32.333
  },
  {
   "scene": "S04",
-  "start": 1060,
-  "end": 1184,
+  "start": 970,
+  "end": 1094,
   "text": "∞",
   "kind": "on-screen timer",
-  "start_s": 35.333,
-  "end_s": 39.5
+  "start_s": 32.333,
+  "end_s": 36.5
  },
  {
   "scene": "S04",
-  "start": 1070,
-  "end": 1124,
+  "start": 980,
+  "end": 1034,
   "text": "JUST 10 MORE SECONDS!",
-  "start_s": 35.667,
-  "end_s": 37.5
+  "start_s": 32.667,
+  "end_s": 34.5
  },
  {
   "scene": "S04",
-  "start": 1126,
-  "end": 1184,
+  "start": 1036,
+  "end": 1094,
   "text": "WHAT'S A SECOND?!",
-  "start_s": 37.533,
-  "end_s": 39.5
+  "start_s": 34.533,
+  "end_s": 36.5
  },
  {
   "scene": "S04",
-  "start": 1185,
-  "end": 1289,
+  "start": 1095,
+  "end": 1199,
   "text": "EGG TIMER: UNKNOWN",
   "kind": "on-screen display",
-  "start_s": 39.5,
-  "end_s": 43.0
+  "start_s": 36.5,
+  "end_s": 40.0
  },
  {
   "scene": "S05",
-  "start": 1290,
-  "end": 1409,
+  "start": 1200,
+  "end": 1319,
   "text": "TIME REMAINING: ???",
   "kind": "on-screen display",
-  "start_s": 43.0,
-  "end_s": 47.0
+  "start_s": 40.0,
+  "end_s": 44.0
  },
  {
   "scene": "S05",
-  "start": 1308,
-  "end": 1408,
+  "start": 1218,
+  "end": 1318,
   "text": "NO SCHEDULES.",
-  "start_s": 43.6,
-  "end_s": 46.967
+  "start_s": 40.6,
+  "end_s": 43.967
  },
  {
   "scene": "S05",
-  "start": 1410,
-  "end": 1539,
+  "start": 1320,
+  "end": 1449,
   "text": "TIME LEFT: ∞",
   "kind": "on-screen display",
-  "start_s": 47.0,
-  "end_s": 51.333
+  "start_s": 44.0,
+  "end_s": 48.333
  },
  {
   "scene": "S05",
-  "start": 1428,
-  "end": 1538,
+  "start": 1338,
+  "end": 1448,
   "text": "NO PLAN.",
-  "start_s": 47.6,
-  "end_s": 51.3
+  "start_s": 44.6,
+  "end_s": 48.3
  },
  {
   "scene": "S05",
-  "start": 1540,
-  "end": 1679,
+  "start": 1450,
+  "end": 1589,
   "text": "SCHEDULE ERROR",
   "kind": "on-screen display",
-  "start_s": 51.333,
-  "end_s": 56.0
+  "start_s": 48.333,
+  "end_s": 53.0
  },
  {
   "scene": "S05",
-  "start": 1570,
-  "end": 1679,
+  "start": 1480,
+  "end": 1589,
   "text": "BIG PROBLEM.",
-  "start_s": 52.333,
-  "end_s": 56.0
+  "start_s": 49.333,
+  "end_s": 53.0
  },
  {
   "scene": "S06",
-  "start": 1714,
-  "end": 1834,
+  "start": 1590,
+  "end": 1620,
+  "text": "LEVEL 3: PLOT TWIST",
+  "kind": "section card",
+  "start_s": 53.0,
+  "end_s": 54.033
+ },
+ {
+  "scene": "S06",
+  "start": 1624,
+  "end": 1744,
   "text": "SWINGS: 1 … 5",
   "kind": "on-screen counter",
-  "start_s": 57.133,
-  "end_s": 61.167
+  "start_s": 54.133,
+  "end_s": 58.167
  },
  {
   "scene": "S06",
-  "start": 1846,
-  "end": 1914,
+  "start": 1756,
+  "end": 1824,
   "text": "GENIUS!",
-  "start_s": 61.533,
-  "end_s": 63.833
+  "start_s": 58.533,
+  "end_s": 60.833
  },
  {
   "scene": "S06",
-  "start": 1916,
-  "end": 2039,
+  "start": 1826,
+  "end": 1949,
   "text": "WE INVENTED CLOCKS... AGAIN.",
-  "start_s": 63.867,
-  "end_s": 68.0
+  "start_s": 60.867,
+  "end_s": 65.0
  },
  {
   "scene": "S07",
-  "start": 2048,
-  "end": 2103,
+  "start": 1950,
+  "end": 2009,
   "text": "CLOCKS: ONLINE ✅",
-  "start_s": 68.267,
-  "end_s": 70.133
+  "start_s": 65.0,
+  "end_s": 67.0
  },
  {
   "scene": "S07",
-  "start": 2124,
-  "end": 2279,
+  "start": 2026,
+  "end": 2159,
   "text": "MONDAY 08:00 — WORK STARTS NOW",
   "kind": "on-screen notification",
-  "start_s": 70.8,
-  "end_s": 76.0
+  "start_s": 67.533,
+  "end_s": 72.0
  },
  {
   "scene": "S07",
-  "start": 2160,
-  "end": 2206,
+  "start": 2058,
+  "end": 2159,
   "text": "OH NO.",
-  "start_s": 72.0,
-  "end_s": 73.567
+  "start_s": 68.6,
+  "end_s": 72.0
  },
  {
-  "scene": "S07",
-  "start": 2208,
-  "end": 2279,
+  "scene": "S08",
+  "start": 2162,
+  "end": 2210,
+  "text": "MONDAY — 08:00",
+  "start_s": 72.067,
+  "end_s": 73.7
+ },
+ {
+  "scene": "S08",
+  "start": 2212,
+  "end": 2252,
   "text": "MONDAY IS BACK. 💀",
-  "start_s": 73.6,
-  "end_s": 76.0
+  "start_s": 73.733,
+  "end_s": 75.1
  },
  {
   "scene": "S08",
-  "start": 2280,
+  "start": 2278,
+  "end": 2303,
+  "text": "SMASH!",
+  "kind": "on-screen sound word",
+  "start_s": 75.933,
+  "end_s": 76.8
+ },
+ {
+  "scene": "S08",
+  "start": 2346,
   "end": 2399,
-  "text": "3 … 2 … 1",
-  "kind": "on-screen countdown",
-  "start_s": 76.0,
+  "text": "◀◀ 06:59:57",
+  "kind": "on-screen rewind",
+  "start_s": 78.2,
   "end_s": 80.0
- },
- {
-  "scene": "S08",
-  "start": 2282,
-  "end": 2429,
-  "text": "WOULD YOU DELETE TIME?  YES 😎 / NO 💀",
-  "start_s": 76.067,
-  "end_s": 81.0
  }
 ]

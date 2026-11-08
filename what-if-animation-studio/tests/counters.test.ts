@@ -1,16 +1,14 @@
 // Run: node tests/counters.test.ts   (Node >= 22.18 strips TS types natively)
 import assert from "node:assert/strict";
-import { formatClock, countdownValue, openingClockSeconds, plankSeconds, swingCount } from "../src/lib/clock.ts";
+import { formatClock, countdownValue, plankSeconds, swingCount, hookClockSeconds } from "../src/lib/clock.ts";
 
 const checks: [string, () => void][] = [
-  ["opening countdown 23:59:57 -> 58 -> 59 -> 00:00:00", () => {
-    assert.equal(formatClock(openingClockSeconds(0)), "23:59:57");
-    assert.equal(formatClock(openingClockSeconds(30)), "23:59:58");
-    assert.equal(formatClock(openingClockSeconds(60)), "23:59:59");
-    assert.equal(formatClock(openingClockSeconds(90)), "00:00:00");
+  ["hook alarm 06:59:58 -> 06:59:59 -> 07:00:00 in the first second", () => {
+    assert.deepEqual([0, 9, 10, 19, 20, 29].map((f) => formatClock(hookClockSeconds(f))),
+      ["06:59:58", "06:59:58", "06:59:59", "06:59:59", "07:00:00", "07:00:00"]);
   }],
-  ["loop pre-roll shows 23:59:56 on S08's final second", () => {
-    for (const f of [-30, -15, -1]) assert.equal(formatClock(openingClockSeconds(f)), "23:59:56");
+  ["loop pre-roll (S08 last frames) shows 06:59:57, one step before frame 0", () => {
+    for (const f of [-18, -1]) assert.equal(formatClock(hookClockSeconds(f)), "06:59:57");
   }],
   ["plank timer 00:00..00:03 then holds", () => {
     assert.deepEqual([0, 20, 40, 60, 80, 99].map((f) => plankSeconds(f)), [0, 0, 1, 2, 3, 3]);

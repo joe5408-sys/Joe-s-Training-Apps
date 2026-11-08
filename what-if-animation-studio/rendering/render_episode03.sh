@@ -27,10 +27,10 @@ echo "== 4. silent variant (no music/SFX; silent AAC track kept for platform com
 ffmpeg -y -loglevel error -i "$OUT/${NAME}_1080x1920.mp4" -f lavfi -i anullsrc=r=48000:cl=stereo \
   -map 0:v -map 1:a -c:v copy -c:a aac -b:a 128k -shortest -movflags +faststart "$OUT/${NAME}_SILENT_1080x1920.mp4"
 
-echo "== 5. teaser (~26 s): title, FREEDOM, plank, exam, MONDAY + end card"
+echo "== 5. teaser (~28 s): hook, FREEDOM, plank, exam, MONDAY smash + end card"
 npx remotion render src/index.ts E03-TeaserEndCard "$TMP/endcard.mp4" --muted --crf=10
 # segments in seconds of the final film: start duration
-SEGS=("3.0 5.0" "14.2 4.6" "33.6 5.6" "47.0 4.2" "70.0 5.6")
+SEGS=("0.0 5.0" "11.2 4.8" "30.6 5.6" "44.0 4.3" "72.0 6.0")
 i=0; LIST=""
 for s in "${SEGS[@]}"; do
   set -- $s

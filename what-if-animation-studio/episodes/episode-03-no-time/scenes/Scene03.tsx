@@ -5,6 +5,7 @@ import { CAST } from "../../../src/components/characters/cast";
 import { Caption } from "../../../src/components/typography/Caption";
 import { key, noise, prog, ease, rnd } from "../../../src/lib/anim";
 import { Vignette } from "../../../src/components/effects";
+import { LevelBadge } from "../../../src/components/effects/LevelBadge";
 
 const Airplane: React.FC<{ x: number; y: number; s?: number }> = ({ x, y, s = 1 }) => (
   <g transform={`translate(${x},${y}) scale(${s})`}>
@@ -99,6 +100,7 @@ export const Scene03: React.FC = () => {
       )}
       <Caption frame={f} start={CAPTION} end={359} text={"FLIGHT DEPARTURE:\nWHENEVER."} y={970} size={80} color="#ffd600" anim="slam" />
       <Vignette strength={0.45} />
+      <LevelBadge frame={f} level={2} label="CHAOS" color="#e17055" />
     </AbsoluteFill>
   );
 };
