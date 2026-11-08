@@ -3,10 +3,10 @@
 	"input_tp" : "-0.79",
 	"input_lra" : "5.90",
 	"input_thresh" : "-27.84",
-	"output_i" : "-14.91",
-	"output_tp" : "-1.50",
+	"output_i" : "-15.00",
+	"output_tp" : "-2.00",
 	"output_lra" : "5.70",
-	"output_thresh" : "-25.06",
+	"output_thresh" : "-25.15",
 	"normalization_type" : "dynamic",
-	"target_offset" : "0.91"
+	"target_offset" : "1.00"
 }
