@@ -3,3 +3,4 @@ output/work/
 previews/*.png
 audio/*.wav
 !audio/.keep
+rendering/logs/main_render.log
