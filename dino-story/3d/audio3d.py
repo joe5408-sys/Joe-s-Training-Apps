@@ -296,10 +296,10 @@ def scream(start, amp=0.5, pan=0.0, far=False):
         return
     i = _pick.get("scream", 0)
     _pick["scream"] = i + 1
-    v = speed(pool[(i * 7) % len(pool)], 1.0 + ((i * 37) % 9 - 4) * 0.015)   # small pitch variety
+    v = speed(pool[(i * 7) % len(pool)], 1.0 + ((i * 37) % 9 - 4) * 0.028)   # pitch variety: different voices
     if far:
         v = filt(v, "low", 2200) * 0.45
-    place(start, v * amp, pan=pan, wet=0.65 if far else 0.4)
+    place(start, v * amp * 1.6, pan=pan, wet=0.65 if far else 0.4)
 
 
 def crowd_panic(a, b, amp=0.35):
@@ -354,7 +354,7 @@ for x, p in ((21.4, -0.6), (22.6, 0.5), (24.0, -0.2), (25.1, 0.7)):
     screech(M(x), 0.12, 1300 + 200 * p, 800, 0.8, p)      # distant flyers
 for x in np.arange(26.2, 29.2, np.pi / 3.2):
     thud(M(x), 0.85, 34)                                  # predator steps
-roar(M(29.3), 1.0, 2.6, 1.0)
+roar(M(29.3), 1.35, 2.6, 1.0)
 impact(M(29.35), 0.45)
 # dinosauroid city: low "choir" (saw through vowel formants)
 for i, (nt, a, b) in enumerate((("F2", 39, 46.5), ("C3", 39.3, 46.5), ("A3", 39.6, 46.5))):

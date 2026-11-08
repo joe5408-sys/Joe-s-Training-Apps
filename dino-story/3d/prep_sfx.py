@@ -29,6 +29,11 @@ PLAN = {
 }
 
 
+# Spans checked by loudness analysis: the cannon file is one shot then bugle music;
+# crowd files are steady beds with no single peak.
+FIXED = {"cannon": [(0.25, 2.8)], "crowd_a": [(10, 30)], "crowd_b": [(10, 30)]}
+
+
 def decode(path):
     raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(path), "-f", "f32le", "-ac", "1", "-ar", str(SR), "-"],
                          capture_output=True, check=True).stdout
@@ -100,7 +105,9 @@ def main(raw_dir, out_dir):
             continue
         x = decode(src)
         made = []
-        if len(x) < 3 * SR:  # short recording: keep all of it, trim silence only
+        if key in FIXED:  # hand-checked spans (seconds)
+            spans = [(int(a0 * SR), min(len(x), int(b0 * SR))) for a0, b0 in FIXED[key]]
+        elif len(x) < 3 * SR:  # short recording: keep all of it, trim silence only
             loud = np.where(np.abs(x) > 0.03 * np.max(np.abs(x)))[0]
             spans = [(max(0, loud[0] - int(0.01 * SR)), min(len(x), loud[-1] + int(0.05 * SR)))]
         else:

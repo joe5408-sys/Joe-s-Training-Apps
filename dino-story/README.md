@@ -51,6 +51,13 @@ Files: `3d/scene.js` (models, cameras, captions), `3d/render3d.js` (frame captur
 
 Soundtrack: a film-style score built entirely in code (`pip install numpy scipy`). It has low pads, brass-like hits at key moments, taiko drums and a string pattern in the battles, roars made from shaped noise, and a hall reverb. Loudness is set to −14 LUFS, the level TikTok, YouTube and Instagram use.
 
+Real recorded sound effects (human screams, a crowd, animal growls, a lion, an alligator, an elephant, explosions, a cannon) come from Wikimedia Commons. They are public domain, CC0 or CC BY-SA 4.0, and listed with links in `3d/sfx/CREDITS.md`. The roars are layered and pitched-down animal sounds, like film creature sound design.
+
+**When you post,** put this in the caption or description (needed for the CC BY-SA screams):
+`Sound: Wikimedia Commons (Raspberry Pi Foundation/Andy Oakley CC BY-SA 4.0; public-domain & CC0 recordings).`
+
+To rebuild the clips: download the files listed in `3d/sfx/CREDITS.md` into a `raw/` folder, then run `python3 3d/prep_sfx.py raw 3d/sfx`.
+
 Each caption is tagged **FACT**, **STORY** or **SPECULATION**:
 
 | On screen | Tag | Basis |
