@@ -100,7 +100,12 @@ def main(raw_dir, out_dir):
             continue
         x = decode(src)
         made = []
-        for i, (a, b) in enumerate(events(x, n * 2 if key == "scream_vox" else n, lo, hi)):
+        if len(x) < 3 * SR:  # short recording: keep all of it, trim silence only
+            loud = np.where(np.abs(x) > 0.03 * np.max(np.abs(x)))[0]
+            spans = [(max(0, loud[0] - int(0.01 * SR)), min(len(x), loud[-1] + int(0.05 * SR)))]
+        else:
+            spans = events(x, n * 2 if key == "scream_vox" else n, lo, hi)
+        for i, (a, b) in enumerate(spans):
             clip = x[a:b]
             if key.startswith("scream") and wilhelm_like(clip, ref):
                 print("  dropped Wilhelm-like clip", key, i)
