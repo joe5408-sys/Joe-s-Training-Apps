@@ -22,7 +22,7 @@ const Meeting: React.FC<{f: number; hero: CharacterDef; heroExpr: ReturnType<typ
   vh = 1920,
   shakeAt,
 }) => (
-  <Camera f={f} k={[{f: 0, x: 540, y: vh < 1920 ? 1150 : 1080, z: vh < 1920 ? 1.25 : 1.12}]} vh={vh} shakes={shakeAt ? [{at: shakeAt, dur: 14, amp: 22}] : []}>
+  <Camera f={f} k={[{f: 0, x: 540, y: vh < 1920 ? 1150 : 960, z: vh < 1920 ? 1.25 : 1.12}]} vh={vh} shakes={shakeAt ? [{at: shakeAt, dur: 14, amp: 22}] : []}>
     <MeetingRoom f={f} accent={accent} />
     <Sprite def={others[0]} f={f} x={190} y={1790} scale={0.86} expr={exprAt(f, [[0, 'neutral']])} lookX={1} />
     <Sprite def={others[1]} f={f} x={890} y={1790} scale={0.86} expr={exprAt(f, [[0, 'focus']])} lookX={-1} />
@@ -78,8 +78,8 @@ export const S05: React.FC = () => {
               : [
                   {f: B.manager, x: 540, y: 1080, z: 1},
                   {f: B.badge, x: 540, y: 1080, z: 1},
-                  {f: B.badge + 8, x: 578, y: 1300, z: 3.0},
-                  {f: B.deadline - 10, x: 578, y: 1300, z: 3.1},
+                  {f: B.badge + 8, x: 582, y: 1292, z: 4.6},
+                  {f: B.deadline - 10, x: 582, y: 1292, z: 4.8},
                   {f: B.deadline - 2, x: 540, y: 1080, z: 1},
                 ]
           }
@@ -141,7 +141,7 @@ export const S05: React.FC = () => {
         />
       ) : null}
       {/* Alex meeting overlays */}
-      <Bubble f={f} at={B.bubble} until={B.maya} x={720} y={740} text="I THINK—" squash={prog(f, B.slam, 5, 'in')} />
+      <Bubble f={f} at={B.bubble} until={B.maya} x={720} y={860} text="I THINK—" squash={prog(f, B.slam, 5, 'in')} />
       <Checklist
         f={f}
         at={B.slam}
@@ -155,7 +155,7 @@ export const S05: React.FC = () => {
         items={["SOUND 100% CERTAIN", "NEVER SAY 'SORRY'", 'HAVE ALL THE ANSWERS', 'ZERO DOUBTS. EVER.', 'TAKE CHARGE (OR ELSE)'].map((t, i) => ({t, at: B.slam + 2 + i * 5}))}
       />
       {/* Maya meeting overlays */}
-      <Bubble f={f} at={B.mayaBubble} until={B.recognize} x={700} y={740} text="HERE'S THE PLAN:" />
+      <Bubble f={f} at={B.mayaBubble} until={B.recognize} x={700} y={860} text="HERE'S THE PLAN:" />
       <Notif f={f} at={B.mayaNotif} until={B.recognize} x={540} y={430} icon="⚠️" app="TONE CHECK" title="TOO BOSSY? 😬" body="Try: smile • soften • apologise" glitch={f < B.mayaNotif + 10 ? 1 : 0} size={64} color={PAL.rev.magenta} />
       <FloatIcon f={f} at={B.recognize + 8} until={B.manager} x={540} y={960} text="🙄" size={130} />
       {/* boss */}
