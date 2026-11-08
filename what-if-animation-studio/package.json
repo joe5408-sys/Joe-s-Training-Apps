@@ -1,0 +1,23 @@
+{
+  "name": "what-if-animation-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reusable Remotion pipeline for the WHAT IF...? vertical short-film series",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "audio:e03": "python3 episodes/episode-03-no-time/audio/generate_audio.py",
+    "build:e03": "bash rendering/render_episode03.sh",
+    "qa:e03": "python3 tests/qa_episode03.py"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.541",
+    "@remotion/renderer": "4.0.541",
+    "remotion": "4.0.541",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.8",
+    "typescript": "5.8.3"
+  }
+}

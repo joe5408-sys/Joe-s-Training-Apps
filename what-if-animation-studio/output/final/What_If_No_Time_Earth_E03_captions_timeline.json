@@ -1,0 +1,238 @@
+[
+ {
+  "scene": "S01",
+  "start": 130,
+  "end": 239,
+  "text": "WHAT IF TIME DIDN'T EXIST?",
+  "start_s": 4.333,
+  "end_s": 8.0
+ },
+ {
+  "scene": "S01",
+  "start": 165,
+  "end": 239,
+  "text": "TIME STILL PASSES. CLOCKS DON'T.",
+  "start_s": 5.5,
+  "end_s": 8.0
+ },
+ {
+  "scene": "S02",
+  "start": 360,
+  "end": 436,
+  "text": "ALARMS: 0 / DEADLINES: 0 / MONDAYS: 0",
+  "kind": "on-screen counters",
+  "start_s": 12.0,
+  "end_s": 14.567
+ },
+ {
+  "scene": "S02",
+  "start": 436,
+  "end": 514,
+  "text": "FREEDOM!!!",
+  "start_s": 14.533,
+  "end_s": 17.167
+ },
+ {
+  "scene": "S02",
+  "start": 520,
+  "end": 569,
+  "text": "WAIT...",
+  "start_s": 17.333,
+  "end_s": 19.0
+ },
+ {
+  "scene": "S03",
+  "start": 600,
+  "end": 929,
+  "text": "DEPARTURE: ??:?? / ARRIVAL: ??? / DELAY: FOREVER?",
+  "kind": "on-screen board",
+  "start_s": 20.0,
+  "end_s": 31.0
+ },
+ {
+  "scene": "S03",
+  "start": 820,
+  "end": 929,
+  "text": "FLIGHT DEPARTURE: WHENEVER.",
+  "start_s": 27.333,
+  "end_s": 31.0
+ },
+ {
+  "scene": "S04",
+  "start": 950,
+  "end": 1029,
+  "text": "00:00 → 00:03",
+  "kind": "on-screen timer",
+  "start_s": 31.667,
+  "end_s": 34.333
+ },
+ {
+  "scene": "S04",
+  "start": 1030,
+  "end": 1059,
+  "text": "ERROR",
+  "kind": "on-screen timer",
+  "start_s": 34.333,
+  "end_s": 35.333
+ },
+ {
+  "scene": "S04",
+  "start": 1060,
+  "end": 1184,
+  "text": "∞",
+  "kind": "on-screen timer",
+  "start_s": 35.333,
+  "end_s": 39.5
+ },
+ {
+  "scene": "S04",
+  "start": 1070,
+  "end": 1124,
+  "text": "JUST 10 MORE SECONDS!",
+  "start_s": 35.667,
+  "end_s": 37.5
+ },
+ {
+  "scene": "S04",
+  "start": 1126,
+  "end": 1184,
+  "text": "WHAT'S A SECOND?!",
+  "start_s": 37.533,
+  "end_s": 39.5
+ },
+ {
+  "scene": "S04",
+  "start": 1185,
+  "end": 1289,
+  "text": "EGG TIMER: UNKNOWN",
+  "kind": "on-screen display",
+  "start_s": 39.5,
+  "end_s": 43.0
+ },
+ {
+  "scene": "S05",
+  "start": 1290,
+  "end": 1409,
+  "text": "TIME REMAINING: ???",
+  "kind": "on-screen display",
+  "start_s": 43.0,
+  "end_s": 47.0
+ },
+ {
+  "scene": "S05",
+  "start": 1308,
+  "end": 1408,
+  "text": "NO SCHEDULES.",
+  "start_s": 43.6,
+  "end_s": 46.967
+ },
+ {
+  "scene": "S05",
+  "start": 1410,
+  "end": 1539,
+  "text": "TIME LEFT: ∞",
+  "kind": "on-screen display",
+  "start_s": 47.0,
+  "end_s": 51.333
+ },
+ {
+  "scene": "S05",
+  "start": 1428,
+  "end": 1538,
+  "text": "NO PLAN.",
+  "start_s": 47.6,
+  "end_s": 51.3
+ },
+ {
+  "scene": "S05",
+  "start": 1540,
+  "end": 1679,
+  "text": "SCHEDULE ERROR",
+  "kind": "on-screen display",
+  "start_s": 51.333,
+  "end_s": 56.0
+ },
+ {
+  "scene": "S05",
+  "start": 1570,
+  "end": 1679,
+  "text": "BIG PROBLEM.",
+  "start_s": 52.333,
+  "end_s": 56.0
+ },
+ {
+  "scene": "S06",
+  "start": 1714,
+  "end": 1834,
+  "text": "SWINGS: 1 … 5",
+  "kind": "on-screen counter",
+  "start_s": 57.133,
+  "end_s": 61.167
+ },
+ {
+  "scene": "S06",
+  "start": 1846,
+  "end": 1914,
+  "text": "GENIUS!",
+  "start_s": 61.533,
+  "end_s": 63.833
+ },
+ {
+  "scene": "S06",
+  "start": 1916,
+  "end": 2039,
+  "text": "WE INVENTED CLOCKS... AGAIN.",
+  "start_s": 63.867,
+  "end_s": 68.0
+ },
+ {
+  "scene": "S07",
+  "start": 2048,
+  "end": 2103,
+  "text": "CLOCKS: ONLINE ✅",
+  "start_s": 68.267,
+  "end_s": 70.133
+ },
+ {
+  "scene": "S07",
+  "start": 2124,
+  "end": 2279,
+  "text": "MONDAY 08:00 — WORK STARTS NOW",
+  "kind": "on-screen notification",
+  "start_s": 70.8,
+  "end_s": 76.0
+ },
+ {
+  "scene": "S07",
+  "start": 2160,
+  "end": 2206,
+  "text": "OH NO.",
+  "start_s": 72.0,
+  "end_s": 73.567
+ },
+ {
+  "scene": "S07",
+  "start": 2208,
+  "end": 2279,
+  "text": "MONDAY IS BACK. 💀",
+  "start_s": 73.6,
+  "end_s": 76.0
+ },
+ {
+  "scene": "S08",
+  "start": 2280,
+  "end": 2399,
+  "text": "3 … 2 … 1",
+  "kind": "on-screen countdown",
+  "start_s": 76.0,
+  "end_s": 80.0
+ },
+ {
+  "scene": "S08",
+  "start": 2282,
+  "end": 2429,
+  "text": "WOULD YOU DELETE TIME?  YES 😎 / NO 💀",
+  "start_s": 76.067,
+  "end_s": 81.0
+ }
+]

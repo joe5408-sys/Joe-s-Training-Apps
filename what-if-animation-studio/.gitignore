@@ -1,0 +1,8 @@
+node_modules/
+output/previews/*
+!output/previews/proof_of_concept.mp4
+output/qa/frames/
+output/qa/det/
+output/qa/*.png
+public/*.wav
+__pycache__/
