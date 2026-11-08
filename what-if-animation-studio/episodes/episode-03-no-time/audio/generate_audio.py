@@ -262,6 +262,9 @@ cue("SMASH_glass", T("S08", 118), S.crash(1.2), 0.9)
 cue("glitch_broken_clock", T("S08", 122), S.glitch(1.8), 0.7)
 cue("error_beep_broken", T("S08", 140), S.error_beep(), 0.5)
 cue("boing_dazed", T("S08", 128), S.boing(0.6, 140), 0.6)
+cue("ding_QUESTION", T("S08", 138), S.ding(91), 0.7)
+cue("boing_choice_yes", T("S08", 146), S.boing(0.35, 320), 0.5, -0.4)
+cue("boing_choice_no", T("S08", 151), S.boing(0.35, 210), 0.5, 0.4)
 cue("slide_whistle_back_to_bed", T("S08", 166), S.slide_whistle(1200, 400, 0.5), 0.5)
 # tape-rewind: reversed rising whoosh + fast chirps
 rw = S.whoosh(1.2, True)[::-1] * 0.8

@@ -3,7 +3,7 @@ import { AbsoluteFill, useCurrentFrame } from "remotion";
 import { Flash, Vignette, Sparkles } from "../../../src/components/effects";
 import { Caption } from "../../../src/components/typography/Caption";
 import { formatClock, HOOK_CLOCK_START } from "../../../src/lib/clock";
-import { key, noise, prog, ease, clamp, rnd } from "../../../src/lib/anim";
+import { key, noise, prog, ease, clamp, rnd, FONT } from "../../../src/lib/anim";
 import { AlarmClock, Bedroom } from "./AlarmShot";
 import { HookBody } from "./Hook";
 
@@ -27,6 +27,7 @@ const Fist: React.FC<{ x: number; y: number; s: number }> = ({ x, y, s }) => (
 export const Scene08: React.FC = () => {
   const f = useCurrentFrame();
   const SIT = 10, PANIC = 30, LUNGE = 96, SMASH = 118, SLEEP = 168, REWIND = 186, PREROLL = 222;
+  const Q_IN = 138, Q_OUT = 186;
   if (f >= PREROLL) return <HookBody f={f - 240} />;
   const smashed = f >= SMASH;
   const crack = smashed ? 1 - prog(f, REWIND + 6, PREROLL - 4, ease.inOut) : 0;
@@ -81,6 +82,21 @@ export const Scene08: React.FC = () => {
       <Caption frame={f} start={2} end={50} text={"MONDAY — 08:00"} y={300} size={120} color="#fff" anim="slam" bg="rgba(200,0,30,.9)" />
       <Caption frame={f} start={52} end={LUNGE - 4} text={"MONDAY IS BACK. 💀"} y={300} size={86} color="#ff5252" anim="shake" bg="rgba(0,0,0,.75)" />
       <Vignette strength={0.5} />
+      {/* engagement question over the broken clock, before the rewind */}
+      {f >= Q_IN && f < Q_OUT && (
+        <div style={{ position: "absolute", top: 120, left: 0, right: 0, display: "flex", justifyContent: "center",
+          opacity: clamp((Q_OUT - f) / 5), transform: `scale(${0.5 + 0.5 * ease.back(clamp((f - Q_IN) / 8))})` }}>
+          <div style={{ background: "rgba(0,0,0,.82)", border: "6px solid #fff", borderRadius: 34, padding: "18px 40px 28px", textAlign: "center", fontFamily: FONT, fontWeight: 900 }}>
+            <div style={{ fontSize: 80, color: "#fff", lineHeight: 1.02 }}>WOULD YOU<br />DELETE TIME?</div>
+            <div style={{ display: "flex", justifyContent: "center", gap: 40, marginTop: 22 }}>
+              {([["YES 😎", "#00c853", 0], ["NO 💀", "#d50000", 1]] as const).map(([t, c, i]) => (
+                <div key={t} style={{ fontSize: 68, color: "#fff", background: c, padding: "8px 36px", borderRadius: 26, border: "5px solid #fff",
+                  transform: `scale(${ease.back(clamp((f - Q_IN - 6 - i * 5) / 8))}) rotate(${i ? 3 : -3}deg)`, boxShadow: "0 10px 0 rgba(0,0,0,.35)" }}>{t}</div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </AbsoluteFill>
   );
 };

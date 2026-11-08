@@ -535,9 +535,24 @@
   "sfx": "boing_dazed"
  },
  {
+  "t": 76.6,
+  "frame": 2298,
+  "sfx": "ding_QUESTION"
+ },
+ {
   "t": 76.667,
   "frame": 2300,
   "sfx": "error_beep_broken"
+ },
+ {
+  "t": 76.867,
+  "frame": 2306,
+  "sfx": "boing_choice_yes"
+ },
+ {
+  "t": 77.033,
+  "frame": 2311,
+  "sfx": "boing_choice_no"
  },
  {
   "t": 77.533,

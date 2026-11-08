@@ -16,7 +16,7 @@ This shows whether each beat *can* be understood without sound. It is not eviden
 | 40–53 s | 2 | Washer ???, exam ∞, traffic controller error | Paper stack +260 pages, flashing red, cars wait | Student smile → shock | Yes (fast cuts) |
 | 53–65 s | 3 Twist | Pendulum swings counted 1–5 | Numbers fly into a clock, bulb, "GENIUS!" | Scientist dances | Yes |
 | 65–72 s | 3 | "CLOCKS: ONLINE ✅", calendars return | MONDAY 08:00 notification | Smile collapses, tie drops, tears, "OH NO." | Yes |
-| 72–80 s | Finale | Same bedroom close-up: "MONDAY — 08:00" | Panic → fist SMASH → glitch → ◀◀ rewind to 06:59:57 → back to sleep | Scream, spiral eyes, relief | Yes; last frame matches frame 0 (SSIM 0.98) |
+| 72–80 s | Finale | Same bedroom close-up: "MONDAY — 08:00" | Panic → fist SMASH → glitch → "WOULD YOU DELETE TIME?" → ◀◀ rewind to 06:59:57 → back to sleep | Scream, spiral eyes, relief | Yes; last frame matches frame 0 (SSIM 0.98) |
 
 Revisions made from this review:
 1. Sleeping worker was hidden under the blanket on frame 0 → moved bed/pillow; sleeper and "Zzz" now visible.
@@ -28,4 +28,6 @@ Revisions made from this review:
 Remaining weak points (not fixed):
 - The 3–7 s context beat has two captions in 4 s; slower readers may not finish the second one.
 - The rewind digits at ~79 s are intentionally scrambled; a frame grab there looks like noise.
+
+Update: "WOULD YOU DELETE TIME? YES 😎 / NO 💀" card restored at 76.6–78.2 s (over the broken clock, before the rewind); film length unchanged at 80 s.
 - The phrase "MONDAY" carries cultural meaning (start of the work week) that most, but not all, audiences share.

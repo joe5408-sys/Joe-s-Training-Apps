@@ -307,6 +307,14 @@
  },
  {
   "scene": "S08",
+  "start": 2298,
+  "end": 2345,
+  "text": "WOULD YOU DELETE TIME?  YES 😎 / NO 💀",
+  "start_s": 76.6,
+  "end_s": 78.2
+ },
+ {
+  "scene": "S08",
   "start": 2346,
   "end": 2399,
   "text": "◀◀ 06:59:57",

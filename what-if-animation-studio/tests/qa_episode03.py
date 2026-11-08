@@ -106,7 +106,7 @@ caps = json.load(open(os.path.join(ROOT, "episodes/episode-03-no-time/captions/c
 pairs = [("NO TIME?!", "explosion_NO_TIME"), ("NO WORK! 😎", "crash_NO_WORK"), ("FREEDOM!!!", "crash_FREEDOM"),
          ("WAIT...", "record_scratch_WAIT"), ("GENIUS!", "crash_GENIUS"), ("FLIGHT DEPARTURE: WHENEVER.", "brass_stinger_WHENEVER"),
          ("WHAT'S A SECOND?!", "stinger_WHATS_A_SECOND"), ("MONDAY — 08:00", "doom_stinger_MONDAY"),
-         ("MONDAY IS BACK. 💀", "doom_stinger_MONDAY_BACK"), ("SMASH!", "SMASH_impact")]
+         ("MONDAY IS BACK. 💀", "doom_stinger_MONDAY_BACK"), ("SMASH!", "SMASH_impact"), ("WOULD YOU DELETE TIME?  YES 😎 / NO 💀", "ding_QUESTION")]
 for ctext, cname in pairs:
     cf = next(c["start"] for c in caps if c["text"] == ctext)
     sf = next(c["frame"] for c in cues if c["sfx"] == cname)
