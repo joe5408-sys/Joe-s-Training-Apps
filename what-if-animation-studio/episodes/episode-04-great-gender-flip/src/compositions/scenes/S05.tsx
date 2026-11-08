@@ -131,7 +131,7 @@ export const S05: React.FC = () => {
         </Camera>
       ) : null}
       {seg === 'alexMeet' ? <Meeting f={f} hero={ALEX} heroExpr={alexMeetExpr} heroPose={alexMeetPose} others={[EXTRAS[0], EXTRAS[5]]} accent={PAL.rev.teal} shakeAt={B.slam} /> : null}
-      {seg === 'mayaMeet' ? <Meeting f={f} hero={MAYA} heroExpr={mayaMeetExpr} heroPose={mayaMeetPose} others={[EXTRAS[1], EXTRAS[6]]} accent={PAL.rev.magenta} /> : null}
+      {seg === 'mayaMeet' || (seg === 'split' && f < B.recognize + 10) ? <Meeting f={f} hero={MAYA} heroExpr={mayaMeetExpr} heroPose={mayaMeetPose} others={[EXTRAS[1], EXTRAS[6]]} accent={PAL.rev.magenta} /> : null}
       {seg === 'split' ? (
         <SplitScreen
           f={f}

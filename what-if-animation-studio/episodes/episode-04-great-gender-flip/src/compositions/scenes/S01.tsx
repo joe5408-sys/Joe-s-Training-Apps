@@ -134,7 +134,7 @@ export const S01: React.FC = () => {
   return (
     <AbsoluteFill style={{background: '#000'}}>
       {f < B.cutMaya ? <MirrorShot f={f} /> : null}
-      {f >= B.cutMaya && f < B.split ? <MayaShot f={f} /> : null}
+      {f >= B.cutMaya && f < B.split + 10 ? <MayaShot f={f} /> : null}
       {f >= B.split ? (
         <SplitScreen
           f={f}
