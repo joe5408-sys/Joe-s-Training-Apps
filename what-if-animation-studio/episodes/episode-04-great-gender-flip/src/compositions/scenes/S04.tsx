@@ -38,7 +38,7 @@ const Laptop: React.FC<{x: number; y: number; f: number}> = ({x, y, f}) => (
 const FIN = ['MORTGAGE DUE', 'BE THE PROVIDER™', 'SAVINGS GOAL: 0%', 'PAY FOR DINNER (ALWAYS)', 'RETIREMENT PLAN??', 'INVESTMENT TIPS ×42', 'BILLS. BILLS. BILLS.'];
 
 const Top: React.FC<{f: number}> = ({f}) => (
-  <Camera f={f} k={[{f: 0, x: 330, y: 1060, z: 1.05}, {f: 190, x: 330, y: 1040, z: 1.12}]} vh={960}>
+  <Camera f={f} k={[{f: 0, x: 515, y: 1060, z: 1.05}, {f: 190, x: 500, y: 1040, z: 1.12}]} vh={960}>
     <Kitchen f={f} foam={0} />
     <Sprite
       def={PARENT_B}
@@ -61,11 +61,11 @@ const Top: React.FC<{f: number}> = ({f}) => (
 );
 
 const Bottom: React.FC<{f: number}> = ({f}) => (
-  <Camera f={f} k={[{f: 0, x: 680, y: 1160, z: 1.05}, {f: 190, x: 680, y: 1150, z: 1.12}]} vh={960}>
+  <Camera f={f} k={[{f: 0, x: 565, y: 1090, z: 1.05}, {f: 190, x: 580, y: 1080, z: 1.12}]} vh={960}>
     <Kitchen f={f} foam={0} />
-    <Sprite def={PARENT_A} f={f} x={680} y={1820} scale={0.92} pose={withPose('idle', {armL: [20, 60], armR: [20, 60]})} expr={exprAt(f, [[0, 'focus'], [60, 'shock'], [120, 'horror']])} lookY={0.7} sweat={f > 100 ? 1 : 0} />
-    <Table y={1380} />
-    <Laptop x={680} y={1400} f={f} />
+    <Sprite def={PARENT_A} f={f} x={680} y={1700} scale={0.92} pose={withPose('idle', {armL: [20, 60], armR: [20, 60]})} expr={exprAt(f, [[0, 'focus'], [60, 'shock'], [120, 'horror']])} lookY={0.7} sweat={f > 100 ? 1 : 0} />
+    <Table y={1400} />
+    <Laptop x={680} y={1470} f={f} />
   </Camera>
 );
 
@@ -83,8 +83,8 @@ export const S04: React.FC = () => {
           k={[
             {f: B.wide, x: 540, y: 1100, z: 1.0},
             {f: B.kidPoint, x: 620, y: 1080, z: 1.08},
-            {f: B.look, x: 400, y: 1100, z: 1.1},
-            {f: 420, x: 420, y: 1100, z: 1.14},
+            {f: B.look, x: 495, y: 1100, z: 1.1},
+            {f: 420, x: 480, y: 1100, z: 1.14},
           ]}
           shakes={[{at: B.overflow + 30, dur: 12, amp: 8}]}
         >

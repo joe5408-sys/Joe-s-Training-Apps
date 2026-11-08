@@ -31,6 +31,14 @@ export const Camera: React.FC<{
     sy += o.y;
     sr += o.r;
   });
+  // Keep the view inside the set (no black borders), shake and roll included.
+  const rot = r + sr;
+  const mag = Math.hypot(sx, sy);
+  const zz = Math.max(z, vw / w, vh / h) * (1 + Math.abs(Math.sin((rot * Math.PI) / 180)) * 1.8) * (1 + (2.2 * mag) / Math.min(vw, vh));
+  const hw = vw / 2 / zz;
+  const hh = vh / 2 / zz;
+  const fx = clamp(x - sx / zz, hw, w - hw);
+  const fy = clamp(y - sy / zz, hh, h - hh);
   return (
     <div style={{position: 'absolute', left: 0, top: 0, width: vw, height: vh, overflow: 'hidden'}}>
       <div
@@ -41,7 +49,7 @@ export const Camera: React.FC<{
           left: 0,
           top: 0,
           transformOrigin: '0 0',
-          transform: `translate(${vw / 2 + sx}px, ${vh / 2 + sy}px) rotate(${r + sr}deg) scale(${z}) translate(${-x}px, ${-y}px)`,
+          transform: `translate(${vw / 2}px, ${vh / 2}px) rotate(${rot}deg) scale(${zz}) translate(${-fx}px, ${-fy}px)`,
         }}
       >
         {children}
