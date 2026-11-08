@@ -89,9 +89,9 @@ def to_phonemes(text, lang):
     return re.sub(r"\s+([?!.,;:])", r"\1", ph)
 
 
-def voice_fx(x, speaker):
+def voice_fx(x, speaker, fx=None):
     x = S.sos_filter(x, "high", 85)
-    if speaker == "auntie" or cfg["voices"][speaker].get("fx") == "phone":  # video-call colour, still intelligible
+    if fx == "phone":  # video-call / megaphone colour, still intelligible
         x = 0.75 * S.sos_filter(x, "band", [230, 5200], order=2) + 0.25 * x
     act = np.abs(x) > 0.02
     rms = np.sqrt(np.mean(x[act] ** 2)) if act.any() else 0.1
@@ -102,16 +102,95 @@ def voice_fx(x, speaker):
     return x
 
 
-clips = {}
+# Real recordings override TTS: put a file named after the line id (e.g. n01.m4a or e02_n01.wav)
+# in assets/voiceover/recorded/<ep>/ . Any format FFmpeg reads works (phone voice memos are fine).
+REC_DIR = os.path.join(ROOT, "assets/voiceover/recorded", EP)
+REC_EXT = (".wav", ".m4a", ".mp3", ".aac", ".ogg", ".opus", ".webm", ".flac", ".mp4", ".3gp", ".amr", ".caf")
+
+
+def find_recording(lid):
+    if not os.path.isdir(REC_DIR):
+        return None
+    for f in sorted(os.listdir(REC_DIR)):
+        stem, ext = os.path.splitext(f)
+        if ext.lower() in REC_EXT and stem.lower() in (lid.lower(), f"{EP}_{lid}".lower()):
+            return os.path.join(REC_DIR, f)
+    return None
+
+
+def load_recording(path):
+    """Decode, clean (high-pass, light denoise, gentle compression) and trim silence."""
+    chain = "highpass=f=80,afftdn=nf=-25,acompressor=threshold=-22dB:ratio=3:attack=5:release=90"
+    r = subprocess.run(["ffmpeg", "-v", "error", "-i", path, "-af", chain, "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
+                       capture_output=True, check=True)
+    x = np.frombuffer(r.stdout, dtype=np.float32).astype(np.float64)
+    env_ = np.convolve(np.abs(x), np.ones(480) / 480, mode="same")
+    on = np.where(env_ > env_.max() * 0.06)[0]
+    if len(on):
+        pad = int(0.06 * SR)
+        x = x[max(0, on[0] - pad): min(len(x), on[-1] + pad)]
+    fade = int(0.01 * SR)
+    x[:fade] *= np.linspace(0, 1, fade)
+    x[-fade:] *= np.linspace(1, 0, fade)
+    return x
+
+
+def split_takes(path, n):
+    """Split one long memo (lines separated by ~2 s pauses) into n takes; None if the count doesn't match."""
+    x = load_recording(path)
+    env_ = np.convolve(np.abs(x), np.ones(2400) / 2400, mode="same")
+    loud = env_ > env_.max() * 0.05
+    segs, start, quiet = [], None, 0
+    for i in range(0, len(x), 480):
+        if loud[i]:
+            if start is None:
+                start = i
+            quiet = 0
+        elif start is not None:
+            quiet += 480
+            if quiet >= int(1.2 * SR):
+                segs.append((start, i - quiet))
+                start, quiet = None, 0
+    if start is not None:
+        segs.append((start, len(x)))
+    segs = [(a, b) for a, b in segs if b - a > int(0.25 * SR)]
+    if len(segs) != n:
+        print(f"  WARN {os.path.basename(path)}: found {len(segs)} takes, expected {n} — not used (record separate files or re-take)")
+        return None
+    pad = int(0.05 * SR)
+    return [x[max(0, a - pad):b + pad] for a, b in segs]
+
+
+# Optional: one memo per character, e.g. auntie_all.m4a, lines in script order separated by pauses
+bulk = {}
+for spk in cfg["voices"]:
+    mine = [ln["id"] for ln in cfg["lines"] if ln["speaker"] == spk]
+    f_ = find_recording(f"{spk}_all")
+    if f_ and mine:
+        takes = split_takes(f_, len(mine))
+        if takes:
+            bulk.update({lid: (t, os.path.basename(f_)) for lid, t in zip(mine, takes)})
+
+clips, sources = {}, {}
 for ln in cfg["lines"]:
     v = cfg["voices"][ln["speaker"]]
-    ph = to_phonemes(ln["tts"], v["lang"])
-    audio, sr = kok.create(ph, voice=v["voice"], speed=v["speed"], lang=v["lang"], is_phonemes=True)
-    audio = signal.resample_poly(audio.astype(np.float64), SR, sr)
-    audio = voice_fx(audio, ln["speaker"]) * db(v.get("gain_db", 0))
+    rec = find_recording(ln["id"])
+    if rec or ln["id"] in bulk:
+        audio = load_recording(rec) if rec else bulk[ln["id"]][0]
+        rec = rec or bulk[ln["id"]][1]
+        sources[ln["id"]] = "recorded:" + os.path.basename(rec)
+        desc = f"REC {os.path.basename(rec)}"
+    else:
+        ph = to_phonemes(ln["tts"], v["lang"])
+        audio, sr = kok.create(ph, voice=v["voice"], speed=v["speed"], lang=v["lang"], is_phonemes=True)
+        audio = signal.resample_poly(audio.astype(np.float64), SR, sr)
+        sources[ln["id"]] = "tts:" + v["voice"]
+        desc = f"TTS {ph}"
+    audio = voice_fx(audio, ln["speaker"], ln.get("fx", v.get("fx"))) * db(v.get("gain_db", 0) if not rec else 0)
     sf.write(os.path.join(OUT_VO, f"{EP}_{ln['id']}_{ln['speaker']}.wav"), audio.astype(np.float32), SR)
     clips[ln["id"]] = audio
-    print(f"  {ln['id']:4s} {ln['speaker']:8s} {len(audio)/SR:5.2f}s  {ph}")
+    print(f"  {ln['id']:4s} {ln['speaker']:8s} {len(audio)/SR:5.2f}s  {desc}")
+print(f"  recorded lines: {sum(v.startswith('recorded') for v in sources.values())}/{len(sources)}")
 
 # ---------------------------------------------------------------- 2. placement
 print("== Placement")
@@ -338,7 +417,7 @@ for p in placed:
         t += d
     lines_out.append({"id": p["id"], "speaker": p["speaker"], "text": p["text"], "scene": p["scene"],
                       "start": round(p["start"], 3), "end": round(p["end"], 3), "from": sf_, "to": ef,
-                      "mouth": mouth_levels(clips[p["id"]]), "chunks": chunks})
+                      "mouth": mouth_levels(clips[p["id"]]), "chunks": chunks, "source": sources[p["id"]]})
 
 
 def ts(sec):
@@ -367,8 +446,9 @@ timeline = {
     "scenes": [{**s, "from": int(s["start"] * FPS), "to": int(s["end"] * FPS)} for s in cfg["scenes"]],
     "cues": {k: round(v * FPS) for k, v in cfg["cues"].items()},
     "lines": lines_out,
+    "speakers": {k: v["label"] for k, v in cfg["voices"].items() if v.get("label")},
 }
 json.dump(timeline, open(os.path.join(ROOT, f"src/data/{EP}.timeline.json"), "w"), separators=(",", ":"))
-json.dump({"placed": [{k: p[k] for k in ("id", "speaker", "start", "end", "scene")} for p in placed], "warnings": warnings, "loudness": meas},
+json.dump({"sources": sources, "placed": [{k: p[k] for k in ("id", "speaker", "start", "end", "scene")} for p in placed], "warnings": warnings, "loudness": meas},
           open(os.path.join(ROOT, f"output/previews/{EP}_audio_report.json"), "w"), indent=1)
 print("== Done:", srt_path)

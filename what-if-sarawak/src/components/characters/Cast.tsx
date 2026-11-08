@@ -8,8 +8,8 @@ import {Crown} from './Crown';
 /** AUNTIE — confident Kuching auntie on a video call. Bust; origin = bottom centre of shoulders. */
 export const Auntie: React.FC<{
   x: number; y: number; s?: number; expr?: Expr; point?: number; shake?: number;
-  speaker?: string; variant?: 'auntie' | 'queen' | 'grandma'; showArm?: boolean; crownDy?: number; crownR?: number;
-}> = ({x, y, s = 1, expr = 'angry', point = 0, shake = 0, speaker = 'auntie', variant = 'auntie', showArm = true, crownDy = 0, crownR = 0}) => {
+  speaker?: string; variant?: 'auntie' | 'queen' | 'grandma'; showArm?: boolean; crownDy?: number; crownR?: number; shades?: boolean; sweat?: boolean;
+}> = ({x, y, s = 1, expr = 'angry', point = 0, shake = 0, speaker = 'auntie', variant = 'auntie', showArm = true, crownDy = 0, crownR = 0, shades = false, sweat = false}) => {
   const abs = useAbsFrame();
   const m = mouthAt(speaker, abs);
   const talk = isTalking(speaker, abs);
@@ -70,6 +70,8 @@ export const Auntie: React.FC<{
         <circle cx={-36} cy={-338} r={30} fill="rgba(200,240,255,0.18)" stroke={frame} strokeWidth={6} />
         <circle cx={36} cy={-338} r={30} fill="rgba(200,240,255,0.18)" stroke={frame} strokeWidth={6} />
         <path d="M -6 -340 L 6 -340" stroke={frame} strokeWidth={6} />
+        {shades && <g><rect x={-74} y={-362} width={70} height={46} rx={14} fill="#111" stroke={OUT} strokeWidth={4} /><rect x={4} y={-362} width={70} height={46} rx={14} fill="#111" stroke={OUT} strokeWidth={4} /><path d="M -4 -346 L 4 -346" stroke="#111" strokeWidth={8} /><path d="M -60 -352 l 18 0" stroke="#fff" strokeWidth={4} opacity={0.6} /></g>}
+        {sweat && <SweatDrop x={86} y={-400} t={abs} />}
         <path d="M 0 -322 Q 10 -302 0 -296" stroke={OUT} strokeWidth={4} fill="none" />
         <ellipse cx={-56} cy={-292} rx={13} ry={7} fill="#e2707a" opacity={0.45} />
         <ellipse cx={56} cy={-292} rx={13} ry={7} fill="#e2707a" opacity={0.45} />

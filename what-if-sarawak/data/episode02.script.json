@@ -1,46 +1,42 @@
 {
   "episode": "E02",
-  "slug": "What_If_Sarawak_Kingdom",
+  "slug": "What_If_Kolo_Mee_Banned",
   "fiction_notice": [
-    20.3,
-    22.3
+    20.0,
+    22.0
   ],
-  "title": "What If Sarawak Was Its Own Kingdom?",
+  "title": "What If Kolo Mee Was Banned?",
   "fps": 30,
   "width": 1080,
   "height": 1920,
-  "notes": "Same rules as E01. Real history up to 1963; from scene 3 everything is fiction. Ending is deliberately a food debate (kolo mee vs laksa), not a political poll.",
+  "notes": "Written to be SPOKEN in Malaysian English. Narrator kept near 140-150 wpm with pauses before punchlines. Real recordings in assets/voiceover/recorded/e02/<id>.m4a replace TTS automatically. The ban is issued by a made-up 'Noodle Board' and covers every kolo mee (pork or halal chicken) - no religious angle.",
   "voices": {
     "narrator": {
       "voice": "af_heart",
       "lang": "en-us",
-      "speed": 1.1,
-      "gain_db": 0
-    },
-    "queen": {
-      "voice": "af_bella",
-      "lang": "en-us",
-      "speed": 1.08,
-      "gain_db": 2
-    },
-    "minister": {
-      "voice": "am_michael",
-      "lang": "en-us",
-      "speed": 1.08,
+      "speed": 1.0,
       "gain_db": 0
     },
     "officer": {
       "voice": "am_fenrir",
       "lang": "en-us",
-      "speed": 1.0,
-      "gain_db": 0
+      "speed": 0.95,
+      "gain_db": 0,
+      "label": "NOODLE BOARD OFFICER (fictional)"
     },
-    "grandma": {
-      "voice": "bf_lily",
+    "auntie": {
+      "voice": "af_bella",
+      "lang": "en-us",
+      "speed": 1.0,
+      "gain_db": 2,
+      "label": "AUNTIE"
+    },
+    "rajah": {
+      "voice": "bm_george",
       "lang": "en-gb",
       "speed": 0.95,
-      "gain_db": 2,
-      "fx": "phone"
+      "gain_db": 1,
+      "label": "RAJAH EDMUND (fictional)"
     }
   },
   "scenes": [
@@ -48,262 +44,264 @@
       "id": "s1",
       "name": "The Hook",
       "start": 0,
-      "end": 8.15,
-      "visuals": "Golden-hour Kuching: camera tilts down from the sky to a (fictional) coronation — Queen Auntie waves from the palace balcony, fireworks, hornbill-and-chopsticks flags. Hard cut to an airport immigration counter: 'Next! IC, please.' STAMP. Caption: real fact — Sarawak already runs its own immigration checks."
+      "end": 7,
+      "visuals": "Morning shophouse street in Kuching: queue at Auntie's stall, steaming bowls, birds. A Noodle Board officer with a megaphone: 'kolo mee is BANNED!' Red stamp, the whole street gasps."
     },
     {
       "id": "s2",
-      "name": "Real History",
-      "start": 8.15,
-      "end": 20.3,
-      "visuals": "REAL HISTORY badge. Parchment timeline: Brooke era ends 1946 → British Crown Colony. Regional map: Malaya, Singapore, Sabah and Sarawak light up together — '16 SEPT 1963 · MALAYSIA FORMED' (small note: Singapore separated in 1965). Sarawak piece wiggles: 'went solo?'"
+      "name": "Real Facts",
+      "start": 7,
+      "end": 20,
+      "visuals": "REAL FACTS badge. Hero bowl of kolo mee with call-outs (springy noodles, tossed dry, char siu — or chicken for halal). Then a laksa bowl with a quote card: 'Breakfast of the gods' — Anthony Bourdain, 2015."
     },
     {
       "id": "s3",
-      "name": "The Kingdom (fiction)",
-      "start": 20.3,
+      "name": "Day One (fiction)",
+      "start": 20,
       "end": 31,
-      "visuals": "ALTERNATE HISTORY — FICTION banner. Sarawak piece floats free and is stamped 'KINGDOM OF SARAWAK (fictional)'. The National Kolo Mee Cook-off: flaming woks, scoreboard, judges. Auntie wins; a crown drops onto her head; confetti; 'LONG LIVE QUEEN AUNTIE'."
+      "visuals": "ALTERNATE HISTORY — FICTION banner. 'DAY 1' card. Stalls under tarps: 'CLOSED · NOODLE BOARD ORDER (fictional)'. A sad uncle eats spaghetti topped with char siu. 'IT'S NOT THE SAME.'"
     },
     {
       "id": "s4",
-      "name": "Royal Decree",
+      "name": "Underground",
       "start": 31,
-      "end": 42.5,
-      "visuals": "Throne room styled like a golden kopitiam. The Premier asks for the first decree; the Queen bangs the table: 'Fix. The. Road. Lah!' Decree scroll unrolls. Road crew fills the pothole in one sparkle — FIXED ✓. Card: 'NEXT DAY'. A new pothole pops up right beside it; a car bounces."
+      "end": 43,
+      "visuals": "'DAY 3'. Night back alley, secret knock. A peephole slides open: Auntie in sunglasses, 'Psst… special laksa?'. Inside: a hidden wok kitchen, a menu board 'SPECIAL LAKSA (very dry)'."
     },
     {
       "id": "s5",
-      "name": "Ringgit Sarawak",
-      "start": 42.5,
-      "end": 53.5,
-      "visuals": "A banknote spins in: RINGGIT SARAWAK with Queen Auntie's portrait and a hornbill watermark (all fictional). Money-changer board: '1 RS = 1 BOWL OF KOLO MEE ▲'. Queen at her stall, outraged at the price board."
+      "name": "The Raid",
+      "start": 43,
+      "end": 56,
+      "visuals": "Torch beams. The officer inspects a 'laksa' with no soup. Sniff. Sweating Auntie: 'New recipe lah!'. Long stare… the officer pulls out a takeaway bag: 'Bungkus one for me.'"
     },
     {
       "id": "s6",
-      "name": "Balik Kampung",
-      "start": 53.5,
-      "end": 65,
-      "visuals": "Departure board: KUCHING → KUALA LUMPUR · INTERNATIONAL. Grandma video-calls from the Peninsula. Family group chat renamed '(diplomatic channel)', messages pop in with visa stamps."
+      "name": "Royal Cameo",
+      "start": 56,
+      "end": 66,
+      "visuals": "Rajah Edmund from Episode 1, in sunglasses and a cap with his crown poking out, sneaks to the secret stall: extra char siu. Label: 'ROYAL CAMEO (from Episode 1)'."
     },
     {
       "id": "s7",
       "name": "Reality Check",
-      "start": 65,
-      "end": 77,
-      "visuals": "Population counter ≈2.5 million (Census 2020: 2.45 million). A balance scale: OWN BUDGET on one pan; OWN BILLS on the other — army, airports, hospitals, embassies — tipping back and forth, unresolved."
+      "start": 66,
+      "end": 76,
+      "visuals": "A queue snakes around the block to a tiny secret door. The BAN sign sags, then falls over."
     },
     {
       "id": "s8",
       "name": "Final Punchline",
-      "start": 77,
+      "start": 76,
       "end": 90,
-      "visuals": "Night market: the Queen, crown on, back at her kolo mee stall with a queue. 'One great war…' — kolo mee vs laksa VS screen with lightning. End card: KOLO MEE 🍜 or LAKSA 🍲? COMMENT BELOW 👇. Camera tilts up into the golden sky that opens the video (loop)."
+      "visuals": "'DAY 7 · BAN LIFTED' street party with confetti… and everyone is holding laksa. Auntie: 'Aiyo! After all that?!'. End card KOLO MEE 🍜 or LAKSA 🍲? COMMENT BELOW. Loops to the morning street."
     }
   ],
   "lines": [
     {
       "id": "n01",
       "speaker": "narrator",
-      "at": 0.3,
-      "text": "What if Sarawak... was its own kingdom?",
-      "tts": "What if [Sarawak](/səɹˈɑːwak/)... was its own kingdom?"
+      "at": 0.4,
+      "text": "Kuching. Seven a.m. Everyone's having kolo mee.",
+      "tts": "Kuching. Seven A.M. Everyone's having [kolo mee](/kˈoʊloʊ mˈiː/).",
+      "direction": "Warm, relaxed, like describing a normal morning."
     },
     {
       "id": "o01",
       "speaker": "officer",
-      "at": 3.1,
-      "text": "Next! IC, please.",
-      "tts": "Next! I. C., please."
+      "fx": "phone",
+      "at": 3.3,
+      "text": "Attention! Starting today... kolo mee is BANNED!",
+      "tts": "Attention! Starting today... [kolo mee](/kˈoʊloʊ mˈiː/) is banned!",
+      "direction": "Megaphone announcement, very official, slow on 'BANNED'."
     },
     {
       "id": "n02",
       "speaker": "narrator",
-      "at": 4.5,
-      "text": "Plot twist: Sarawak already runs its own immigration checks.",
-      "tts": "Plot twist. [Sarawak](/səɹˈɑːwak/) already runs its own immigration checks."
+      "at": 7.4,
+      "text": "Okay. Real facts first.",
+      "tts": "Okay. Real facts first.",
+      "direction": "Calm, slightly amused."
     },
     {
       "id": "n03",
       "speaker": "narrator",
-      "at": 8.2,
-      "text": "Real history: in 1946, Sarawak became a British Crown Colony.",
-      "tts": "Real history. In nineteen forty-six, [Sarawak](/səɹˈɑːwak/) became a British Crown Colony."
+      "at": 9.0,
+      "text": "Kolo mee: Kuching's springy, dry-tossed noodles. Char siu on top... or chicken, for the halal version.",
+      "tts": "[Kolo mee](/kˈoʊloʊ mˈiː/). Kuching's springy, dry-tossed noodles. Char siu on top... or chicken, for the halal version.",
+      "direction": "Like a food show host, proud of local food."
     },
     {
       "id": "n04",
       "speaker": "narrator",
-      "at": 11.9,
-      "text": "Then in 1963, Sarawak, Sabah, Malaya and Singapore formed Malaysia.",
-      "tts": "Then in nineteen sixty-three, [Sarawak](/səɹˈɑːwak/), [Sabah](/sˈɑːbɑː/), Malaya and Singapore formed Malaysia."
+      "at": 15.2,
+      "text": "And Sarawak laksa? Anthony Bourdain called it 'breakfast of the gods'.",
+      "tts": "And [Sarawak](/səɹˈɑːwak/) [laksa](/lˈʌksə/)? Anthony Bourdain called it... breakfast of the gods.",
+      "direction": "Little pause before the quote."
     },
     {
       "id": "n05",
       "speaker": "narrator",
-      "at": 17.3,
-      "text": "But what if Sarawak... went solo?",
-      "tts": "But what if [Sarawak](/səɹˈɑːwak/)... went solo?"
+      "at": 20.3,
+      "text": "Now... the made-up part.",
+      "tts": "Now... the made-up part.",
+      "direction": "Lower, mysterious."
     },
     {
       "id": "n06",
       "speaker": "narrator",
-      "at": 20.45,
-      "text": "In this made-up timeline, Sarawak becomes its own kingdom.",
-      "tts": "In this made-up timeline, [Sarawak](/səɹˈɑːwak/) becomes its own kingdom."
+      "at": 22.4,
+      "text": "Day one. Every stall... closed.",
+      "tts": "Day one. Every stall... closed.",
+      "direction": "Dramatic, like a disaster movie."
     },
     {
       "id": "n07",
       "speaker": "narrator",
-      "at": 23.75,
-      "text": "And the monarch? Picked every ten years... by a kolo mee cook-off!",
-      "tts": "And the monarch? Picked every ten years... by a [kolo mee](/kˈoʊloʊ mˈiː/) cook-off!"
-    },
-    {
-      "id": "q01",
-      "speaker": "queen",
-      "at": 27.5,
-      "text": "Aiyo! I win ah?",
-      "tts": "[Aiyo](/aɪjˈoʊ/)! I win ah?"
+      "at": 25.2,
+      "text": "People try spaghetti. With char siu.",
+      "tts": "People try spaghetti. With char siu.",
+      "direction": "Deadpan."
     },
     {
       "id": "n08",
       "speaker": "narrator",
-      "at": 28.9,
-      "text": "Long live Queen Auntie!",
-      "tts": "Long live, Queen Auntie!"
-    },
-    {
-      "id": "p01",
-      "speaker": "minister",
-      "at": 31.3,
-      "text": "Your Majesty, your first royal decree?",
-      "tts": "Your Majesty... your first royal decree?"
-    },
-    {
-      "id": "q02",
-      "speaker": "queen",
-      "at": 34.0,
-      "text": "Fix. The. Road. LAH!",
-      "tts": "Fix. The. Road. Lah!"
+      "at": 28.4,
+      "text": "It's... not the same.",
+      "tts": "It's... not the same.",
+      "direction": "Sad, slow."
     },
     {
       "id": "n09",
       "speaker": "narrator",
-      "at": 37.1,
-      "text": "Finally! The road is fixed...",
-      "tts": "Finally! The road is fixed..."
+      "at": 31.4,
+      "text": "Day three. Kolo mee goes... underground.",
+      "tts": "Day three. [Kolo mee](/kˈoʊloʊ mˈiː/) goes... underground.",
+      "direction": "Spy-movie voice."
+    },
+    {
+      "id": "a01",
+      "speaker": "auntie",
+      "at": 35.0,
+      "text": "Psst! You want... 'special laksa'?",
+      "tts": "Psst! You want... special [laksa](/lˈʌksə/)?",
+      "direction": "Whispering, sneaky, eyebrows up."
     },
     {
       "id": "n10",
       "speaker": "narrator",
-      "at": 40.0,
-      "text": "...for one whole day.",
-      "tts": "for one whole day."
+      "at": 38.6,
+      "text": "'Special laksa.' Very special. Very... dry.",
+      "tts": "Special [laksa](/lˈʌksə/). Very special. Very... dry.",
+      "direction": "Knowing, sarcastic."
+    },
+    {
+      "id": "o02",
+      "speaker": "officer",
+      "at": 43.4,
+      "text": "Auntie. Why is your laksa... so dry?",
+      "tts": "Auntie. Why is your [laksa](/lˈʌksə/)... so dry?",
+      "direction": "Suspicious, slow, like a detective."
+    },
+    {
+      "id": "a02",
+      "speaker": "auntie",
+      "at": 47.4,
+      "text": "New recipe lah!",
+      "tts": "New recipe lah!",
+      "direction": "Fast, nervous, too cheerful."
+    },
+    {
+      "id": "o03",
+      "speaker": "officer",
+      "at": 51.6,
+      "text": "...Okay. Bungkus one for me.",
+      "tts": "Okay. [Bungkus](/bˈʊŋkʊs/) one for me.",
+      "direction": "After a long pause, quietly giving up. 'Bungkus' = takeaway."
+    },
+    {
+      "id": "r01",
+      "speaker": "rajah",
+      "at": 56.4,
+      "text": "One special laksa, extra char siu. Please... don't tell anyone.",
+      "tts": "One special [laksa](/lˈʌksə/), extra char siu. Please... don't tell anyone.",
+      "direction": "Posh but whispering, embarrassed."
     },
     {
       "id": "n11",
       "speaker": "narrator",
-      "at": 42.8,
-      "text": "New kingdom, new money: the Ringgit Sarawak.",
-      "tts": "New kingdom, new money. The [Ringgit](/ɹˈɪŋɡɪt/) [Sarawak](/səɹˈɑːwak/)."
+      "at": 61.4,
+      "text": "Even a Rajah from another timeline can't resist.",
+      "tts": "Even a Rajah from another timeline... can't resist.",
+      "direction": "Amused."
     },
     {
       "id": "n12",
       "speaker": "narrator",
-      "at": 46.2,
-      "text": "Official exchange rate? One note... one bowl of kolo mee.",
-      "tts": "Official exchange rate? One note... one bowl of [kolo mee](/kˈoʊloʊ mˈiː/)."
-    },
-    {
-      "id": "q03",
-      "speaker": "queen",
-      "at": 50.1,
-      "text": "Price go up again? Who approve?!",
-      "tts": "Price go up again? Who approve?"
+      "at": 66.4,
+      "text": "So... would a ban really work?",
+      "tts": "So... would a ban really work?",
+      "direction": "Thoughtful."
     },
     {
       "id": "n13",
       "speaker": "narrator",
-      "at": 53.8,
-      "text": "Going back to the Peninsula for the holidays? That's international travel now.",
-      "tts": "Going back to the Peninsula for the holidays? That's international travel now."
-    },
-    {
-      "id": "g01",
-      "speaker": "grandma",
-      "at": 58.9,
-      "text": "Come home for the holidays... and bring your passport!",
-      "tts": "Come home for the holidays... and bring your passport!"
+      "at": 69.6,
+      "text": "Ban something people love... and they'll find another way.",
+      "tts": "Ban something people love... and they'll find another way.",
+      "direction": "Wise, with a smile."
     },
     {
       "id": "n14",
       "speaker": "narrator",
-      "at": 62.1,
-      "text": "The family group chat is now a diplomatic channel.",
-      "tts": "The family group chat is now... a diplomatic channel."
+      "at": 76.4,
+      "text": "Day seven. The ban is lifted!",
+      "tts": "Day seven. The ban is lifted!",
+      "direction": "Big, celebratory."
     },
     {
       "id": "n15",
       "speaker": "narrator",
-      "at": 65.4,
-      "text": "But would a kingdom of about two and a half million people really be better off?",
-      "tts": "But would a kingdom of about two and a half million people, really be better off?"
+      "at": 79.0,
+      "text": "And everyone celebrates... with laksa.",
+      "tts": "And everyone celebrates... with [laksa](/lˈʌksə/).",
+      "direction": "Pause, then deadpan twist."
+    },
+    {
+      "id": "a03",
+      "speaker": "auntie",
+      "at": 82.0,
+      "text": "Aiyo! After all that?!",
+      "tts": "[Aiyo](/aɪjˈoʊ/)! After all that?",
+      "direction": "Outraged, loud."
     },
     {
       "id": "n16",
       "speaker": "narrator",
-      "at": 70.8,
-      "text": "More say over its own money... but also every bill to pay by itself.",
-      "tts": "More say over its own money... but also, every bill to pay by itself."
-    },
-    {
-      "id": "q04",
-      "speaker": "queen",
-      "at": 77.5,
-      "text": "Royal duties done. Now, back to my stall!",
-      "tts": "Royal duties done. Now, back to my stall!"
-    },
-    {
-      "id": "n17",
-      "speaker": "narrator",
-      "at": 80.4,
-      "text": "Kingdom or not, Sarawak would still fight one great war...",
-      "tts": "Kingdom or not, [Sarawak](/səɹˈɑːwak/) would still fight one great war..."
-    },
-    {
-      "id": "n18",
-      "speaker": "narrator",
-      "at": 84.4,
-      "text": "Kolo mee, or laksa? Comment below!",
-      "tts": "[Kolo mee](/kˈoʊloʊ mˈiː/)... or [laksa](/lˈʌksə/)? Comment below!"
+      "at": 84.8,
+      "text": "Kolo mee or laksa? Comment below!",
+      "tts": "[Kolo mee](/kˈoʊloʊ mˈiː/)... or [laksa](/lˈʌksə/)? Comment below!",
+      "direction": "Upbeat, inviting."
     }
   ],
   "cues": {
-    "cut": 2.95,
-    "stamp": 4.35,
-    "win": 27.35,
-    "roadfix": 36.1,
-    "pothole": 39.55,
-    "kaching": 42.6,
-    "ring": 58.3,
-    "war": 83.0,
-    "endcard": 84.0
+    "ban": 6.3,
+    "knock": 33.6,
+    "sniff": 46.2,
+    "lifted": 76.3,
+    "endcard": 84.5
   },
   "teaser": [
     [
       0,
-      8.1
+      7.0
     ],
     [
-      27.3,
-      30.9
+      43.2,
+      55.4
     ],
     [
-      31.2,
-      41.3
-    ],
-    [
-      80.3,
+      76.2,
       88.0
     ]
   ]

@@ -21,7 +21,7 @@ export const Episode: React.FC<{episode?: string; withAudio?: boolean}> = ({epis
         ) : null;
       })}
       <Vignette strength={0.45} />
-      <RealBadge from={b.real[0]} to={b.real[1]} />
+      <RealBadge from={b.real[0]} to={b.real[1]} label={b.realLabel} />
       <FictionBadge from={b.fiction[0]} to={b.fiction[1]} />
       <Subtitles />
       {withAudio && <Audio src={staticFile(TL.audio)} />}

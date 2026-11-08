@@ -32,25 +32,24 @@ Team Rajah 👑 atau Team Reality 🇲🇾? Komen di bawah!
 
 ---
 
-# Social media copy — E02 "What if Sarawak was its own kingdom?"
+# Social media copy — E02 "What if kolo mee was banned?"
 
-Tone note: keep the comment prompt on food. Pin the sources comment. Avoid adding political hashtags.
+(The earlier E02 draft, "What if Sarawak was its own kingdom?", was replaced; it is kept in output/archive/ and git history.)
 
 ## TikTok / Reels / Threads
-**What if Sarawak was its own kingdom? 👑🍜**
-The new monarch is chosen by… a kolo mee cook-off. 😅
-ALTERNATE HISTORY — FICTION. Real: Sarawak co-founded Malaysia in 1963 (and yes, we really do have our own immigration checks).
-Most important question: KOLO MEE 🍜 or LAKSA 🍲? 👇
-#Sarawak #Kuching #KoloMee #SarawakLaksa #WhatIf #AlternateHistory #Animation #Comedy
+**What if kolo mee was BANNED? 🍜🚫**
+Day 1: spaghetti with char siu. Day 3: "special laksa" (very dry). Day 7… 😅
+Fiction / parody. No real ban, no real Noodle Board.
+KOLO MEE 🍜 or LAKSA 🍲? Comment below 👇
+#Kuching #KoloMee #SarawakLaksa #Sarawak #MakanSarawak #WhatIf #Animation #Comedy
 
 ## YouTube Shorts
-Title: **What If Sarawak Was Its Own Kingdom? 👑 (Alternate History Comedy)**
-Description: In real history, Sarawak, Sabah, Malaya and Singapore formed Malaysia on 16 September 1963. In this FICTIONAL timeline, Sarawak goes solo… and picks its monarch with a kolo mee cook-off. Queen Auntie is an invented character. Everything after the 1963 divergence is fiction.
-Kolo mee or laksa? 👇 #Shorts #Sarawak
-
-Pinned comment (sources): UN Treaty Series vol. 750 (Malaysia Agreement); National Archives of Singapore (1965); DOSM Census 2020 (Sarawak 2.45 million).
+Title: **What If Kolo Mee Was Banned? 🍜🚫 (Kuching Comedy)**
+Description: A fictional "Noodle Board" bans kolo mee for a week. Kuching does not take it well. Real facts in the first 20 seconds; everything after that is parody.
+Kolo mee or laksa? 👇 #Shorts #Kuching
+Pinned comment (sources): Sarawak Tourism, "Breakfast of the Gods" (Bourdain on Sarawak laksa).
 
 ## Facebook Reels
-Kalau Sarawak jadi kerajaan sendiri… raja dipilih ikut pertandingan kolo mee? 😂👑
-Fiksyen / alternate history sahaja.
+Kalau kolo mee diharamkan seminggu… "special laksa" jadi kering? 😂🍜
+Parodi / fiksyen sahaja.
 Kolo mee 🍜 atau laksa 🍲? Komen di bawah!

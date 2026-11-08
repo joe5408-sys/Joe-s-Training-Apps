@@ -1,196 +1,207 @@
 {
+ "sources": {
+  "n01": "tts:af_heart",
+  "o01": "tts:am_fenrir",
+  "n02": "tts:af_heart",
+  "n03": "tts:af_heart",
+  "n04": "tts:af_heart",
+  "n05": "tts:af_heart",
+  "n06": "tts:af_heart",
+  "n07": "tts:af_heart",
+  "n08": "tts:af_heart",
+  "n09": "tts:af_heart",
+  "a01": "tts:af_bella",
+  "n10": "tts:af_heart",
+  "o02": "tts:am_fenrir",
+  "a02": "tts:af_bella",
+  "o03": "tts:am_fenrir",
+  "r01": "tts:bm_george",
+  "n11": "tts:af_heart",
+  "n12": "tts:af_heart",
+  "n13": "tts:af_heart",
+  "n14": "tts:af_heart",
+  "n15": "tts:af_heart",
+  "a03": "tts:af_bella",
+  "n16": "tts:af_heart"
+ },
  "placed": [
   {
    "id": "n01",
    "speaker": "narrator",
-   "start": 0.3,
-   "end": 2.412,
+   "start": 0.4,
+   "end": 3.792,
    "scene": "s1"
   },
   {
    "id": "o01",
    "speaker": "officer",
-   "start": 3.1,
-   "end": 4.4013333333333335,
+   "start": 3.912,
+   "end": 6.642666666666667,
    "scene": "s1"
   },
   {
    "id": "n02",
    "speaker": "narrator",
-   "start": 4.521333333333334,
-   "end": 8.105333333333334,
-   "scene": "s1"
+   "start": 7.4,
+   "end": 9.106666666666667,
+   "scene": "s2"
   },
   {
    "id": "n03",
    "speaker": "narrator",
-   "start": 8.225333333333333,
-   "end": 12.940000000000001,
+   "start": 9.226666666666667,
+   "end": 15.690666666666667,
    "scene": "s2"
   },
   {
    "id": "n04",
    "speaker": "narrator",
-   "start": 13.06,
-   "end": 18.09466666666667,
+   "start": 15.810666666666666,
+   "end": 20.034666666666666,
    "scene": "s2"
   },
   {
    "id": "n05",
    "speaker": "narrator",
-   "start": 18.21466666666667,
-   "end": 20.092000000000002,
-   "scene": "s2"
+   "start": 20.3,
+   "end": 21.814666666666668,
+   "scene": "s3"
   },
   {
    "id": "n06",
    "speaker": "narrator",
-   "start": 20.45,
-   "end": 23.671333333333333,
+   "start": 22.4,
+   "end": 24.53333333333333,
    "scene": "s3"
   },
   {
    "id": "n07",
    "speaker": "narrator",
-   "start": 23.791333333333334,
-   "end": 27.39666666666667,
-   "scene": "s3"
-  },
-  {
-   "id": "q01",
-   "speaker": "queen",
-   "start": 27.51666666666667,
-   "end": 28.818,
+   "start": 25.2,
+   "end": 27.525333333333332,
    "scene": "s3"
   },
   {
    "id": "n08",
    "speaker": "narrator",
-   "start": 28.938000000000002,
-   "end": 30.26066666666667,
+   "start": 28.4,
+   "end": 29.57333333333333,
    "scene": "s3"
-  },
-  {
-   "id": "p01",
-   "speaker": "minister",
-   "start": 31.3,
-   "end": 33.988,
-   "scene": "s4"
-  },
-  {
-   "id": "q02",
-   "speaker": "queen",
-   "start": 34.108,
-   "end": 35.53733333333333,
-   "scene": "s4"
   },
   {
    "id": "n09",
    "speaker": "narrator",
-   "start": 37.1,
-   "end": 38.764,
+   "start": 31.4,
+   "end": 33.98133333333333,
+   "scene": "s4"
+  },
+  {
+   "id": "a01",
+   "speaker": "auntie",
+   "start": 35.0,
+   "end": 37.00533333333333,
    "scene": "s4"
   },
   {
    "id": "n10",
    "speaker": "narrator",
-   "start": 40.0,
-   "end": 41.088,
+   "start": 38.6,
+   "end": 41.501333333333335,
    "scene": "s4"
+  },
+  {
+   "id": "o02",
+   "speaker": "officer",
+   "start": 43.4,
+   "end": 45.448,
+   "scene": "s5"
+  },
+  {
+   "id": "a02",
+   "speaker": "auntie",
+   "start": 47.4,
+   "end": 48.40266666666667,
+   "scene": "s5"
+  },
+  {
+   "id": "o03",
+   "speaker": "officer",
+   "start": 51.6,
+   "end": 53.178666666666665,
+   "scene": "s5"
+  },
+  {
+   "id": "r01",
+   "speaker": "rajah",
+   "start": 56.4,
+   "end": 61.050666666666665,
+   "scene": "s6"
   },
   {
    "id": "n11",
    "speaker": "narrator",
-   "start": 42.8,
-   "end": 45.168,
-   "scene": "s5"
+   "start": 61.4,
+   "end": 64.664,
+   "scene": "s6"
   },
   {
    "id": "n12",
    "speaker": "narrator",
-   "start": 46.2,
-   "end": 49.528000000000006,
-   "scene": "s5"
-  },
-  {
-   "id": "q03",
-   "speaker": "queen",
-   "start": 50.1,
-   "end": 51.934666666666665,
-   "scene": "s5"
+   "start": 66.4,
+   "end": 68.0,
+   "scene": "s7"
   },
   {
    "id": "n13",
    "speaker": "narrator",
-   "start": 53.8,
-   "end": 57.87466666666666,
-   "scene": "s6"
-  },
-  {
-   "id": "g01",
-   "speaker": "grandma",
-   "start": 58.9,
-   "end": 61.80133333333333,
-   "scene": "s6"
+   "start": 69.6,
+   "end": 72.56533333333333,
+   "scene": "s7"
   },
   {
    "id": "n14",
    "speaker": "narrator",
-   "start": 62.1,
-   "end": 64.916,
-   "scene": "s6"
+   "start": 76.4,
+   "end": 78.32000000000001,
+   "scene": "s8"
   },
   {
    "id": "n15",
    "speaker": "narrator",
-   "start": 65.4,
-   "end": 69.19733333333333,
-   "scene": "s7"
+   "start": 79.0,
+   "end": 81.34666666666666,
+   "scene": "s8"
+  },
+  {
+   "id": "a03",
+   "speaker": "auntie",
+   "start": 82.0,
+   "end": 83.664,
+   "scene": "s8"
   },
   {
    "id": "n16",
    "speaker": "narrator",
-   "start": 70.8,
-   "end": 75.024,
-   "scene": "s7"
-  },
-  {
-   "id": "q04",
-   "speaker": "queen",
-   "start": 77.5,
-   "end": 80.10266666666666,
-   "scene": "s8"
-  },
-  {
-   "id": "n17",
-   "speaker": "narrator",
-   "start": 80.4,
-   "end": 83.64266666666667,
-   "scene": "s8"
-  },
-  {
-   "id": "n18",
-   "speaker": "narrator",
-   "start": 84.4,
-   "end": 86.72533333333334,
+   "start": 84.8,
+   "end": 87.31733333333332,
    "scene": "s8"
   }
  ],
  "warnings": [
-  "n04 pushed 1.16s later",
-  "n05 pushed 0.91s later",
-  "q02 pushed 0.11s later"
+  "o01 pushed 0.61s later",
+  "n03 pushed 0.23s later",
+  "n04 pushed 0.61s later"
  ],
  "loudness": {
-  "input_i": "-18.42",
-  "input_tp": "-0.90",
-  "input_lra": "3.60",
-  "input_thresh": "-28.79",
-  "output_i": "-14.68",
+  "input_i": "-19.57",
+  "input_tp": "-0.91",
+  "input_lra": "4.80",
+  "input_thresh": "-29.90",
+  "output_i": "-14.74",
   "output_tp": "-1.50",
-  "output_lra": "3.30",
-  "output_thresh": "-25.01",
+  "output_lra": "3.60",
+  "output_thresh": "-24.92",
   "normalization_type": "dynamic",
-  "target_offset": "0.68"
+  "target_offset": "0.74"
  }
 }

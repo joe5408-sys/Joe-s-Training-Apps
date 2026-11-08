@@ -3,16 +3,17 @@
 | Episode | Title | Folder |
 |---|---|---|
 | E01 | What If the Brooke Family Still Governed Sarawak? | `output/final/E01/` |
-| E02 | What If Sarawak Was Its Own Kingdom? | `output/final/E02/` |
+| E02 | What If Kolo Mee Was Banned? | `output/final/E02/` |
+| (E02 v1, replaced) | What If Sarawak Was Its Own Kingdom? | `output/archive/E02_v1_own_kingdom/` |
 
 Each episode is a ~90-second vertical (9:16) animated alternate-history comedy, produced entirely from code:
 Remotion (React/TypeScript) for animation, Three.js for the 3D crown, Kokoro TTS for voices,
 and an original procedural synthesizer (numpy/scipy) for music and sound effects.
 
-> Everything after each episode's divergence point is **fiction** (E01: May 1946; E02: 1963). Rajah Edmund and Queen Auntie are invented characters.
-> Sources: `research/history_sources.md` (E01), `research/e02_history_sources.md` (E02).
+> Everything after each episode's divergence point is **fiction** (E01: May 1946; E02: from 20 s, the 'ban'). Rajah Edmund, Auntie and the Noodle Board are invented.
+> Sources: `research/history_sources.md` (E01), `research/e02_sources.md` (E02).
 
-## Deliverables (`output/final/EXX/`, shown for E01; E02 files use the slug `What_If_Sarawak_Kingdom_E02`)
+## Deliverables (`output/final/EXX/`, shown for E01; E02 files use the slug `What_If_Kolo_Mee_Banned_E02`)
 | File | What |
 |---|---|
 | `What_If_Brooke_Sarawak_E01_1080x1920.mp4` | Master: H.264 CRF 18, yuv420p, 30 fps, AAC 48 kHz stereo, fast-start, 90 s |
@@ -54,6 +55,11 @@ COMP=Episode02 node tests/preview_frames.mjs output/previews/frames 0.5 120 900 
 ```
 Teaser cut points live in each script JSON under `"teaser"`.
 Browser: set `REMOTION_BROWSER` if Chromium is not at the path in `remotion.config.ts`.
+
+## Recording real voices
+1. Generate the sheet: `python3 pipeline/make_recording_sheet.py data/episode02.script.json` → `docs/recording/E02_recording_sheet.md`.
+2. Put recordings in `assets/voiceover/recorded/<ep>/`: either one file per line (`a01.m4a`) or one memo per character (`auntie_all.m4a`, lines in sheet order with ~2 s pauses; it is split automatically).
+3. `python3 pipeline/build_audio.py data/episode02.script.json` then `SKIP_AUDIO=1 bash pipeline/render.sh E02`. Recordings are cleaned (high-pass, light denoise, compression), trimmed and loudness-matched; lip-sync, subtitles and scene timing follow the new lengths. Lines without a recording keep the synthetic voice.
 
 ## Making the next episode (E03)
 1. Copy `data/episode02.script.json` → `episode03.script.json`; set `episode`, `slug`, lines, voices, scenes, cues, teaser.

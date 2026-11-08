@@ -10,7 +10,7 @@ export type Line = {
 export type Timeline = {
   episode: string; slug?: string; title: string; fps: number; width: number; height: number; durationInFrames: number;
   audio: string; scenes: {id: string; name: string; from: number; to: number}[];
-  cues: Record<string, number>; lines: Line[];
+  cues: Record<string, number>; lines: Line[]; speakers?: Record<string, string>;
 };
 
 // Active episode timeline. `export let` is a live binding: the episode composition calls

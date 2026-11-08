@@ -1,0 +1,310 @@
+{
+  "episode": "E02",
+  "slug": "What_If_Sarawak_Kingdom",
+  "fiction_notice": [
+    20.3,
+    22.3
+  ],
+  "title": "What If Sarawak Was Its Own Kingdom?",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "notes": "Same rules as E01. Real history up to 1963; from scene 3 everything is fiction. Ending is deliberately a food debate (kolo mee vs laksa), not a political poll.",
+  "voices": {
+    "narrator": {
+      "voice": "af_heart",
+      "lang": "en-us",
+      "speed": 1.1,
+      "gain_db": 0
+    },
+    "queen": {
+      "voice": "af_bella",
+      "lang": "en-us",
+      "speed": 1.08,
+      "gain_db": 2
+    },
+    "minister": {
+      "voice": "am_michael",
+      "lang": "en-us",
+      "speed": 1.08,
+      "gain_db": 0
+    },
+    "officer": {
+      "voice": "am_fenrir",
+      "lang": "en-us",
+      "speed": 1.0,
+      "gain_db": 0
+    },
+    "grandma": {
+      "voice": "bf_lily",
+      "lang": "en-gb",
+      "speed": 0.95,
+      "gain_db": 2,
+      "fx": "phone"
+    }
+  },
+  "scenes": [
+    {
+      "id": "s1",
+      "name": "The Hook",
+      "start": 0,
+      "end": 8.15,
+      "visuals": "Golden-hour Kuching: camera tilts down from the sky to a (fictional) coronation — Queen Auntie waves from the palace balcony, fireworks, hornbill-and-chopsticks flags. Hard cut to an airport immigration counter: 'Next! IC, please.' STAMP. Caption: real fact — Sarawak already runs its own immigration checks."
+    },
+    {
+      "id": "s2",
+      "name": "Real History",
+      "start": 8.15,
+      "end": 20.3,
+      "visuals": "REAL HISTORY badge. Parchment timeline: Brooke era ends 1946 → British Crown Colony. Regional map: Malaya, Singapore, Sabah and Sarawak light up together — '16 SEPT 1963 · MALAYSIA FORMED' (small note: Singapore separated in 1965). Sarawak piece wiggles: 'went solo?'"
+    },
+    {
+      "id": "s3",
+      "name": "The Kingdom (fiction)",
+      "start": 20.3,
+      "end": 31,
+      "visuals": "ALTERNATE HISTORY — FICTION banner. Sarawak piece floats free and is stamped 'KINGDOM OF SARAWAK (fictional)'. The National Kolo Mee Cook-off: flaming woks, scoreboard, judges. Auntie wins; a crown drops onto her head; confetti; 'LONG LIVE QUEEN AUNTIE'."
+    },
+    {
+      "id": "s4",
+      "name": "Royal Decree",
+      "start": 31,
+      "end": 42.5,
+      "visuals": "Throne room styled like a golden kopitiam. The Premier asks for the first decree; the Queen bangs the table: 'Fix. The. Road. Lah!' Decree scroll unrolls. Road crew fills the pothole in one sparkle — FIXED ✓. Card: 'NEXT DAY'. A new pothole pops up right beside it; a car bounces."
+    },
+    {
+      "id": "s5",
+      "name": "Ringgit Sarawak",
+      "start": 42.5,
+      "end": 53.5,
+      "visuals": "A banknote spins in: RINGGIT SARAWAK with Queen Auntie's portrait and a hornbill watermark (all fictional). Money-changer board: '1 RS = 1 BOWL OF KOLO MEE ▲'. Queen at her stall, outraged at the price board."
+    },
+    {
+      "id": "s6",
+      "name": "Balik Kampung",
+      "start": 53.5,
+      "end": 65,
+      "visuals": "Departure board: KUCHING → KUALA LUMPUR · INTERNATIONAL. Grandma video-calls from the Peninsula. Family group chat renamed '(diplomatic channel)', messages pop in with visa stamps."
+    },
+    {
+      "id": "s7",
+      "name": "Reality Check",
+      "start": 65,
+      "end": 77,
+      "visuals": "Population counter ≈2.5 million (Census 2020: 2.45 million). A balance scale: OWN BUDGET on one pan; OWN BILLS on the other — army, airports, hospitals, embassies — tipping back and forth, unresolved."
+    },
+    {
+      "id": "s8",
+      "name": "Final Punchline",
+      "start": 77,
+      "end": 90,
+      "visuals": "Night market: the Queen, crown on, back at her kolo mee stall with a queue. 'One great war…' — kolo mee vs laksa VS screen with lightning. End card: KOLO MEE 🍜 or LAKSA 🍲? COMMENT BELOW 👇. Camera tilts up into the golden sky that opens the video (loop)."
+    }
+  ],
+  "lines": [
+    {
+      "id": "n01",
+      "speaker": "narrator",
+      "at": 0.3,
+      "text": "What if Sarawak... was its own kingdom?",
+      "tts": "What if [Sarawak](/səɹˈɑːwak/)... was its own kingdom?"
+    },
+    {
+      "id": "o01",
+      "speaker": "officer",
+      "at": 3.1,
+      "text": "Next! IC, please.",
+      "tts": "Next! I. C., please."
+    },
+    {
+      "id": "n02",
+      "speaker": "narrator",
+      "at": 4.5,
+      "text": "Plot twist: Sarawak already runs its own immigration checks.",
+      "tts": "Plot twist. [Sarawak](/səɹˈɑːwak/) already runs its own immigration checks."
+    },
+    {
+      "id": "n03",
+      "speaker": "narrator",
+      "at": 8.2,
+      "text": "Real history: in 1946, Sarawak became a British Crown Colony.",
+      "tts": "Real history. In nineteen forty-six, [Sarawak](/səɹˈɑːwak/) became a British Crown Colony."
+    },
+    {
+      "id": "n04",
+      "speaker": "narrator",
+      "at": 11.9,
+      "text": "Then in 1963, Sarawak, Sabah, Malaya and Singapore formed Malaysia.",
+      "tts": "Then in nineteen sixty-three, [Sarawak](/səɹˈɑːwak/), [Sabah](/sˈɑːbɑː/), Malaya and Singapore formed Malaysia."
+    },
+    {
+      "id": "n05",
+      "speaker": "narrator",
+      "at": 17.3,
+      "text": "But what if Sarawak... went solo?",
+      "tts": "But what if [Sarawak](/səɹˈɑːwak/)... went solo?"
+    },
+    {
+      "id": "n06",
+      "speaker": "narrator",
+      "at": 20.45,
+      "text": "In this made-up timeline, Sarawak becomes its own kingdom.",
+      "tts": "In this made-up timeline, [Sarawak](/səɹˈɑːwak/) becomes its own kingdom."
+    },
+    {
+      "id": "n07",
+      "speaker": "narrator",
+      "at": 23.75,
+      "text": "And the monarch? Picked every ten years... by a kolo mee cook-off!",
+      "tts": "And the monarch? Picked every ten years... by a [kolo mee](/kˈoʊloʊ mˈiː/) cook-off!"
+    },
+    {
+      "id": "q01",
+      "speaker": "queen",
+      "at": 27.5,
+      "text": "Aiyo! I win ah?",
+      "tts": "[Aiyo](/aɪjˈoʊ/)! I win ah?"
+    },
+    {
+      "id": "n08",
+      "speaker": "narrator",
+      "at": 28.9,
+      "text": "Long live Queen Auntie!",
+      "tts": "Long live, Queen Auntie!"
+    },
+    {
+      "id": "p01",
+      "speaker": "minister",
+      "at": 31.3,
+      "text": "Your Majesty, your first royal decree?",
+      "tts": "Your Majesty... your first royal decree?"
+    },
+    {
+      "id": "q02",
+      "speaker": "queen",
+      "at": 34.0,
+      "text": "Fix. The. Road. LAH!",
+      "tts": "Fix. The. Road. Lah!"
+    },
+    {
+      "id": "n09",
+      "speaker": "narrator",
+      "at": 37.1,
+      "text": "Finally! The road is fixed...",
+      "tts": "Finally! The road is fixed..."
+    },
+    {
+      "id": "n10",
+      "speaker": "narrator",
+      "at": 40.0,
+      "text": "...for one whole day.",
+      "tts": "for one whole day."
+    },
+    {
+      "id": "n11",
+      "speaker": "narrator",
+      "at": 42.8,
+      "text": "New kingdom, new money: the Ringgit Sarawak.",
+      "tts": "New kingdom, new money. The [Ringgit](/ɹˈɪŋɡɪt/) [Sarawak](/səɹˈɑːwak/)."
+    },
+    {
+      "id": "n12",
+      "speaker": "narrator",
+      "at": 46.2,
+      "text": "Official exchange rate? One note... one bowl of kolo mee.",
+      "tts": "Official exchange rate? One note... one bowl of [kolo mee](/kˈoʊloʊ mˈiː/)."
+    },
+    {
+      "id": "q03",
+      "speaker": "queen",
+      "at": 50.1,
+      "text": "Price go up again? Who approve?!",
+      "tts": "Price go up again? Who approve?"
+    },
+    {
+      "id": "n13",
+      "speaker": "narrator",
+      "at": 53.8,
+      "text": "Going back to the Peninsula for the holidays? That's international travel now.",
+      "tts": "Going back to the Peninsula for the holidays? That's international travel now."
+    },
+    {
+      "id": "g01",
+      "speaker": "grandma",
+      "at": 58.9,
+      "text": "Come home for the holidays... and bring your passport!",
+      "tts": "Come home for the holidays... and bring your passport!"
+    },
+    {
+      "id": "n14",
+      "speaker": "narrator",
+      "at": 62.1,
+      "text": "The family group chat is now a diplomatic channel.",
+      "tts": "The family group chat is now... a diplomatic channel."
+    },
+    {
+      "id": "n15",
+      "speaker": "narrator",
+      "at": 65.4,
+      "text": "But would a kingdom of about two and a half million people really be better off?",
+      "tts": "But would a kingdom of about two and a half million people, really be better off?"
+    },
+    {
+      "id": "n16",
+      "speaker": "narrator",
+      "at": 70.8,
+      "text": "More say over its own money... but also every bill to pay by itself.",
+      "tts": "More say over its own money... but also, every bill to pay by itself."
+    },
+    {
+      "id": "q04",
+      "speaker": "queen",
+      "at": 77.5,
+      "text": "Royal duties done. Now, back to my stall!",
+      "tts": "Royal duties done. Now, back to my stall!"
+    },
+    {
+      "id": "n17",
+      "speaker": "narrator",
+      "at": 80.4,
+      "text": "Kingdom or not, Sarawak would still fight one great war...",
+      "tts": "Kingdom or not, [Sarawak](/səɹˈɑːwak/) would still fight one great war..."
+    },
+    {
+      "id": "n18",
+      "speaker": "narrator",
+      "at": 84.4,
+      "text": "Kolo mee, or laksa? Comment below!",
+      "tts": "[Kolo mee](/kˈoʊloʊ mˈiː/)... or [laksa](/lˈʌksə/)? Comment below!"
+    }
+  ],
+  "cues": {
+    "cut": 2.95,
+    "stamp": 4.35,
+    "win": 27.35,
+    "roadfix": 36.1,
+    "pothole": 39.55,
+    "kaching": 42.6,
+    "ring": 58.3,
+    "war": 83.0,
+    "endcard": 84.0
+  },
+  "teaser": [
+    [
+      0,
+      8.1
+    ],
+    [
+      27.3,
+      30.9
+    ],
+    [
+      31.2,
+      41.3
+    ],
+    [
+      80.3,
+      88.0
+    ]
+  ]
+}

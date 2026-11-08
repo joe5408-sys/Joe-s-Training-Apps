@@ -8,7 +8,7 @@ export type RajahProps = {
   x: number; y: number; s?: number; flip?: boolean; expr?: Expr; mouth?: number;
   armL?: number; armR?: number; legL?: number; legR?: number; lean?: number; headTilt?: number;
   crownDx?: number; crownDy?: number; crownR?: number; showCrown?: boolean; look?: number; lookY?: number;
-  sweat?: boolean; bob?: number; jitter?: number; holdGlass?: boolean;
+  sweat?: boolean; bob?: number; jitter?: number; holdGlass?: boolean; shades?: boolean; cap?: boolean;
 };
 
 /**
@@ -19,7 +19,7 @@ export type RajahProps = {
  */
 export const Rajah: React.FC<RajahProps> = ({
   x, y, s = 1, flip, expr = 'proud', mouth, armL = 8, armR = -8, legL = 0, legR = 0, lean = 0, headTilt = 0,
-  crownDx = 0, crownDy = 0, crownR = 0, showCrown = true, look = 0, lookY = 0, sweat, bob = 0, jitter = 0, holdGlass,
+  crownDx = 0, crownDy = 0, crownR = 0, showCrown = true, look = 0, lookY = 0, sweat, bob = 0, jitter = 0, holdGlass, shades, cap,
 }) => {
   const abs = useAbsFrame();
   const m = mouth ?? mouthAt('rajah', abs);
@@ -83,6 +83,7 @@ export const Rajah: React.FC<RajahProps> = ({
           <Brow x={32} y={-646} expr={expr} side={1} color={C.hair.rajah} />
           <Eye x={-32} y={-612} blink={blink} expr={expr} look={look} lookY={lookY} skin={skin} side={-1} jitter={jitter} />
           <Eye x={32} y={-612} blink={blink} expr={expr} look={look} lookY={lookY} skin={skin} side={1} jitter={jitter} />
+          {shades && <g><rect x={-66} y={-636} width={60} height={42} rx={12} fill="#111" stroke={OUT} strokeWidth={4} /><rect x={6} y={-636} width={60} height={42} rx={12} fill="#111" stroke={OUT} strokeWidth={4} /><path d="M -6 -620 L 6 -620" stroke="#111" strokeWidth={8} /><path d="M -54 -626 l 16 0" stroke="#fff" strokeWidth={4} opacity={0.6} /></g>}
           <path d="M 0 -606 Q 10 -585 0 -578" stroke={OUT} strokeWidth={4} fill="none" strokeLinecap="round" />
           {(expr === 'happy' || expr === 'proud') && <><ellipse cx={-52} cy={-575} rx={12} ry={7} fill="#f28b8b" opacity={0.5} /><ellipse cx={52} cy={-575} rx={12} ry={7} fill="#f28b8b" opacity={0.5} /></>}
           <Mouth x={0} y={-548} open={m} expr={expr} />
@@ -90,8 +91,9 @@ export const Rajah: React.FC<RajahProps> = ({
           <path d="M -4 -566 Q -30 -578 -48 -562 Q -56 -552 -64 -560 Q -50 -540 -26 -556 Q -10 -562 0 -558 Q 10 -562 26 -556 Q 50 -540 64 -560 Q 56 -552 48 -562 Q 30 -578 4 -566 Z"
             fill={C.hair.rajah} stroke={OUT} strokeWidth={3} transform={`translate(0 ${-m * 3})`} />
           {sweat && <SweatDrop x={70} y={-660} t={abs} />}
+          {cap && <g><path d="M -86 -650 Q -88 -742 0 -746 Q 88 -742 86 -650 Z" fill="#2a5d8f" stroke={OUT} strokeWidth={5} /><path d="M -86 -652 Q -40 -640 120 -652 L 128 -636 Q -40 -624 -88 -636 Z" fill="#1d466d" stroke={OUT} strokeWidth={4} /><circle cx={0} cy={-744} r={8} fill="#1d466d" /></g>}
           {showCrown && (
-            <g transform={`translate(${6 + crownDx} ${-716 + crownDy}) rotate(${crownR - 6})`}>
+            <g transform={`translate(${6 + crownDx} ${-716 + crownDy - (cap ? 44 : 0)}) rotate(${crownR - 6})`}>
               <Crown s={0.62} />
             </g>
           )}

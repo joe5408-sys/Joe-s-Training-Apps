@@ -1,4 +1,30 @@
 {
+ "sources": {
+  "n01": "tts:af_heart",
+  "n02": "tts:af_heart",
+  "n03": "tts:af_heart",
+  "n04": "tts:af_heart",
+  "n05": "tts:af_heart",
+  "n06": "tts:af_heart",
+  "n07": "tts:af_heart",
+  "n08": "tts:af_heart",
+  "n09": "tts:af_heart",
+  "n10": "tts:af_heart",
+  "d01": "tts:am_puck",
+  "r01": "tts:bm_george",
+  "n11": "tts:af_heart",
+  "m01": "tts:am_michael",
+  "a01": "tts:af_bella",
+  "r02": "tts:bm_george",
+  "n12": "tts:af_heart",
+  "m02": "tts:am_michael",
+  "n13": "tts:af_heart",
+  "n14": "tts:af_heart",
+  "n15": "tts:af_heart",
+  "r03": "tts:bm_george",
+  "r04": "tts:bm_george",
+  "n16": "tts:af_heart"
+ },
  "placed": [
   {
    "id": "n01",

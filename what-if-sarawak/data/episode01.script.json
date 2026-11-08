@@ -39,7 +39,8 @@
       "voice": "af_bella",
       "lang": "en-us",
       "speed": 1.12,
-      "gain_db": 2
+      "gain_db": 2,
+      "fx": "phone"
     }
   },
   "scenes": [

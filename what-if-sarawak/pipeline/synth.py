@@ -461,3 +461,57 @@ def gong(d=3.0):
 
 def airport_chime():
     return np.concatenate([ding(988, 0.5)[: n_samples(0.35)], ding(784, 1.4)]) * 0.8
+
+
+# ------------------------------------------------------------------ added for E02 (kolo mee)
+
+def siren(d=1.6):
+    """Two-tone 'nee-naw' siren."""
+    t = tt(d)
+    f = np.where((t * 2.5) % 1 < 0.5, 960, 720).astype(float)
+    f = np.convolve(f, np.ones(600) / 600, mode="same")
+    y = np.sign(np.sin(2 * np.pi * np.cumsum(f) / SR)) * 0.3 + 0.5 * np.sin(2 * np.pi * np.cumsum(f) / SR)
+    return sos_filter(y, "low", 3000) * env(len(t), 0.05, 0.2) * 0.5
+
+
+def knock(times=(0, 0.18, 0.36, 0.7, 0.85)):
+    """Secret door knock: wood thocks."""
+    out = np.zeros(n_samples(max(times) + 0.3))
+    for s in times:
+        n = n_samples(0.2)
+        t = np.arange(n) / SR
+        k = sos_filter(_rng.normal(size=n), "band", [150, 1200]) * np.exp(-t / 0.02) + 0.8 * np.sin(2 * np.pi * 180 * t) * np.exp(-t / 0.05)
+        i = n_samples(s)
+        out[i:i + n] += k[:len(out) - i]
+    return out * 0.7
+
+
+def sniff(count=2):
+    out = []
+    for _ in range(count):
+        n = n_samples(0.22)
+        y = sos_filter(_rng.normal(size=n), "band", [1500, 6000]) * np.hanning(n) * 0.5
+        out += [y, np.zeros(n_samples(0.12))]
+    return np.concatenate(out)
+
+
+def birds(d=4.0, count=10):
+    n = n_samples(d)
+    y = np.zeros(n)
+    for _ in range(count):
+        L = n_samples(_rng.uniform(0.08, 0.18))
+        s = int(_rng.uniform(0, n - L))
+        t = np.arange(L) / SR
+        f0 = _rng.uniform(2600, 4200)
+        f = f0 * (1 + 0.25 * np.sin(2 * np.pi * _rng.uniform(15, 30) * t))
+        y[s:s + L] += np.sin(2 * np.pi * np.cumsum(f) / SR) * np.hanning(L) * _rng.uniform(0.1, 0.3)
+    return y
+
+
+def gasp(d=0.9):
+    """Crowd gasp: a short, inhaled 'huh!' made from low cheer voices."""
+    n = n_samples(d)
+    t = np.arange(n) / SR
+    y = cheer(d, voices=24)
+    y = sos_filter(y, "band", [300, 2500])
+    return y * np.minimum(t / 0.08, 1) * np.exp(-t / 0.35) * 1.4

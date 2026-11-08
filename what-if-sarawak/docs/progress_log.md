@@ -20,3 +20,13 @@
 | Pipeline refactor | done | Episode-specific score/SFX moved to `pipeline/episodes/`; Remotion timeline made switchable; render/validate/docs take the episode code. E01 audio rebuilt bit-identical and E01 still passes 34/34 checks. |
 | New assets | done | Queen/Grandma variants of Auntie, officer variant of driver, kingdom flag, kolo mee & laksa bowls, wok, banknote, immigration hall, region map, scale, departure board, stall, small car; new SFX: sizzle, crowd cheer, ka-ching, gong, airport chime. |
 | QA stills | done | Fixed: Queen visible on frame 0 (broke loop), clipped stamp, missing NEXT DAY card, chat header under badge, scale labels crossing pans, LAKSA label under subtitles. |
+
+## E02 v2 — What if kolo mee was banned? (replaces "own kingdom")
+| Step | Status | Notes |
+|---|---|---|
+| Feedback | done | User: voices sound unnatural; topic replaced. Measured E02 v1 narrator at 176 wpm and 76% talk time. |
+| Decisions | done | Record real voices (drop-in system); new lighter topic: kolo mee ban. |
+| Recording drop-in | done | Per-line files or one memo per character (auto-split on ~2 s pauses, tested); FFmpeg clean-up, trim, loudness match; mixed TTS/recorded supported; source of each line recorded in the timeline. E01 audio still bit-identical. |
+| Script | done | Rewritten for speech: narrator 152 wpm, talk time 65%, pauses before punchlines; per-line voice directions. |
+| Facts | done | Kolo mee description; Bourdain "breakfast of the gods" — `research/e02_sources.md`. |
+| QA stills | done | Fixed: officer subtitle label (now per-episode labels from the script), peephole framing, CLOSED signs under subtitles. |

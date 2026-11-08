@@ -10,7 +10,7 @@ export type EpisodeConfig = {
   timeline: Timeline;
   scenes: Record<string, React.FC>;
   /** Frame ranges for the REAL HISTORY / FICTION badges (evaluated after the timeline is active). */
-  badges: () => {real: [number, number]; fiction: [number, number]};
+  badges: () => {real: [number, number]; fiction: [number, number]; realLabel?: string};
 };
 
 export const EPISODES: Record<string, EpisodeConfig> = {
@@ -22,6 +22,6 @@ export const EPISODES: Record<string, EpisodeConfig> = {
   e02: {
     timeline: e02 as unknown as Timeline,
     scenes: E02_SCENES,
-    badges: () => ({real: [scene('s2').from, scene('s3').from], fiction: [scene('s3').from, (e02 as unknown as Timeline).durationInFrames - 42]}),
+    badges: () => ({real: [scene('s2').from, scene('s3').from], fiction: [scene('s3').from, (e02 as unknown as Timeline).durationInFrames - 42], realLabel: 'REAL FACTS'}),
   },
 };

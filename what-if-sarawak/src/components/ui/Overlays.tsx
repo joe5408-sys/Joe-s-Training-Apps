@@ -27,7 +27,8 @@ export const Subtitles: React.FC = () => {
   }
   if (!found) return null;
   const s = found as {text: string; speaker: string; from: number; first: boolean};
-  const sp = SPEAKER[s.speaker] ?? {label: s.speaker.toUpperCase(), color: C.white};
+  const base = SPEAKER[s.speaker] ?? {label: s.speaker.toUpperCase(), color: C.white};
+  const sp = TL.speakers?.[s.speaker] ? {...base, label: TL.speakers[s.speaker]} : base;
   const k = lerp(f, s.from, s.from + 6, 0.75, 1, backOut);
   const words = s.text.split(' ');
   return (
@@ -72,7 +73,7 @@ export const FictionBadge: React.FC<{from: number; to: number}> = ({from, to}) =
   );
 };
 
-export const RealBadge: React.FC<{from: number; to: number}> = ({from, to}) => {
+export const RealBadge: React.FC<{from: number; to: number; label?: string}> = ({from, to, label = 'REAL HISTORY'}) => {
   const f = useAbsFrame();
   if (f < from || f >= to) return null;
   return (
@@ -80,7 +81,7 @@ export const RealBadge: React.FC<{from: number; to: number}> = ({from, to}) => {
       position: 'absolute', top: SAFE.top - 40, left: SAFE.left, transform: `scale(${pop(f, from, 10)})`, transformOrigin: 'left center',
       fontFamily: FONT, fontWeight: 900, fontSize: 26, letterSpacing: 2, color: C.white, background: '#2E7D4F',
       padding: '8px 14px', borderRadius: 8, border: `3px solid ${C.ink}`,
-    }}>✓ REAL HISTORY</div>
+    }}>✓ {label}</div>
   );
 };
 
