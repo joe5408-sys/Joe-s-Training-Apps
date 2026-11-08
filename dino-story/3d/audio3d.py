@@ -8,8 +8,10 @@ scene clocks (scene.js SEGS) to real time so hits stay in sync with picture.
 
 Usage: python3 audio3d.py out.wav     (needs numpy, scipy)
 """
+import subprocess
 import sys
 import wave
+from pathlib import Path
 
 import numpy as np
 from scipy.signal import butter, fftconvolve, sosfilt
@@ -144,8 +146,8 @@ def ostinato(a, b, bpm=128, pattern=("A2", "A2", "C3", "A2", "E3", "A2", "D3", "
         place(x, v, pan=-0.3 if i % 2 else 0.3, wet=0.25)
 
 
-def roar(start, amp=0.9, dur=2.4, size=1.0):
-    """Creature roar: formant-filtered noise + growl, no pitched toy tones."""
+def roar_synth(start, amp=0.9, dur=2.4, size=1.0):
+    """Fallback creature roar (no recordings): formant-filtered noise + growl."""
     m = int(dur * SR)
     k = np.arange(m) / SR
     src = noise(m)
@@ -158,8 +160,8 @@ def roar(start, amp=0.9, dur=2.4, size=1.0):
     place(start, v, wet=0.5)
 
 
-def screech(start, amp=0.25, f0=1100, f1=650, dur=0.7, pan=0.0):
-    """Flying reptile cry: band-limited noise ring-modulated by a falling carrier."""
+def screech_synth(start, amp=0.25, f0=1100, f1=650, dur=0.7, pan=0.0):
+    """Fallback flyer cry: band-limited noise ring-modulated by a falling carrier."""
     m = int(dur * SR)
     k = np.arange(m) / SR
     carrier = np.sin(2 * np.pi * np.cumsum(f0 + (f1 - f0) * k / dur) / SR)
@@ -207,6 +209,129 @@ def heartbeat(start, amp=0.5):
     for off, g in ((0, 1.0), (0.24, 0.7)):
         k = tt(0.3)
         place(start + off, np.sin(2 * np.pi * 46 * k) * np.exp(-k * 22) * amp * g, wet=0.15)
+
+
+
+# --------------------------------------------------------- recorded sounds
+# Real recordings (Wikimedia Commons, see sfx/CREDITS.md), cut by prep_sfx.py.
+SFX_DIR = Path(__file__).resolve().parent / "sfx"
+
+
+def _load(p):
+    with wave.open(str(p)) as w:
+        return np.frombuffer(w.readframes(w.getnframes()), np.int16) / 32768.0
+
+
+SFX = {}
+if SFX_DIR.exists():
+    for p in sorted(SFX_DIR.glob("*.wav")):
+        SFX.setdefault(p.stem.rsplit("_", 1)[0], []).append(_load(p))
+_pick = {}
+
+
+def clip(group, i=None):
+    """Return a recording from a group, cycling through the takes."""
+    takes = SFX.get(group) or []
+    if not takes:
+        return None
+    if i is None:
+        i = _pick.get(group, 0)
+        _pick[group] = i + 1
+    return takes[i % len(takes)]
+
+
+def speed(x, f):
+    """Play back at speed f: f < 1 is slower, longer and deeper (the classic creature trick)."""
+    return np.interp(np.arange(0, len(x) - 1, f), np.arange(len(x)), x)
+
+
+def fit(x, m):
+    y = np.zeros(m)
+    y[:min(m, len(x))] = x[:m]
+    return y
+
+
+def roar(start, amp=0.9, dur=2.4, size=1.0):
+    """Layered creature roar from real animal recordings, pitched down."""
+    big = clip("lion_fx") if size >= 1.0 else clip("monster1")
+    if big is None:
+        return roar_synth(start, amp, dur, size)
+    alt = clip("grizzly") if size >= 1.0 else clip("monster2")
+    body = speed(big, 0.62 / size)
+    m = len(body)
+    v = body
+    if alt is not None:
+        v = v + 0.6 * fit(speed(alt, 0.7 / size), m)
+    g = clip("gator")
+    if g is not None:
+        v = v + 0.35 * fit(filt(speed(g, 0.85), "high", 900), m)       # breath / hiss
+    e = clip("elephant", 0)
+    if e is not None and size >= 1.0:
+        v = v + 0.35 * fit(speed(e, 0.5), m)                            # huge resonant bellow
+    env = np.sqrt(np.convolve(v ** 2, np.ones(2048) / 2048, "same"))
+    k = np.arange(m) / SR
+    sub = np.sin(2 * np.pi * 42 / size * k) * env * 1.5                 # chest rumble
+    v = filt(v, "low", 7000) + sub
+    v = np.tanh(v / (np.max(np.abs(v)) + 1e-9) * 1.6) * amp
+    place(start, v, wet=0.45)
+
+
+def screech(start, amp=0.25, f0=1100, f1=650, dur=0.7, pan=0.0):
+    """Flyer / raptor cry from a recorded elephant trumpet, re-pitched."""
+    e = clip("elephant", 0)
+    if e is None:
+        return screech_synth(start, amp, f0, f1, dur, pan)
+    v = speed(e, 0.75 + f0 / 2400)
+    g = clip("monster2")
+    if g is not None:
+        v = v + 0.3 * fit(speed(g, 1.5), len(v))
+    v = filt(v, "high", 300)
+    place(start, np.tanh(v / (np.max(np.abs(v)) + 1e-9) * 1.4) * amp * 1.6, pan=pan, wet=0.5)
+
+
+def scream(start, amp=0.5, pan=0.0, far=False):
+    """Human scream from recordings; far ones are duller, quieter and wetter."""
+    pool = SFX.get("scream_vox", []) + SFX.get("scream_c", []) + SFX.get("scream_d", []) + SFX.get("scream_e", [])
+    if not pool:
+        return
+    i = _pick.get("scream", 0)
+    _pick["scream"] = i + 1
+    v = speed(pool[(i * 7) % len(pool)], 1.0 + ((i * 37) % 9 - 4) * 0.015)   # small pitch variety
+    if far:
+        v = filt(v, "low", 2200) * 0.45
+    place(start, v * amp, pan=pan, wet=0.65 if far else 0.4)
+
+
+def crowd_panic(a, b, amp=0.35):
+    """Crowd bed with screams on top."""
+    m = int((b - a) * SR)
+    beds = [c for c in (clip("crowd_a", 0), clip("crowd_b", 0)) if c is not None]
+    if beds:
+        v = sum(fit(np.tile(c, m // len(c) + 1), m) for c in beds)
+        v = filt(v, "band", (250, 4000)) * (0.75 + 0.25 * np.sin(2 * np.pi * 0.7 * np.arange(m) / SR))
+        v = v / (np.max(np.abs(v)) + 1e-9) * adsr(m, 0.6, 0.8) * amp
+        place(a, v, pan=0.0, wet=0.6)
+
+
+def cannon_shot(tf, pan=0.0):
+    c = clip("cannon")
+    if c is None:
+        crack = filt(noise(int(0.06 * SR)), "high", 900) * np.exp(-tt(0.06) * 60) * 0.5
+        place(tf, crack, pan=pan, wet=0.5)
+        impact(tf, 0.38, 55)
+        return
+    place(tf, speed(c, 0.92) * 0.55, pan=pan, wet=0.45)
+    impact(tf, 0.25, 50)
+
+
+def shell_blast(t0, pan=0.0, amp=0.6):
+    x = clip("expl10") if _pick.get("blast", 0) % 2 == 0 else clip("expl_ls")
+    _pick["blast"] = _pick.get("blast", 0) + 1
+    if x is None:
+        impact(t0, 0.45, 40)
+        return
+    place(t0, filt(speed(x, 0.8), "low", 6000) * amp, pan=pan, wet=0.5)
+    impact(t0, 0.3, 38)
 
 
 # ------------------------------------------------------------------ score
@@ -260,7 +385,9 @@ for a, b, bpm in ((53, 60, 128), (60, 70, 120), (80, 87, 136)):
 roar(M(44.3), 1.0, 2.6)
 for x in np.arange(44.2, 50.0, np.pi / 3.6):
     thud(M(x), 0.8, 32)
-bed_noise(M(44.4), M(50.2), 500, 2500, 0.06, 0.6, 0.6, wet=0.5)   # distant screams/crowd
+crowd_panic(M(44.4), M(50.2), 0.4)
+for i, x in enumerate((53.5, 54.2, 54.9, 55.5, 56.2, 56.9, 57.5, 58.2, 58.8, 59.4)):
+    scream(x, 0.55 if i % 3 else 0.7, pan=((i * 5) % 7 - 3) / 3.5, far=i % 3 == 2)
 braam(53.0, "D2", 3.0, 0.5)
 
 # the wall: cannon fire (mirrors scene.js SHOTS)
@@ -269,11 +396,8 @@ for kind, (t0, period, t1) in SHOTS.items():
     for j in range(5):
         tf = t0 + 0.33 * j
         while tf <= t1:
-            crack = filt(noise(int(0.06 * SR)), "high", 900) * np.exp(-tt(0.06) * 60) * 0.5
-            place(tf, crack, pan=(j - 2) * 0.3, wet=0.5)
-            impact(tf, 0.38, 55)
-            impact(tf + 1.0, 0.45, 40)                    # shell lands
-            place(tf + 1.0, filt(noise(int(0.8 * SR)), "low", 1200) * np.exp(-tt(0.8) * 6) * 0.25, pan=(j - 2) * 0.3, wet=0.5)
+            cannon_shot(tf, pan=(j - 2) * 0.3)
+            shell_blast(tf + 1.0, pan=(j - 2) * 0.3, amp=0.45)       # shell lands
             tf += period
 for x, p in ((61.5, -0.4), (62.8, 0.3), (64.1, -0.1), (65.0, 0.5)):
     screech(x, 0.14, 1500, 900, 0.6, p)                   # raptor shrieks
@@ -290,7 +414,10 @@ for i in range(6):
     screech(70 + 1.6 + i * 1.0 - 0.1, 0.28, 1200 - i * 60, 600, 0.9, (-1) ** i * 0.6)
 braam(75.4, "D2", 3.5, 0.55)                              # "Walls don't stop wings."
 roar(76.0, 1.0, 2.8, 1.1)
-bed_noise(76.4, 80, 500, 2500, 0.05, 0.4, 0.4, wet=0.6)
+crowd_panic(76.4, 80, 0.3)
+scream(73.4, 0.35, -0.6, far=True)
+for i, x in enumerate((76.7, 77.1, 77.6, 78.3, 79.0)):
+    scream(x, 0.6, pan=((i * 3) % 5 - 2) / 2.5, far=i >= 3)
 
 # last stand
 roar(M(51.0), 1.0, 2.6, 1.2)
@@ -299,6 +426,12 @@ for x in np.arange(50.2, 56.0, np.pi / 3.96):
 for x, p in ((50.8, -0.5), (51.5, 0.4), (52.2, -0.2), (53.0, 0.6)):
     screech(M(x), 0.2, 1200, 650, 0.7, p)
 impact(M(54.2), 1.0, 38)                                  # barricade breaks
+shell_blast(M(54.2), 0.0, 0.8)
+crowd_panic(M(54.0), 87.2, 0.45)
+for i, x in enumerate((M(54.3), M(54.5), M(54.8), M(55.1), M(55.5), M(55.8))):
+    scream(x, 0.65, pan=((i * 3) % 5 - 2) / 2.5, far=i % 3 == 2)
+for x in (M(50.6), M(51.8), M(52.9)):
+    scream(x, 0.3, 0.5, far=True)
 place(M(54.2), filt(noise(int(1.6 * SR)), "low", 2500) * np.exp(-tt(1.6) * 3) * 0.5, wet=0.5)
 braam(M(54.25), "A1", 4.0, 0.5)
 
