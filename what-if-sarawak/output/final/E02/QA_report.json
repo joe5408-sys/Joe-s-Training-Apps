@@ -2,7 +2,7 @@
  {
   "check": "Master: file exists and non-empty",
   "pass": true,
-  "detail": "31.6 MB",
+  "detail": "31.3 MB",
   "hard": true
  },
  {
@@ -86,7 +86,7 @@
  {
   "check": "Master: integrated loudness -16..-12 LUFS",
   "pass": true,
-  "detail": "-14.1 LUFS",
+  "detail": "-14.2 LUFS",
   "hard": true
  },
  {
@@ -98,7 +98,7 @@
  {
   "check": "Contact sheet generated",
   "pass": true,
-  "detail": "24 frames → What_If_Sarawak_Kingdom_E02_ContactSheet.png",
+  "detail": "24 frames → What_If_Kolo_Mee_Banned_E02_ContactSheet.png",
   "hard": false
  },
  {
@@ -110,7 +110,7 @@
  {
   "check": "Teaser: file exists and non-empty",
   "pass": true,
-  "detail": "11.8 MB",
+  "detail": "10.4 MB",
   "hard": true
  },
  {
@@ -152,13 +152,13 @@
  {
   "check": "Teaser: duration 25-35s and < 120s",
   "pass": true,
-  "detail": "29.50s",
+  "detail": "31.00s",
   "hard": true
  },
  {
   "check": "Teaser: A/V duration mismatch < 0.1s",
   "pass": true,
-  "detail": "video 29.500s, audio 29.500s",
+  "detail": "video 31.000s, audio 31.000s",
   "hard": true
  },
  {
@@ -176,23 +176,23 @@
  {
   "check": "Timeline: all dialogue inside the film",
   "pass": true,
-  "detail": "25 lines",
+  "detail": "23 lines",
   "hard": true
  },
  {
   "check": "Audio: every scripted line has audible narration/dialogue",
   "pass": true,
-  "detail": "all 25 lines voiced",
+  "detail": "all 23 lines voiced",
   "hard": true
  },
  {
-  "check": "Still: What_If_Sarawak_Kingdom_E02_Cover_1080x1920.png",
+  "check": "Still: What_If_Kolo_Mee_Banned_E02_Cover_1080x1920.png",
   "pass": true,
   "detail": "(1080, 1920)",
   "hard": true
  },
  {
-  "check": "Still: What_If_Sarawak_Kingdom_E02_Thumbnail_1280x720.png",
+  "check": "Still: What_If_Kolo_Mee_Banned_E02_Thumbnail_1280x720.png",
   "pass": true,
   "detail": "(1280, 720)",
   "hard": true
@@ -200,7 +200,7 @@
  {
   "check": "Subtitles: SRT present with cues",
   "pass": true,
-  "detail": "52 cues",
+  "detail": "42 cues",
   "hard": true
  }
 ]
