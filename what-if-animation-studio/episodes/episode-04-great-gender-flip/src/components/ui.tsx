@@ -181,7 +181,7 @@ export const Diagram: React.FC<{p: number; f: number}> = ({p, f}) => {
     [40, 110, 'BODY'],
     [420, 100, 'RULES'],
     [180, 390, '☕'],
-    [500, 330, 'MIDNIGHT²'],
+    [400, 300, 'MIDNIGHT²'],
     [320, 470, '∴ ???'],
     [80, 560, 'v1.0'],
   ];
