@@ -1,6 +1,6 @@
 import React from 'react';
-import {AbsoluteFill, useCurrentFrame} from 'remotion';
-import {beats, noise, prog} from '../../animation/anim';
+import {AbsoluteFill} from 'remotion';
+import {beats, noise, prog, useSceneFrame} from '../../animation/anim';
 import {FONT, PAL} from '../../animation/theme';
 import {Sprite} from '../../character-rigs/Character';
 import {JORDAN, SAM} from '../../character-rigs/cast';
@@ -12,7 +12,7 @@ import {BigPhone, DatingCard, Hearts, Receipt} from '../../components/ui';
 const B = beats('S06');
 
 export const S06: React.FC = () => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const frenzy = f >= B.frenzy;
   const speed = frenzy ? 3 : 12;
   const gl = frenzy && f < B.look ? noise(f * 2, 5) * 14 : 0;

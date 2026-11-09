@@ -1,6 +1,6 @@
 import React from 'react';
-import {AbsoluteFill, useCurrentFrame} from 'remotion';
-import {beats, hash, lerp, noise, pop, prog} from '../../animation/anim';
+import {AbsoluteFill} from 'remotion';
+import {beats, hash, lerp, noise, pop, prog, useSceneFrame} from '../../animation/anim';
 import {FONT, PAL} from '../../animation/theme';
 import {Sprite} from '../../character-rigs/Character';
 import {SCIENTIST} from '../../character-rigs/cast';
@@ -23,7 +23,7 @@ const HANDLES = ['@flipped_fran', '@deadline_dan', '@cat_owner99', '@not_amused'
 const COLORS = [PAL.rev.magenta, PAL.rev.teal, PAL.rev.orange, PAL.final.blue, PAL.magic.violet, '#2BD67B'];
 
 export const S08: React.FC = () => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const scroll = 3200 * prog(f, 0, 175, 'in');
   const jit = f >= 130 && f < 142 ? noise(f * 3, 1) * 20 : 0;
   const feedDim = f >= B.scientist ? 0.25 : 1;

@@ -678,3 +678,95 @@ export const SeriesBug: React.FC<{f: number}> = ({f}) => (
     <span style={{display: 'none'}}>{f}</span>
   </div>
 );
+
+// ---------------- Narration captions (explanatory, plain English) ----------------
+/** Renders `**word**` segments highlighted. */
+const rich = (t: string, hl: string) =>
+  t.split('**').map((part, i) =>
+    i % 2 ? (
+      <span key={i} style={{color: hl}}>
+        {part}
+      </span>
+    ) : (
+      <span key={i}>{part}</span>
+    ),
+  );
+
+export type NarrationLine = {at: number; until: number; t: string; y?: number};
+
+export const NarrationLayer: React.FC<{id: string; f: number}> = ({id, f}) => {
+  const lines = ((scene(id) as unknown as {narration?: NarrationLine[]}).narration ?? []).filter((l) => f >= l.at && f < l.until);
+  return (
+    <>
+      {lines.map((l, i) => {
+        const inP = prog(f, l.at, 6, 'out');
+        const outP = prog(f, l.until - 6, 6, 'in');
+        const o = inP * (1 - outP);
+        return (
+          <div key={i} style={{position: 'absolute', left: 0, right: 0, top: l.y ?? 170, display: 'flex', justifyContent: 'center', pointerEvents: 'none'}}>
+            <div
+              style={{
+                maxWidth: 940,
+                margin: '0 50px',
+                transform: `translateY(${(1 - inP) * 18}px)`,
+                opacity: o,
+                background: 'rgba(14,10,24,0.86)',
+                borderLeft: `10px solid ${PAL.yellow}`,
+                borderRadius: 24,
+                padding: '16px 28px 18px',
+                boxShadow: '0 12px 30px rgba(0,0,0,0.35)',
+                fontFamily: FONT,
+                fontWeight: 700,
+                fontSize: 46,
+                lineHeight: 1.18,
+                color: '#FFFFFF',
+                textAlign: 'center',
+              }}
+            >
+              {rich(l.t, PAL.yellow)}
+            </div>
+          </div>
+        );
+      })}
+    </>
+  );
+};
+
+/** Small identity tag: who someone is and how they changed. */
+export const NameTag: React.FC<{f: number; at: number; until: number; x: number; y: number; name: string; sub: string; color: string; align?: 'left' | 'right'}> = ({
+  f,
+  at,
+  until,
+  x,
+  y,
+  name,
+  sub,
+  color,
+  align = 'left',
+}) => {
+  if (f < at || f >= until) return null;
+  const s = Math.min(1.08, pop(f, at)) * (1 - prog(f, until - 5, 5, 'in'));
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        top: y,
+        [align]: x,
+        transform: `scale(${s})`,
+        transformOrigin: align === 'left' ? '0 50%' : '100% 50%',
+        display: 'flex',
+        alignItems: 'center',
+        gap: 14,
+        background: '#FFFFFF',
+        border: `6px solid ${PAL.ink}`,
+        borderRadius: 999,
+        padding: '8px 22px 8px 10px',
+        boxShadow: '0 10px 24px rgba(0,0,0,0.35)',
+        fontFamily: FONT,
+      }}
+    >
+      <span style={{background: color, color: '#fff', fontWeight: 900, fontSize: 36, padding: '4px 16px', borderRadius: 999}}>{name}</span>
+      <span style={{fontWeight: 800, fontSize: 32, color: PAL.ink}}>{sub}</span>
+    </div>
+  );
+};

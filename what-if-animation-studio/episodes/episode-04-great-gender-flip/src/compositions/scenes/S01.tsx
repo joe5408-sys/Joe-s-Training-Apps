@@ -1,11 +1,11 @@
 import React from 'react';
-import {AbsoluteFill, useCurrentFrame} from 'remotion';
-import {beats, clamp, lerp, prog} from '../../animation/anim';
+import {AbsoluteFill} from 'remotion';
+import {beats, clamp, lerp, prog, useSceneFrame} from '../../animation/anim';
 import {PAL} from '../../animation/theme';
 import {Sprite} from '../../character-rigs/Character';
 import {ALEX, MAYA} from '../../character-rigs/cast';
 import {EXPR, exprAt, poseAt, withPose} from '../../character-rigs/expressions';
-import {Camera, Flash, SceneCaptions, Shockwave, SplitScreen, Sparkles, Stamp, Vignette} from '../../components/core';
+import {Camera, Flash, NameTag, SceneCaptions, Shockwave, SplitScreen, Sparkles, Stamp, Vignette} from '../../components/core';
 import {Bathroom, Bedroom, MirrorInside} from '../../components/env';
 
 const B = beats('S01');
@@ -130,7 +130,7 @@ const SwapIcons: React.FC<{f: number; at: number}> = ({f, at}) => {
 };
 
 export const S01: React.FC = () => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   return (
     <AbsoluteFill style={{background: '#000'}}>
       {f < B.cutMaya ? <MirrorShot f={f} /> : null}
@@ -150,6 +150,10 @@ export const S01: React.FC = () => {
         <SwapIcons f={f} at={B.labelSociety} />
       </Stamp>
       <Vignette strength={0.5} />
+      <NameTag f={f} at={34} until={B.cutMaya} x={150} y={1180} name="ALEX" sub="was a man → now a woman" color={ALEX.jacket} />
+      <NameTag f={f} at={B.cutMaya + 16} until={B.split} x={60} y={1240} name="MAYA" sub="was a woman → now a man" color={MAYA.jacket} />
+      <NameTag f={f} at={B.split + 8} until={240} x={40} y={740} name="ALEX" sub="now a woman" color={ALEX.jacket} />
+      <NameTag f={f} at={B.split + 12} until={240} x={40} y={1790} name="MAYA" sub="now a man" color={MAYA.jacket} align="right" />
       <SceneCaptions id="S01" f={f} y={845} size={96} />
     </AbsoluteFill>
   );

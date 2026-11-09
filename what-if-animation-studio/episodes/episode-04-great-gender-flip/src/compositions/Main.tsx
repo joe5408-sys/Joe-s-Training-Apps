@@ -1,9 +1,7 @@
 import React from 'react';
 import {AbsoluteFill, Sequence, useCurrentFrame} from 'remotion';
-import {SCENES, sceneStart} from '../animation/anim';
+import {SCENES, sceneLen, sceneStart} from '../animation/anim';
 import {PAL} from '../animation/theme';
-import timeline from '../config/timeline.json';
-import teaser from '../config/teaser.json';
 import {Counter} from '../components/core';
 import {SCENE_COMPONENTS} from './scenes';
 import {S01} from './scenes/S01';
@@ -30,43 +28,13 @@ export const Main: React.FC = () => {
       {SCENES.map((s) => {
         const C = SCENE_COMPONENTS[s.id];
         return (
-          <Sequence key={s.id} from={sceneStart(s.id)} durationInFrames={s.duration} name={`${s.id} ${s.title}`}>
+          <Sequence key={s.id} from={sceneStart(s.id)} durationInFrames={sceneLen(s.id)} name={`${s.id} ${s.title}`}>
             <C />
           </Sequence>
         );
       })}
-      {timeline.transitions.map((b, i) => (
+      {SCENES.slice(1).map((sc) => sceneStart(sc.id)).map((b, i) => (
         <Whip key={b} f={f} at={b} i={i} />
-      ))}
-    </AbsoluteFill>
-  );
-};
-
-export const TEASER_LEN = teaser.segments.reduce((a, s) => a + (s.to - s.from), 0);
-
-export const Teaser: React.FC = () => {
-  const f = useCurrentFrame();
-  let at = 0;
-  const cuts: number[] = [];
-  const seqs = teaser.segments.map((seg, i) => {
-    const C = SCENE_COMPONENTS[seg.scene];
-    const len = seg.to - seg.from;
-    const el = (
-      <Sequence key={i} from={at} durationInFrames={len}>
-        <Sequence from={-seg.from}>
-          <C />
-        </Sequence>
-      </Sequence>
-    );
-    if (i > 0) cuts.push(at);
-    at += len;
-    return el;
-  });
-  return (
-    <AbsoluteFill style={{background: '#000'}}>
-      {seqs}
-      {cuts.map((c, i) => (
-        <Whip key={c} f={f} at={c} i={i + 1} />
       ))}
     </AbsoluteFill>
   );

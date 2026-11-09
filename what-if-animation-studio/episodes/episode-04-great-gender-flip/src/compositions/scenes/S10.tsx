@@ -1,6 +1,6 @@
 import React from 'react';
-import {AbsoluteFill, useCurrentFrame} from 'remotion';
-import {beats, lerp, pop, prog} from '../../animation/anim';
+import {AbsoluteFill} from 'remotion';
+import {beats, lerp, pop, prog, useSceneFrame} from '../../animation/anim';
 import {FONT, PAL} from '../../animation/theme';
 import {Sprite} from '../../character-rigs/Character';
 import {ALEX, MAYA} from '../../character-rigs/cast';
@@ -41,7 +41,7 @@ const Chip: React.FC<{f: number; at: number; x: number; y: number; text: string;
 };
 
 export const S10: React.FC = () => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const btnIn = prog(f, 0, 30, 'back');
   const opt = prog(f, B.option2, 14, 'back');
   const b1x = lerp(540, 285, opt);

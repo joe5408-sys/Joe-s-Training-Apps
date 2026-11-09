@@ -1,6 +1,6 @@
 import React from 'react';
-import {AbsoluteFill, useCurrentFrame} from 'remotion';
-import {beats, lerp, prog} from '../../animation/anim';
+import {AbsoluteFill} from 'remotion';
+import {beats, lerp, prog, useSceneFrame} from '../../animation/anim';
 import {PAL} from '../../animation/theme';
 import {Sprite} from '../../character-rigs/Character';
 import {ALEX, EXTRAS, MAYA} from '../../character-rigs/cast';
@@ -13,7 +13,7 @@ const OLD = ["MEN DON'T CRY", 'WOMEN: SMILE MORE', 'HE PAYS', 'SHE COOKS', 'BOYS
 const NEW = ["WOMEN DON'T CRY", 'MEN: SMILE MORE', 'SHE PAYS', 'HE COOKS', 'BOYS: PINK', 'GIRLS: BLUE', 'SHE LEADS', 'HE APOLOGISES'];
 
 export const S09: React.FC = () => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const nod = f >= B.nod && f < B.nod + 16 ? Math.sin(((f - B.nod) / 16) * Math.PI * 2) * 6 : 0;
   const pose = (dragAt: number) =>
     poseAt(f, [

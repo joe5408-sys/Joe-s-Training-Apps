@@ -24,6 +24,25 @@ SILENT = os.path.join(OUT, 'What_If_Great_Gender_Flip_E04_1080x1920_silent.mp4')
 COVER = os.path.join(OUT, 'What_If_Great_Gender_Flip_E04_cover_1080x1920.png')
 results = []
 
+def _len(s):
+    return round(s['duration'] * s.get('stretch', 1))
+
+
+def _start(tl, sid):
+    t = 0
+    for s in tl['scenes']:
+        if s['id'] == sid:
+            return t
+        t += _len(s)
+    raise KeyError(sid)
+
+
+def out_frame(tl, sid, f):
+    """Scene frame -> output frame on the stretched timeline."""
+    s = [x for x in tl['scenes'] if x['id'] == sid][0]
+    return _start(tl, sid) + f * s.get('stretch', 1)
+
+
 
 def check(name, ok, detail, hard=True):
     results.append({'check': name, 'pass': bool(ok), 'hard': hard, 'detail': detail})
@@ -135,9 +154,8 @@ def main():
     check('MASTER: no clipped samples', clip == 0, f'{clip} samples at full scale')
     # silence at the planned dramatic pause (S10 grab) should exist; elsewhere audio should not drop out
     fps = TL['fps']
-    s10 = sum(s['duration'] for s in TL['scenes'][:9])
-    g0 = (s10 + TL['scenes'][9]['beats']['grab']) / fps
-    g1 = (s10 + TL['scenes'][9]['beats']['silenceEnd']) / fps
+    g0 = out_frame(TL, 'S10', TL['scenes'][9]['beats']['grab']) / fps
+    g1 = out_frame(TL, 'S10', TL['scenes'][9]['beats']['silenceEnd']) / fps
     seg = x.reshape(-1, 2)[int((g0 + 0.34) * 48000): int((g1 - 0.02) * 48000)]
     rms = 20 * np.log10(np.sqrt((seg ** 2).mean()) + 1e-9)
     check('MASTER: planned dramatic silence present at final countdown', rms < -40, f'{rms:.1f} dBFS RMS', hard=False)
@@ -156,10 +174,10 @@ def main():
     for sc in TL['scenes']:
         frames = []
         for q in (0.12, 0.38, 0.62, 0.88):
-            sec = (t + sc['duration'] * q) / fps
+            sec = (t + _len(sc) * q) / fps
             frames.append((sec, frame_at(MASTER, sec, 216)))
         rows.append((sc, frames))
-        t += sc['duration']
+        t += _len(sc)
     fw, fh = rows[0][1][0][1].size
     sheet = Image.new('RGB', (fw * 4 + 220, fh * len(rows)), (16, 18, 31))
     d = ImageDraw.Draw(sheet)

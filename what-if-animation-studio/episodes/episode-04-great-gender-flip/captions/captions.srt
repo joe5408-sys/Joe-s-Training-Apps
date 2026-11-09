@@ -1,88 +1,200 @@
 1
-00:00:04,267 --> 00:00:08,000
-WHAT IF EVERYTHING
+00:00:00,073 --> 00:00:02,420
+At midnight, men turn into women…
 
 2
-00:00:04,600 --> 00:00:08,000
-FLIPPED?!
+00:00:02,420 --> 00:00:04,327
+…and women turn into men.
 
 3
-00:00:08,333 --> 00:00:10,067
-NEW BODY.
+00:00:04,693 --> 00:00:08,800
+WHAT IF EVERYTHING FLIPPED?!
 
 4
-00:00:15,867 --> 00:00:20,000
-NEW BODY.
+00:00:05,500 --> 00:00:08,800
+The rules flip too. But everyone remembers the old world.
 
 5
-00:00:16,200 --> 00:00:20,000
-NEW SOCIAL RULES.
+00:00:08,877 --> 00:00:11,100
+Alex still remembers the old world.
 
 6
-00:00:30,000 --> 00:00:33,000
-WHO INVENTED
+00:00:09,183 --> 00:00:11,177
+NEW BODY.
 
 7
-00:00:30,333 --> 00:00:33,000
-THESE RULES?!
+00:00:11,253 --> 00:00:13,937
+Ads flipped: pink is now for boys.
 
 8
-00:00:43,000 --> 00:00:47,000
-DIFFERENT EXPECTATIONS.
+00:00:14,167 --> 00:00:16,773
+Even this ad changed: cleaning is his job.
 
 9
-00:00:44,200 --> 00:00:47,000
-SAME AMOUNT OF WORK.
+00:00:16,927 --> 00:00:19,917
+Every part of life gets new rules.
 
 10
-00:00:59,400 --> 00:01:02,000
-THE WORLD FLIPPED.
+00:00:17,847 --> 00:00:19,993
+NEW BODY. NEW SOCIAL RULES.
 
 11
-00:01:00,333 --> 00:01:02,000
-THE DEADLINE DIDN'T.
+00:00:20,070 --> 00:00:22,600
+Maya gets the old women's rules now.
 
 12
-00:01:09,167 --> 00:01:10,733
-NEW RULES?
+00:00:22,747 --> 00:00:26,120
+Alex's old clothes don't fit the new body.
 
 13
-00:01:10,733 --> 00:01:15,000
-NEW RULES?
+00:00:26,267 --> 00:00:29,860
+Now women get the old men's rules. The list never ends.
 
 14
-00:01:11,000 --> 00:01:15,000
-OR NO RULES?
+00:00:29,933 --> 00:00:33,013
+Alex swipes it away. It comes back.
 
 15
-00:01:25,600 --> 00:01:28,000
-YOU CAN'T WIN.
+00:00:33,160 --> 00:00:36,717
+Maya gets the old women's rules… and deletes them.
 
 16
-00:01:38,733 --> 00:01:41,000
-THE INTERNET
+00:00:33,600 --> 00:00:36,900
+WHO INVENTED THESE RULES?!
 
 17
-00:01:39,067 --> 00:01:41,000
-MADE IT WORSE.
+00:00:37,100 --> 00:00:40,067
+At home, the jobs swapped too.
 
 18
-00:01:50,667 --> 00:01:55,000
-MAYBE THE PROBLEM...
+00:00:40,133 --> 00:00:43,233
+He must do the housework. She must earn the money.
 
 19
-00:01:52,000 --> 00:01:55,000
-WAS THE RULES.
+00:00:43,300 --> 00:00:46,833
+The work is the same. Only who does it changed.
 
 20
-00:01:52,600 --> 00:01:55,000
-(real change takes more than one click)
+00:00:46,900 --> 00:00:50,900
+DIFFERENT EXPECTATIONS. SAME AMOUNT OF WORK.
 
 21
-00:02:01,667 --> 00:02:04,000
-WHICH WORLD
+00:00:50,977 --> 00:00:52,817
+At work, posters changed overnight.
 
 22
-00:02:01,933 --> 00:02:04,000
-WOULD YOU CHOOSE?
+00:00:52,893 --> 00:00:55,040
+Before: for women. Now: for men.
+
+23
+00:00:55,193 --> 00:00:58,758
+Alex must now act like the boss: no doubts, no 'sorry'.
+
+24
+00:00:58,950 --> 00:01:01,250
+Maya must now be soft and smile.
+
+25
+00:01:02,477 --> 00:01:04,700
+Her ID photo shows the old her.
+
+26
+00:01:05,160 --> 00:01:08,150
+THE WORLD FLIPPED. THE DEADLINE DIDN'T.
+
+27
+00:01:08,833 --> 00:01:11,833
+The dating app keeps flipping who should pay.
+
+28
+00:01:11,833 --> 00:01:14,833
+Every answer keeps switching.
+
+29
+00:01:15,333 --> 00:01:16,900
+NEW RULES?
+
+30
+00:01:15,567 --> 00:01:19,167
+So they close the app and split the bill.
+
+31
+00:01:16,900 --> 00:01:21,167
+NEW RULES? OR NO RULES?
+
+32
+00:01:21,239 --> 00:01:23,399
+They watch a sad movie.
+
+33
+00:01:23,471 --> 00:01:26,927
+New rule: women don't cry. So Alex is 'too emotional'.
+
+34
+00:01:26,927 --> 00:01:29,807
+New rule: men must show feelings. Maya didn't.
+
+35
+00:01:29,807 --> 00:01:32,543
+Swapping phones doesn't help. Nothing is right.
+
+36
+00:01:32,615 --> 00:01:35,207
+YOU CAN'T WIN.
+
+37
+00:01:35,267 --> 00:01:40,867
+Nobody knows why it happened. The internet panics.
+
+38
+00:01:41,033 --> 00:01:44,800
+A scientist claims to have the answer…
+
+39
+00:01:44,933 --> 00:01:48,200
+…but he has no idea either.
+
+40
+00:01:45,933 --> 00:01:48,200
+THE INTERNET MADE IT WORSE.
+
+41
+00:01:48,267 --> 00:01:50,467
+They compare old rules and new rules.
+
+42
+00:01:50,533 --> 00:01:54,533
+They are mirror images. Both are exhausting.
+
+43
+00:01:54,700 --> 00:01:57,800
+So they throw both rulebooks away.
+
+44
+00:01:57,867 --> 00:02:02,200
+MAYBE THE PROBLEM... WAS THE RULES.
+
+45
+00:01:59,800 --> 00:02:02,200
+(real change takes more than one click)
+
+46
+00:01:59,933 --> 00:02:02,200
+Outside, people simply share the work.
+
+47
+00:02:02,267 --> 00:02:05,467
+A giant button can bring back the old world.
+
+48
+00:02:05,533 --> 00:02:07,800
+Alex reaches for it. Maya stops her.
+
+49
+00:02:07,867 --> 00:02:11,067
+Option 2: keep the new bodies, but delete the stereotypes.
+
+50
+00:02:08,867 --> 00:02:11,200
+WHICH WORLD WOULD YOU CHOOSE?
 

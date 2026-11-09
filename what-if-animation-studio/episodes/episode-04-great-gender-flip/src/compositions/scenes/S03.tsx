@@ -1,6 +1,6 @@
 import React from 'react';
-import {AbsoluteFill, useCurrentFrame} from 'remotion';
-import {beats, lerp, pop, prog} from '../../animation/anim';
+import {AbsoluteFill} from 'remotion';
+import {beats, lerp, pop, prog, useSceneFrame} from '../../animation/anim';
 import {PAL} from '../../animation/theme';
 import {Sprite} from '../../character-rigs/Character';
 import {ALEX, MAYA} from '../../character-rigs/cast';
@@ -46,7 +46,7 @@ const Sweater: React.FC<{f: number; x: number; y: number; s: number}> = ({f, x, 
 };
 
 export const S03: React.FC = () => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const door = prog(f, B.open, 18, 'back');
   const stuck = f >= B.sweaterOn && f < B.popOut;
   const count = ALEX_RULES.length;
@@ -128,7 +128,7 @@ export const S03: React.FC = () => {
         x={420}
         y={220}
         w={720}
-        title="APPEARANCE RULES (NEW)"
+        title="WOMEN'S RULES (WERE MEN'S)"
         size={38}
         color={PAL.rev.orange}
         check="box"
@@ -145,9 +145,9 @@ export const S03: React.FC = () => {
         at={B.mayaList}
         until={B.mayaDelete + 14}
         x={540}
-        y={260}
+        y={330}
         w={760}
-        title="APPEARANCE RULES (NEW)"
+        title="MEN'S RULES (WERE WOMEN'S)"
         size={38}
         color={PAL.rev.teal}
         check="box"

@@ -11,8 +11,8 @@ want=set(sys.argv[1:])
 t=0
 for s in tl['scenes']:
     if not want or s['id'] in want:
-        print(s['id'], t, t+s['duration']-1)
-    t+=s['duration']
+        print(s['id'], t, t+round(s['duration']*s.get('stretch',1))-1)
+    t+=round(s['duration']*s.get('stretch',1))
 PY
 while read id a b; do
   echo "[$(date +%T)] render $id frames $a-$b" | tee -a rendering/logs/main_render.log

@@ -1,6 +1,6 @@
 import React from 'react';
-import {AbsoluteFill, useCurrentFrame} from 'remotion';
-import {beats, keys, lerp, prog} from '../../animation/anim';
+import {AbsoluteFill} from 'remotion';
+import {beats, keys, lerp, prog, useSceneFrame} from '../../animation/anim';
 import {FONT, PAL} from '../../animation/theme';
 import {Sprite} from '../../character-rigs/Character';
 import {ALEX, EXTRAS, MAYA} from '../../character-rigs/cast';
@@ -34,7 +34,7 @@ const PhoneAd: React.FC<{f: number}> = ({f}) => (
 );
 
 export const S02: React.FC = () => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const walkX = lerp(-150, 540, prog(f, 0, 56, 'out'));
   const walking = f < 54;
   const alexPose = poseAt(f, [

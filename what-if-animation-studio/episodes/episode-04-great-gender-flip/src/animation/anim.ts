@@ -1,5 +1,6 @@
 // Deterministic, frame-based animation helpers. No timers, no Math.random().
-import {Easing, interpolate} from 'remotion';
+import {createContext, useContext} from 'react';
+import {Easing, interpolate, useCurrentFrame} from 'remotion';
 import timeline from '../config/timeline.json';
 
 export const FPS = timeline.fps;
@@ -8,13 +9,25 @@ export const H = timeline.height;
 
 export type SceneDef = (typeof timeline.scenes)[number];
 export const SCENES = timeline.scenes;
+/** Playback stretch per scene (>1 = slower, gives more reading time). */
+export const stretch = (id: string): number => (scene(id) as unknown as {stretch?: number}).stretch ?? 1;
+/** Output length of a scene in frames after stretch. */
+export const sceneLen = (id: string): number => Math.round(scene(id).duration * stretch(id));
+/** Output start frame of a scene (stretched timeline). */
 export const sceneStart = (id: string): number => {
   let t = 0;
   for (const s of SCENES) {
     if (s.id === id) return t;
-    t += s.duration;
+    t += sceneLen(s.id);
   }
   throw new Error('unknown scene ' + id);
+};
+/** Provides the (possibly fractional) scene-time frame to scene components. */
+export const SceneFrameCtx = createContext<number | null>(null);
+export const useSceneFrame = (): number => {
+  const c = useContext(SceneFrameCtx);
+  const f = useCurrentFrame();
+  return c ?? f;
 };
 export const scene = (id: string): SceneDef => {
   const s = SCENES.find((x) => x.id === id);
@@ -22,7 +35,7 @@ export const scene = (id: string): SceneDef => {
   return s;
 };
 export const beats = (id: string): Record<string, number> => scene(id).beats as unknown as Record<string, number>;
-export const TOTAL = SCENES.reduce((a, s) => a + s.duration, 0);
+export const TOTAL = SCENES.reduce((a, s) => a + sceneLen(s.id), 0);
 
 export const clamp = (v: number, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 export const lerp = (a: number, b: number, t: number) => a + (b - a) * t;

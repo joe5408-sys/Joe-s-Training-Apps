@@ -19,7 +19,26 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 TL = json.load(open(os.path.join(ROOT, 'src', 'config', 'timeline.json')))
 FPS = TL['fps']
-TOTAL_FRAMES = sum(s['duration'] for s in TL['scenes'])
+def _len(s):
+    return round(s['duration'] * s.get('stretch', 1))
+
+
+def _start(tl, sid):
+    t = 0
+    for s in tl['scenes']:
+        if s['id'] == sid:
+            return t
+        t += _len(s)
+    raise KeyError(sid)
+
+
+def out_frame(tl, sid, f):
+    """Scene frame -> output frame on the stretched timeline."""
+    s = [x for x in tl['scenes'] if x['id'] == sid][0]
+    return _start(tl, sid) + f * s.get('stretch', 1)
+
+
+TOTAL_FRAMES = sum(_len(s) for s in TL['scenes'])
 DUR = TOTAL_FRAMES / FPS
 N = int(round(DUR * SR))
 rng = np.random.default_rng(404)
@@ -426,7 +445,6 @@ SFX_GAIN = {'impact': 0.9, 'wave': 0.8, 'hit': 0.8, 'alarm': 0.7}
 
 def build_sfx():
     bus = Bus()
-    start = 0
     cache = {}
     for sc in TL['scenes']:
         for c in sc['sfx']:
@@ -434,8 +452,7 @@ def build_sfx():
             if name not in cache:
                 cache[name] = sfx(name)
             p = ((sum(map(ord, name)) % 7) - 3) * 0.08
-            bus.add(cache[name], (start + c['f']) / FPS, SFX_GAIN.get(name, 0.75), p)
-        start += sc['duration']
+            bus.add(cache[name], out_frame(TL, sc['id'], c['f']) / FPS, SFX_GAIN.get(name, 0.75), p)
     return bus.buf
 
 
@@ -445,8 +462,12 @@ BEAT = 0.5  # 120 BPM
 
 def build_music():
     bus = Bus()
-    sec = {m['name']: (m['from'], m['to']) for m in TL['music']}
-    midnight = TL['scenes'][0]['beats']['midnight'] / FPS
+    sec = {}
+    for m in TL['music']:
+        a_, b_ = m['scenes']
+        sb = [x for x in TL['scenes'] if x['id'] == b_][0]
+        sec[m['name']] = (_start(TL, a_) / FPS, (_start(TL, b_) + _len(sb)) / FPS)
+    midnight = out_frame(TL, 'S01', TL['scenes'][0]['beats']['midnight']) / FPS
 
     # --- suspense 0-20 ---
     a, b = sec['suspense']
@@ -543,11 +564,10 @@ def build_music():
 
     # --- finale 115-125 ---
     a, b = sec['finale']
-    s10 = sum(s['duration'] for s in TL['scenes'][:9])
     B10 = TL['scenes'][9]['beats']
-    grab = (s10 + B10['grab']) / FPS
-    silence_end = (s10 + B10['silenceEnd']) / FPS
-    shock = (s10 + B10['shock']) / FPS
+    grab = out_frame(TL, 'S10', B10['grab']) / FPS
+    silence_end = out_frame(TL, 'S10', B10['silenceEnd']) / FPS
+    shock = out_frame(TL, 'S10', B10['shock']) / FPS
     chords = [[50, 57, 62, 65], [46, 53, 58, 62], [41, 53, 57, 60], [48, 55, 60, 64]]
     t = a
     k = 0

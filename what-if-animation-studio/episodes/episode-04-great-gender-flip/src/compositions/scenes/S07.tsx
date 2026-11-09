@@ -1,6 +1,6 @@
 import React from 'react';
-import {AbsoluteFill, useCurrentFrame} from 'remotion';
-import {beats, lerp, prog} from '../../animation/anim';
+import {AbsoluteFill} from 'remotion';
+import {beats, lerp, prog, useSceneFrame} from '../../animation/anim';
 import {FONT, PAL} from '../../animation/theme';
 import {Sprite} from '../../character-rigs/Character';
 import {ALEX, MAYA} from '../../character-rigs/cast';
@@ -23,7 +23,7 @@ const FlyingPhone: React.FC<{f: number; from: [number, number]; to: [number, num
 };
 
 export const S07: React.FC = () => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const swapping = f >= B.swap && f < B.swapEnd;
   const basePose = withPose('phone', {});
   const alexPose = poseAt(f, [

@@ -40,10 +40,11 @@ import json
 tl=json.load(open('src/config/timeline.json')); te=json.load(open('src/config/teaser.json'))
 starts={}; t=0
 for s in tl['scenes']:
-    starts[s['id']]=t; t+=s['duration']
+    starts[s['id']]=(t, s.get('stretch',1)); t+=round(s['duration']*s.get('stretch',1))
 parts=[]; labels=[]
 for i,seg in enumerate(te['segments']):
-    a=(starts[seg['scene']]+seg['from'])/30; b=(starts[seg['scene']]+seg['to'])/30; d=b-a
+    st,k=starts[seg['scene']]
+    a=round(st+seg['from']*k)/30; b=round(st+seg['to']*k)/30; d=b-a
     parts.append(f"[0:v]trim={a:.4f}:{b:.4f},setpts=PTS-STARTPTS[v{i}]")
     parts.append(f"[0:a]atrim={a:.4f}:{b:.4f},asetpts=PTS-STARTPTS,afade=t=in:d=0.08,afade=t=out:st={d-0.25:.4f}:d=0.25[a{i}]")
     labels.append(f"[v{i}][a{i}]")

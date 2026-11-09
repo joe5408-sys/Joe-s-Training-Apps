@@ -1,6 +1,6 @@
 import React from 'react';
-import {AbsoluteFill, useCurrentFrame} from 'remotion';
-import {beats, prog} from '../../animation/anim';
+import {AbsoluteFill} from 'remotion';
+import {beats, prog, useSceneFrame} from '../../animation/anim';
 import {PAL} from '../../animation/theme';
 import {Sprite} from '../../character-rigs/Character';
 import {KID, PARENT_A, PARENT_B} from '../../character-rigs/cast';
@@ -70,7 +70,7 @@ const Bottom: React.FC<{f: number}> = ({f}) => (
 );
 
 export const S04: React.FC = () => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const foam = prog(f, B.overflow, 70, 'out');
   const notifs = [B.n1, B.n2, B.n3, B.n4, B.n5, B.n6, B.n7];
   return (

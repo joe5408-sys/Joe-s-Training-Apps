@@ -1,6 +1,6 @@
 import React from 'react';
-import {AbsoluteFill, useCurrentFrame} from 'remotion';
-import {beats, lerp, prog} from '../../animation/anim';
+import {AbsoluteFill} from 'remotion';
+import {beats, lerp, prog, useSceneFrame} from '../../animation/anim';
 import {FONT, PAL} from '../../animation/theme';
 import {Sprite} from '../../character-rigs/Character';
 import {ALEX, EXTRAS, MANAGER, MAYA} from '../../character-rigs/cast';
@@ -32,7 +32,7 @@ const Meeting: React.FC<{f: number; hero: CharacterDef; heroExpr: ReturnType<typ
 );
 
 export const S05: React.FC = () => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const seg = f < B.meeting ? 'office' : f < B.maya ? 'alexMeet' : f < B.recognize ? 'mayaMeet' : f < B.manager ? 'split' : 'boss';
   const alexMeetExpr = exprAt(f, [
     [0, 'determined'],
@@ -92,6 +92,7 @@ export const S05: React.FC = () => {
               MEN:
               <br />
               PLEASE SMILE MORE IN MEETINGS 🙂
+              <div style={{fontWeight: 800, fontSize: 26, color: PAL.chaos.red, marginTop: 8}}>(yesterday this said WOMEN)</div>
             </div>
           </Poster>
           <Sprite def={EXTRAS[7]} f={f} x={((f * 2) % 1400) - 200} y={1200} scale={0.5} pose={withPose('idle', {walk: f * 0.4})} prop="cup" />
@@ -149,14 +150,14 @@ export const S05: React.FC = () => {
         x={540}
         y={210}
         w={840}
-        title="BEFORE SPEAKING (NEW RULES)"
+        title="WOMEN AT WORK (WERE MEN'S RULES)"
         size={40}
         color={PAL.rev.teal}
         items={["SOUND 100% CERTAIN", "NEVER SAY 'SORRY'", 'HAVE ALL THE ANSWERS', 'ZERO DOUBTS. EVER.', 'TAKE CHARGE (OR ELSE)'].map((t, i) => ({t, at: B.slam + 2 + i * 5}))}
       />
       {/* Maya meeting overlays */}
       <Bubble f={f} at={B.mayaBubble} until={B.recognize} x={700} y={860} text="HERE'S THE PLAN:" />
-      <Notif f={f} at={B.mayaNotif} until={B.recognize} x={540} y={430} icon="⚠️" app="TONE CHECK" title="TOO BOSSY? 😬" body="Try: smile • soften • apologise" glitch={f < B.mayaNotif + 10 ? 1 : 0} size={64} color={PAL.rev.magenta} />
+      <Notif f={f} at={B.mayaNotif} until={B.recognize} x={540} y={430} icon="⚠️" app="TONE CHECK" title="TOO BOSSY? 😬" body="New rule for men (was for women): smile • soften • apologise" glitch={f < B.mayaNotif + 10 ? 1 : 0} size={64} color={PAL.rev.magenta} />
       <FloatIcon f={f} at={B.recognize + 8} until={B.manager} x={540} y={960} text="🙄" size={130} />
       {/* boss */}
       <Stamp f={f} at={B.badge + 10} until={B.deadline - 4} text="ID PHOTO: NOT UPDATED" x={540} y={330} bg={PAL.chaos.amber} size={44} rot={-4} color={PAL.ink} />
