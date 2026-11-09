@@ -1,0 +1,9 @@
+numpy>=2.0
+scipy>=1.12
+opencv-python-headless>=4.9
+pillow>=10
+soundfile>=0.12
+pyloudnorm>=0.1.1
+pyshp>=2.3          # only for tools/prep_geo.py (re-extracting map data)
+kokoro-onnx>=0.4    # narration (pulls onnxruntime, phonemizer, espeakng-loader)
+faster-whisper>=1.0 # optional: tools/qa_transcribe.py speech-recognition QA
