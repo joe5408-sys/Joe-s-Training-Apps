@@ -8,7 +8,7 @@ for pass in 1 2; do
   echo "[$(date +%T)] dropout scan pass $pass: $res" | tee -a rendering/logs/main_render.log
   [[ $res == CLEAN* ]] && break
   python3 -I -c "import ast,sys; d=ast.literal_eval(sys.argv[1].split(' ',1)[1]); [print(k,*v) for k,v in d.items()]" "$res" | while read id frames; do
-    python3 -I rendering/patch_frames.py $id $frames | tee -a rendering/logs/main_render.log
+    python3 -I rendering/patch_frames.py $id $frames < /dev/null | tee -a rendering/logs/main_render.log
   done
 done
 rendering/assemble.sh

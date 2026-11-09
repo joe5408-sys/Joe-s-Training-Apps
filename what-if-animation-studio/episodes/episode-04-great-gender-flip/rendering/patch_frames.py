@@ -25,7 +25,7 @@ start = 0
 for s in tl['scenes']:
     if s['id'] == sid:
         break
-    start += s['duration']
+    start += round(s['duration'] * s.get('stretch', 1))
 work = 'output/work'
 chunk = f'{work}/chunk_{sid}.mp4'
 pngs = []
@@ -37,6 +37,14 @@ for n in frames:
     print(f'{sid} frame {n} (abs {start + n}): still rendered, near-black px {dark}')
     if dark > 1500:
         sys.exit(f'still for frame {n} also looks broken')
+    # guard: the still must look like the chunk's neighbouring frames (catches wrong frame offsets)
+    near = [m for m in (n - 2, n - 1, n + 1, n + 2) if m not in frames and m >= 0]
+    raw = subprocess.run(['ffmpeg', '-v', 'error', '-i', chunk, '-vf', 'scale=270:480', '-f', 'rawvideo', '-pix_fmt', 'gray', '-'], capture_output=True).stdout
+    vid = np.frombuffer(raw, np.uint8).reshape(-1, 480, 270).astype(float)
+    diff = min(np.abs(vid[m] - g.astype(float)).mean() for m in near if m < len(vid))
+    print(f'  closest neighbour difference {diff:.1f}')
+    if diff > 25:
+        sys.exit(f'still for frame {n} does not match its neighbours (diff {diff:.1f}): wrong frame offset?')
     pngs.append(out)
 
 inputs = ['-i', chunk]
