@@ -1,29 +1,29 @@
-PASS MASTER: file exists :: 60.5 MB
+PASS MASTER: file exists :: 66.2 MB
 PASS MASTER: video codec H.264 :: h264 High
 PASS MASTER: 1080x1920 (9:16) :: 1080x1920
 PASS MASTER: pixel format yuv420p :: yuv420p
-PASS MASTER: 30 fps :: r=30/1 avg=30/1 frames=3750
-PASS MASTER: duration in range :: 125.000s (target (115, 135))
+PASS MASTER: 30 fps :: r=30/1 avg=30/1 frames=3966
+PASS MASTER: duration in range :: 132.200s (target (115, 135))
 PASS MASTER: audio AAC 48 kHz stereo :: [('aac', '48000', 2)]
 PASS MASTER: fast-start (moov before mdat) :: ftyp > moov > free > mdat
 PASS MASTER: full decode without errors :: clean
 PASS MASTER: no watermark metadata/branding added by tools :: checked format tags
-PASS TEASER: file exists :: 21.1 MB
+PASS TEASER: file exists :: 23.1 MB
 PASS TEASER: video codec H.264 :: h264 High
 PASS TEASER: 1080x1920 (9:16) :: 1080x1920
 PASS TEASER: pixel format yuv420p :: yuv420p
-PASS TEASER: 30 fps :: r=30/1 avg=30/1 frames=1006
-PASS TEASER: duration in range :: 33.533s (target (30, 45))
+PASS TEASER: 30 fps :: r=30/1 avg=30/1 frames=1089
+PASS TEASER: duration in range :: 36.300s (target (30, 45))
 PASS TEASER: audio AAC 48 kHz stereo :: [('aac', '48000', 2)]
 PASS TEASER: fast-start (moov before mdat) :: ftyp > moov > free > mdat
 PASS TEASER: full decode without errors :: clean
 PASS TEASER: no watermark metadata/branding added by tools :: checked format tags
-PASS SILENT: file exists :: 57.2 MB
+PASS SILENT: file exists :: 62.7 MB
 PASS SILENT: video codec H.264 :: h264 High
 PASS SILENT: 1080x1920 (9:16) :: 1080x1920
 PASS SILENT: pixel format yuv420p :: yuv420p
-PASS SILENT: 30 fps :: r=30/1 avg=30/1 frames=3750
-PASS SILENT: duration in range :: 125.000s (target (115, 135))
+PASS SILENT: 30 fps :: r=30/1 avg=30/1 frames=3966
+PASS SILENT: duration in range :: 132.200s (target (115, 135))
 PASS SILENT: no audio stream :: 0 audio streams
 PASS SILENT: fast-start (moov before mdat) :: ftyp > moov > free > mdat
 PASS SILENT: full decode without errors :: clean
@@ -31,12 +31,12 @@ PASS SILENT: no watermark metadata/branding added by tools :: checked format tag
 PASS COVER: PNG 1080x1920 :: PNG (1080, 1920)
 PASS MASTER: no black segments >= 0.25 s :: none
 PASS MASTER: no frozen segments >= 1.5 s (motion quality) :: none
-PASS MASTER: no renderer dropout frames (black tiles), every frame scanned :: 3750 frames clean
+PASS MASTER: no renderer dropout frames (black tiles), every frame scanned :: 3966 frames clean
 PASS MASTER: integrated loudness near -14 LUFS :: -14.3 LUFS
-PASS MASTER: true peak <= -1.0 dBTP :: -1.3 dBTP
+PASS MASTER: true peak <= -1.0 dBTP :: -1.5 dBTP
 PASS MASTER: no clipped samples :: 0 samples at full scale
 PASS MASTER: planned dramatic silence present at final countdown :: -180.0 dBFS RMS
-PASS MASTER: end frame matches start frame (seamless loop) :: PSNR 48.0 dB
+PASS MASTER: end frame matches start frame (seamless loop) :: PSNR 48.1 dB
 PASS MASTER: contact sheet generated :: tests/contact_sheet.jpg (4 frames x 10 scenes)
 PASS AUDIO: no voice / speech / lyrics :: all sound synthesised in audio/gen_audio.py from oscillators + filtered noise; no samples or TTS used (by construction, not by ML detection)
 

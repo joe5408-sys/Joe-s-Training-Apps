@@ -3,7 +3,7 @@
     "check": "MASTER: file exists",
     "pass": true,
     "hard": true,
-    "detail": "60.5 MB"
+    "detail": "66.2 MB"
   },
   {
     "check": "MASTER: video codec H.264",
@@ -27,13 +27,13 @@
     "check": "MASTER: 30 fps",
     "pass": true,
     "hard": true,
-    "detail": "r=30/1 avg=30/1 frames=3750"
+    "detail": "r=30/1 avg=30/1 frames=3966"
   },
   {
     "check": "MASTER: duration in range",
     "pass": true,
     "hard": true,
-    "detail": "125.000s (target (115, 135))"
+    "detail": "132.200s (target (115, 135))"
   },
   {
     "check": "MASTER: audio AAC 48 kHz stereo",
@@ -63,7 +63,7 @@
     "check": "TEASER: file exists",
     "pass": true,
     "hard": true,
-    "detail": "21.1 MB"
+    "detail": "23.1 MB"
   },
   {
     "check": "TEASER: video codec H.264",
@@ -87,13 +87,13 @@
     "check": "TEASER: 30 fps",
     "pass": true,
     "hard": true,
-    "detail": "r=30/1 avg=30/1 frames=1006"
+    "detail": "r=30/1 avg=30/1 frames=1089"
   },
   {
     "check": "TEASER: duration in range",
     "pass": true,
     "hard": true,
-    "detail": "33.533s (target (30, 45))"
+    "detail": "36.300s (target (30, 45))"
   },
   {
     "check": "TEASER: audio AAC 48 kHz stereo",
@@ -123,7 +123,7 @@
     "check": "SILENT: file exists",
     "pass": true,
     "hard": true,
-    "detail": "57.2 MB"
+    "detail": "62.7 MB"
   },
   {
     "check": "SILENT: video codec H.264",
@@ -147,13 +147,13 @@
     "check": "SILENT: 30 fps",
     "pass": true,
     "hard": true,
-    "detail": "r=30/1 avg=30/1 frames=3750"
+    "detail": "r=30/1 avg=30/1 frames=3966"
   },
   {
     "check": "SILENT: duration in range",
     "pass": true,
     "hard": true,
-    "detail": "125.000s (target (115, 135))"
+    "detail": "132.200s (target (115, 135))"
   },
   {
     "check": "SILENT: no audio stream",
@@ -201,7 +201,7 @@
     "check": "MASTER: no renderer dropout frames (black tiles), every frame scanned",
     "pass": true,
     "hard": true,
-    "detail": "3750 frames clean"
+    "detail": "3966 frames clean"
   },
   {
     "check": "MASTER: integrated loudness near -14 LUFS",
@@ -213,7 +213,7 @@
     "check": "MASTER: true peak <= -1.0 dBTP",
     "pass": true,
     "hard": true,
-    "detail": "-1.3 dBTP"
+    "detail": "-1.5 dBTP"
   },
   {
     "check": "MASTER: no clipped samples",
@@ -231,7 +231,7 @@
     "check": "MASTER: end frame matches start frame (seamless loop)",
     "pass": true,
     "hard": false,
-    "detail": "PSNR 48.0 dB"
+    "detail": "PSNR 48.1 dB"
   },
   {
     "check": "MASTER: contact sheet generated",
