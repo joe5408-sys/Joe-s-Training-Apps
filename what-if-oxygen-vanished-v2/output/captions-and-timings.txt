@@ -1,0 +1,76 @@
+WHAT IF OXYGEN VANISHED? v2 (live waterfront POV) — on-screen text and timings (no narration)
+Total runtime 2:15.31 (135.31 s). Reading speed 3.5 words/s.
+Every figure is tagged REAL DATA, ROUGH ESTIMATE (our calculation) or THOUGHT EXPERIMENT.
+
+=== THE WATERFRONT  [0:00.00 - 1:37.31] ===
+  0:00.40 - 0:04.20  [—]
+      text: What if all the oxygen vanished?
+  0:04.20 - 0:08.00  [—]
+      text: A calm Sunday evening on the Sarawak River.
+  0:08.00 - 0:11.60  [—]
+      text: Kuching. People stroll the waterfront.
+  0:11.60 - 0:16.20  [THOUGHT EXPERIMENT]
+      text: In thirty seconds, every oxygen atom on Earth will vanish.
+  0:16.20 - 0:20.20  [REAL DATA]
+      text: Oxygen is 21% of this air...
+  0:20.20 - 0:24.80  [REAL DATA]
+      text: ...89% of every drop of river water...
+  0:24.80 - 0:28.40  [REAL DATA]
+      text: ...53% of every window...
+  0:28.40 - 0:32.40  [REAL DATA]
+      text: ...about 65% of every person here...
+  0:32.40 - 0:36.40  [REAL DATA]
+      text: ...and almost half the ground beneath them.
+  0:36.40 - 0:41.60  [THOUGHT EXPERIMENT]
+      text: Nobody here knows.
+  0:41.60 - 0:43.80  [THOUGHT EXPERIMENT]
+      text: T = 0
+  0:43.80 - 0:47.80  [REAL DATA]
+      text: Every window is gone. Glass is 53% oxygen.
+  0:47.80 - 0:52.10  [THOUGHT EXPERIMENT]
+      text: So is the river. Water minus oxygen is hydrogen gas.
+  0:52.10 - 0:55.70  [THOUGHT EXPERIMENT]
+      text: One millisecond later, everyone here pops.
+  0:55.70 - 0:59.90  [ROUGH ESTIMATE (our calculation)]
+      text: Their leftover hydrogen was packed at over 1,000 atmospheres.
+  0:59.90 - 1:04.30  [THOUGHT EXPERIMENT]
+      text: The river's hydrogen blasts upward. No fire. Just pressure.
+  1:04.30 - 1:08.10  [THOUGHT EXPERIMENT]
+      text: Concrete is mostly oxides. It turns to powder.
+  1:08.10 - 1:13.69  [ROUGH ESTIMATE (our calculation)]
+      text: A 50-metre tower has nothing left to hold it up. It falls in 3.2 seconds.
+  1:13.69 - 1:16.89  [THOUGHT EXPERIMENT]
+      text: Only the steel stands.
+  1:16.89 - 1:20.09  [THOUGHT EXPERIMENT]
+      text: Engines stop. Nothing can burn.
+  1:20.09 - 1:23.29  [THOUGHT EXPERIMENT]
+      text: T + 10 seconds. Silence.
+  1:23.29 - 1:28.30  [ROUGH ESTIMATE (our calculation)]
+      text: Air pressure: 0.77 atmospheres. Your ears would pop, if you still had ears.
+  1:28.30 - 1:33.31  [THOUGHT EXPERIMENT]
+      text: Above it all, a sky of hydrogen. Flammable. Nothing left to light it.
+  1:33.31 - 1:36.91  [THOUGHT EXPERIMENT]
+      text: Same second, everywhere on Earth.
+
+=== THE PLANET  [1:37.31 - 2:04.91] ===
+  1:37.71 - 1:42.11  [ROUGH ESTIMATE (our calculation)]
+      sub : THE MASS OF TODAY'S AIR
+      text: Every sea becomes sky.
+  1:42.11 - 1:46.11  [THOUGHT EXPERIMENT]
+      text: The ozone layer is oxygen too. UV protection: cancelled.
+  1:46.11 - 1:50.78  [REAL DATA]
+      sub : ABOUT 24 MOONS
+      text: Earth is still here. Just a lot less of it.
+  1:50.78 - 1:55.51  [REAL DATA]
+      text: The Sun is 0.57% oxygen. It keeps shining. Earth stays in orbit.
+  1:55.51 - 1:59.71  [THOUGHT EXPERIMENT]
+      text: Mars stops being red. Europa loses its hidden ocean.
+  1:59.71 - 2:04.51  [THOUGHT EXPERIMENT]
+      text: Hydrogen: Earth flies away. Oxygen: Earth stays, and crumbles. Pick your apocalypse.
+
+=== END  [2:04.91 - 2:15.31] ===
+  2:05.31 - 2:11.31  [—]
+      text: What if all the oxygen vanished?
+  2:11.31 - 2:14.71  [—]
+      text: Which element should we delete next?
+
