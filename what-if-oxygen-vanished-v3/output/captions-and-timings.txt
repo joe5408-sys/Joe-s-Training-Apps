@@ -1,0 +1,82 @@
+WHAT IF OXYGEN VANISHED? v3 (atom-zoom quiz) — on-screen text and timings (no narration)
+Total runtime 2:07.11 (127.11 s). Reading speed 3.5 words/s.
+Every figure is tagged REAL DATA, ROUGH ESTIMATE (our calculation) or THOUGHT EXPERIMENT.
+
+=== COLD OPEN  [0:00.00 - 0:09.50] ===
+  0:00.40 - 0:04.20  [THOUGHT EXPERIMENT]
+      text: KUCHING, 10 SECONDS AFTER EVERY OXYGEN ATOM DISAPPEARED.
+  0:04.20 - 0:05.80  [—]
+      text: ◀◀ REWIND
+  0:05.80 - 0:09.10  [—]
+      text: WHY? LET'S QUIZ EVERYTHING YOU CAN SEE.
+
+=== QUIZ  [0:09.50 - 1:08.70] ===
+  0:09.90 - 0:20.90  [REAL DATA]
+      q   : QUIZ 1/5 · How much of this window is oxygen, by mass?
+      opts: ['5%', '25%', '53%']
+      value: 53%
+      text: Glass is mostly silica, SiO₂. Oxygen is over half its weight.
+  0:20.90 - 0:31.90  [REAL DATA]
+      q   : QUIZ 2/5 · And this river water?
+      opts: ['11%', '50%', '89%']
+      value: 89%
+      text: In H₂O, one heavy oxygen outweighs two light hydrogens.
+  0:31.90 - 0:42.90  [REAL DATA]
+      q   : QUIZ 3/5 · How much of a person is oxygen, by mass?
+      opts: ['20%', '65%', '90%']
+      value: ~65%
+      text: Most of it sits in the water inside your cells.
+  0:42.90 - 0:53.90  [REAL DATA]
+      q   : QUIZ 4/5 · The ground under the city?
+      opts: ['6%', '46%', '75%']
+      value: 46%
+      text: Sand, clay, rock and concrete are mostly oxides.
+  0:53.90 - 1:04.90  [REAL DATA]
+      q   : QUIZ 5/5 · The air you're breathing?
+      opts: ['21%', '50%', '78%']
+      value: 21%
+      text: Trick option: 78% is nitrogen, not oxygen.
+  1:04.90 - 1:08.30  [—]
+      text: SCORE YOURSELF. NOW REMOVE THE OXYGEN.
+
+=== DELETE  [1:08.70 - 1:40.91] ===
+  1:09.10 - 1:12.10  [THOUGHT EXPERIMENT]
+      text: 3 · 2 · 1
+  1:12.10 - 1:16.90  [THOUGHT EXPERIMENT]
+      head: WINDOW → SILICON DUST
+      text: Take the O out of SiO₂ and glass falls apart.
+  1:16.90 - 1:21.91  [THOUGHT EXPERIMENT]
+      head: RIVER → HYDROGEN GAS
+      text: Strip the O from H₂O and only a gas is left. It rises.
+  1:21.91 - 1:27.31  [ROUGH ESTIMATE (our calculation)]
+      head: PEOPLE → GAS BURST
+      text: About 7 kg of hydrogen each, squeezed past 1,000 atmospheres.
+  1:27.31 - 1:32.31  [THOUGHT EXPERIMENT]
+      head: CONCRETE → POWDER
+      text: The oxides crumble. Steel frames are all that stand.
+  1:32.31 - 1:37.11  [ROUGH ESTIMATE (our calculation)]
+      head: AIR → 0.77 ATM
+      text: Thinner air, and nothing in it can burn.
+  1:37.11 - 1:40.51  [THOUGHT EXPERIMENT]
+      text: THE SAME SECOND, ALL OVER EARTH.
+
+=== THE PLANET  [1:40.91 - 1:56.11] ===
+  1:41.31 - 1:46.11  [ROUGH ESTIMATE (our calculation)]
+      big : ≈30×
+      sub : OCEAN HYDROGEN vs TODAY'S AIR
+      text: Every sea turns into sky.
+  1:46.11 - 1:50.91  [REAL DATA]
+      big : −30%
+      sub : OF EARTH'S MASS · ~24 MOONS
+      text: The planet survives. Smaller.
+  1:50.91 - 1:55.71  [REAL DATA]
+      big : 0.57%
+      sub : OF THE SUN IS OXYGEN
+      text: It keeps shining, and Earth keeps its orbit.
+
+=== NEXT  [1:56.11 - 2:07.11] ===
+  1:56.51 - 2:02.91  [—]
+      text: WHICH ELEMENT SHOULD WE DELETE NEXT?
+  2:02.91 - 2:06.51  [—]
+      text: COMMENT YOUR QUIZ SCORE.
+
