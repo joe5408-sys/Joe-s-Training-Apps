@@ -1,0 +1,138 @@
+WHAT IF HYDROGEN VANISHED?  — on-screen text and timings (no narration)
+Total runtime 2:36.61 (156.61 s). Reading speed 3.5 words/s.
+Every figure is tagged REAL DATA, ROUGH ESTIMATE (our calculation) or THOUGHT EXPERIMENT.
+
+=== THE QUESTION  [0:00.00 - 0:13.54] ===
+  0:00.40 - 0:04.40  [—]
+      big : WHAT IF HYDROGEN VANISHED?
+  0:04.40 - 0:08.33  [REAL DATA]
+      big : 1
+      sub : ATOMIC NUMBER
+      text: The simplest atom: one proton, one electron.
+  0:08.33 - 0:13.29  [THOUGHT EXPERIMENT]
+      big : IMPOSSIBLE
+      sub : A THOUGHT EXPERIMENT
+      text: Matter can't just disappear. But the numbers tell a story.
+
+=== HOW COMMON IS IT?  [0:13.54 - 0:34.38] ===
+  0:13.79 - 0:18.80  [REAL DATA]
+      big : 74%
+      sub : OF ORDINARY MATTER, BY MASS
+      text: Hydrogen. Helium is about 24%. Everything else: about 2%.
+  0:18.80 - 0:24.04  [REAL DATA]
+      big : 92%
+      sub : OF ALL ATOMS
+      text: More than 9 in 10 atoms in the universe are hydrogen.
+  0:24.04 - 0:28.37  [REAL DATA]
+      big : 73.8%
+      sub : OF THE SUN'S SURFACE, BY MASS
+      text: The Sun is mostly hydrogen fuel.
+  0:28.37 - 0:34.13  [REAL DATA]
+      big : ~62%
+      sub : OF THE ATOMS IN YOUR BODY
+      text: Only about 10% of your mass, but most of your atoms.
+
+=== T = 0  [0:34.38 - 0:40.78] ===
+  0:34.63 - 0:37.23  [THOUGHT EXPERIMENT]
+      big : NOW DELETE IT.
+  0:37.23 - 0:40.53  [THOUGHT EXPERIMENT]
+      big : T = 0
+      text: Every hydrogen atom. Everywhere. At once.
+
+=== YOU  [0:40.78 - 1:01.57] ===
+  0:41.03 - 0:45.87  [THOUGHT EXPERIMENT]
+      big : −62%
+      sub : OF YOUR ATOMS, INSTANTLY
+      text: About 7 kg of a 70 kg person, gone.
+  0:45.87 - 0:51.46  [REAL DATA]
+      big : ~60%
+      sub : OF YOUR BODY IS WATER
+      text: Water is 2 hydrogens + 1 oxygen. Only the oxygen would remain.
+  0:51.46 - 0:57.22  [REAL DATA]
+      big : 3.1 billion
+      sub : DNA BASE PAIRS PER GENOME COPY
+      text: Each pair is held together by 2 or 3 hydrogen bonds.
+  0:57.22 - 1:01.32  [THOUGHT EXPERIMENT]
+      big : 0
+      sub : LIVING CELLS LEFT
+      text: Every protein, membrane and gene contains hydrogen.
+
+=== THE OCEANS  [1:01.57 - 1:21.04] ===
+  1:01.82 - 1:05.35  [REAL DATA]
+      big : 1.4 × 10²¹ kg
+      sub : OF OCEAN WATER
+      text: About 1.34 billion cubic kilometres.
+  1:05.35 - 1:10.48  [ROUGH ESTIMATE (our calculation)]
+      big : 1.24 × 10²¹ kg
+      sub : OF OXYGEN LEFT BEHIND
+      text: Hydrogen is 11.2% of water's mass. The other 88.8% stays.
+  1:10.48 - 1:15.49  [ROUGH ESTIMATE (our calculation)]
+      big : ≈240×
+      sub : THE MASS OF TODAY'S ATMOSPHERE
+      text: If that oxygen became a gas layer around Earth...
+  1:15.49 - 1:20.79  [ROUGH ESTIMATE (our calculation)]
+      big : ~240 atm
+      sub : AT THE SURFACE · VENUS: 92
+      text: ...it would press about 240 times harder than today's air.
+
+=== ENERGY  [1:21.04 - 1:31.28] ===
+  1:21.29 - 1:25.10  [REAL DATA]
+      big : ≈80%
+      sub : OF HUMANITY'S ENERGY
+      text: comes from coal, oil and gas.
+  1:25.10 - 1:31.03  [THOUGHT EXPERIMENT]
+      big : CH₄ → C
+      sub : METHANE LOSES 4 OF ITS 5 ATOMS
+      text: Oil and gas are hydrocarbons. Without hydrogen, only carbon is left.
+
+=== THE SUN  [1:31.28 - 1:41.81] ===
+  1:31.53 - 1:35.40  [REAL DATA]
+      big : 600 million t
+      sub : OF HYDROGEN FUSED EVERY SECOND
+      text: This is what powers sunlight.
+  1:35.40 - 1:41.56  [ROUGH ESTIMATE (our calculation)]
+      big : ~27–30%
+      sub : OF THE SUN'S MASS REMAINS
+      text: Fusion stops. Mostly helium is left, with under a third of the gravity.
+
+=== EARTH'S ORBIT  [1:41.81 - 2:03.80] ===
+  1:42.06 - 1:47.53  [REAL DATA]
+      big : 8 min 19 s
+      sub : LIGHT TRAVEL TIME, SUN TO EARTH
+      text: Changes in gravity travel at the speed of light too.
+  1:47.53 - 1:53.12  [REAL DATA]
+      big : 29.8 km/s
+      sub : EARTH'S SPEED AROUND THE SUN
+      text: To escape the Sun from here, you need 42.1 km/s.
+  1:53.12 - 1:59.39  [ROUGH ESTIMATE (our calculation)]
+      big : 22–23 km/s
+      sub : THE NEW ESCAPE SPEED
+      text: With under a third of the Sun's mass left, Earth is suddenly too fast.
+  1:59.39 - 2:03.55  [THOUGHT EXPERIMENT]
+      big : EARTH LEAVES ITS ORBIT.
+      text: About 8 minutes after the change.
+
+=== THE UNIVERSE  [2:03.80 - 2:20.43] ===
+  2:04.05 - 2:09.29  [REAL DATA]
+      big : 318
+      sub : EARTH MASSES: JUPITER
+      text: About three-quarters hydrogen, like most stars. Most of it would vanish.
+  2:09.29 - 2:14.59  [REAL DATA]
+      big : 4.9%
+      sub : ORDINARY MATTER IN THE UNIVERSE
+      text: Dark energy (~68.5%) and dark matter (~26.5%) would be untouched.
+  2:14.59 - 2:20.18  [ROUGH ESTIMATE (our calculation)]
+      big : ≈3.6%
+      sub : OF THE UNIVERSE IS HYDROGEN
+      text: The universe would barely lose weight. It would lose its light.
+
+=== ATOM NUMBER 1  [2:20.43 - 2:36.61] ===
+  2:20.68 - 2:25.81  [REAL DATA]
+      big : 13.8 billion yrs
+      sub : AGE OF THE UNIVERSE
+      text: Hydrogen atoms formed about 380,000 years after the Big Bang.
+  2:25.81 - 2:30.01  [—]
+      big : EVERYTHING YOU KNOW IS BUILT ON ATOM NUMBER 1.
+  2:30.01 - 2:36.01  [—]
+      big : WHICH ELEMENT WOULD YOU REMOVE NEXT?
+
