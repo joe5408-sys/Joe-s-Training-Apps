@@ -1,0 +1,146 @@
+WHAT IF OXYGEN VANISHED? (countdown + dark humour) — on-screen text and timings (no narration)
+Total runtime 2:29.32 (149.32 s). Reading speed 3.5 words/s.
+Every figure is tagged REAL DATA, ROUGH ESTIMATE (our calculation) or THOUGHT EXPERIMENT.
+
+=== COLD OPEN  [0:00.00 - 0:06.07] ===
+  0:00.40 - 0:03.80  [—]
+      big : IN ONE INSTANT, THE GROUND CRUMBLES.
+  0:03.80 - 0:05.67  [—]
+      big : HERE'S WHY.
+
+=== MEET OXYGEN  [0:06.07 - 0:22.42] ===
+  0:06.47 - 0:10.57  [REAL DATA]
+      big : 8
+      sub : ATOMIC NUMBER · OXYGEN
+      text: Third most common element in the universe.
+  0:10.57 - 0:13.01  [REAL DATA]
+      big : 21%
+      sub : OF THE AIR (BY VOLUME)
+  0:13.01 - 0:15.31  [REAL DATA]
+      big : ~65%
+      sub : OF YOUR BODY'S MASS
+  0:15.31 - 0:17.75  [REAL DATA]
+      big : 46%
+      sub : OF EARTH'S CRUST, BY MASS
+  0:17.75 - 0:22.02  [THOUGHT EXPERIMENT]
+      big : IMPOSSIBLE
+      sub : MATTER CAN'T JUST VANISH
+      text: We did hydrogen. Let's ruin oxygen too.
+
+=== T = 0  [0:22.42 - 0:28.42] ===
+  0:22.82 - 0:24.72  [THOUGHT EXPERIMENT]
+      big : DELETE IT.
+  0:24.72 - 0:28.02  [THOUGHT EXPERIMENT]
+      big : T = 0
+      text: Every oxygen atom. Everywhere. At once.
+
+=== THE AIR  [0:28.42 - 0:39.54] ===
+  0:28.82 - 0:33.55  [ROUGH ESTIMATE (our calculation)]
+      big : 0.77 atm
+      sub : AIR PRESSURE AT SEA LEVEL
+      text: The air just lost 23% of its weight.
+  0:33.55 - 0:39.14  [ROUGH ESTIMATE (our calculation)]
+      big : ~2,200 m
+      sub : IT FEELS LIKE THIS ALTITUDE
+      text: Your ears pop. Enjoy it. It's the last thing you'll notice.
+
+=== YOU  [0:39.54 - 1:01.89] ===
+  0:39.94 - 0:44.95  [THOUGHT EXPERIMENT]
+      big : −45 kg
+      sub : FROM A 70 KG PERSON
+      text: Hydrogen took 7 kg. Oxygen takes 45. New record.
+  0:44.95 - 0:49.96  [THOUGHT EXPERIMENT]
+      big : H₂O → H₂
+      sub : YOUR WATER BECOMES HYDROGEN GAS
+      text: About 7 kg of it, packed into a body.
+  0:49.96 - 0:54.63  [ROUGH ESTIMATE (our calculation)]
+      big : >1,000 atm
+      sub : ROUGH LOWER BOUND
+      text: Denser than liquid hydrogen. It does not stay inside.
+  0:54.63 - 0:56.53  [THOUGHT EXPERIMENT]
+      big : POP. AGAIN.
+  0:56.53 - 1:01.49  [THOUGHT EXPERIMENT]
+      big : 0
+      sub : FIRES · EXPLOSIONS · ENGINES
+      text: Fire needs oxygen. Nothing can burn now. Not even you.
+
+=== THE GROUND  [1:01.89 - 1:18.30] ===
+  1:02.29 - 1:07.02  [REAL DATA]
+      big : 46%
+      sub : OF THE CRUST IS OXYGEN
+      text: Rock is mostly oxides. Sand, clay, granite: oxygen.
+  1:07.02 - 1:09.42  [THOUGHT EXPERIMENT]
+      big : THE GROUND CRUMBLES.
+  1:09.42 - 1:13.86  [REAL DATA]
+      big : 53%
+      sub : OF GLASS (SILICA) IS OXYGEN
+      text: Windows: optional. Concrete and brick: also oxides.
+  1:13.86 - 1:17.90  [THOUGHT EXPERIMENT]
+      big : STEEL
+      sub : SURVIVES
+      text: Iron has almost no oxygen. Congratulations to steel.
+
+=== THE OCEANS  [1:18.30 - 1:33.74] ===
+  1:18.70 - 1:23.03  [ROUGH ESTIMATE (our calculation)]
+      big : 1.57 × 10²⁰ kg
+      sub : OF HYDROGEN LEFT FROM THE OCEANS
+      text: Water minus oxygen is just hydrogen.
+  1:23.03 - 1:28.04  [ROUGH ESTIMATE (our calculation)]
+      big : ≈30×
+      sub : THE MASS OF TODAY'S AIR
+      text: If it all stayed as a gas around Earth.
+  1:28.04 - 1:33.34  [THOUGHT EXPERIMENT]
+      big : THE MOST FLAMMABLE SKY EVER.
+      text: And not one thing left to light it with.
+
+=== THE SKY  [1:33.74 - 1:43.43] ===
+  1:34.14 - 1:38.53  [REAL DATA]
+      big : 97–99%
+      sub : OF THE SUN'S MEDIUM UV · BLOCKED BY OZONE
+      text: Ozone is three oxygen atoms.
+  1:38.53 - 1:43.03  [THOUGHT EXPERIMENT]
+      big : 0%
+      sub : BLOCKED NOW
+      text: UV protection: cancelled. Luckily, nothing is left to sunburn.
+
+=== THE PLANET  [1:43.43 - 2:01.66] ===
+  1:43.83 - 1:48.27  [REAL DATA]
+      big : ~30%
+      sub : OF EARTH'S MASS IS OXYGEN
+      text: Earth loses about 1.8 × 10²⁴ kg.
+  1:48.27 - 1:53.23  [ROUGH ESTIMATE (our calculation)]
+      big : 24 Moons
+      sub : OF MASS · GONE
+      text: Earth is still here. Just a lot less of it.
+  1:53.23 - 1:57.67  [REAL DATA]
+      big : 0.57%
+      sub : OF THE SUN IS OXYGEN
+      text: The Sun barely notices. It keeps shining.
+  1:57.67 - 2:01.26  [THOUGHT EXPERIMENT]
+      big : EARTH STAYS IN ORBIT.
+      text: Unlike last time.
+
+=== THE UNIVERSE  [2:01.66 - 2:15.51] ===
+  2:02.06 - 2:07.25  [REAL DATA]
+      big : MARS
+      sub : RED BECAUSE OF IRON OXIDE (RUST)
+      text: Delete oxygen and the Red Planet stops being red.
+  2:07.25 - 2:11.81  [REAL DATA]
+      big : EUROPA · ENCELADUS
+      sub : MOONS WITH HIDDEN OCEANS
+      text: Our best bets for alien life. Water worlds.
+  2:11.81 - 2:15.11  [THOUGHT EXPERIMENT]
+      big : WERE.
+      text: Every water ocean in existence: gone.
+
+=== PICK YOUR APOCALYPSE  [2:15.51 - 2:29.32] ===
+  2:15.91 - 2:21.11  [—]
+      big : H vs O
+      sub : PICK YOUR APOCALYPSE
+      text: Hydrogen: Earth flies away. Oxygen: Earth stays, and crumbles.
+  2:21.11 - 2:24.12  [—]
+      big : WHICH ELEMENT SHOULD WE DELETE NEXT?
+  2:24.12 - 2:28.72  [—]
+      big : COMMENT. BEFORE WE RUN OUT.
+      text: Thought experiment. Not physically possible.
+
